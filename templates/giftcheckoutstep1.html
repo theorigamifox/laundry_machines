@@ -1,0 +1,45 @@
+<#include:includes/top.html#>
+	
+	<!-- CONTENT SECTION FEATURE -->
+	
+	<!-- PAGE CONTENT HEADER -->
+	<table width="100%" border="0" cellspacing="0" cellpadding="0">
+	<tr>
+	<td>
+	<h1>{labels.ordering.orderingStep1}</h1> <!-- PAGE TITLE -->
+	<h2>Enter your billing address in the form below.</h2> <!-- PAGE SUB TITLE -->
+	</td>
+	</tr>
+	</table>
+	<!-- /PAGE CONTENT HEADER -->
+
+		<!-- PAGE CONTENT -->
+
+		<#include:includes/order_giftcertificate.html#>
+
+		<p>&nbsp;</p>
+		
+		<table cellpadding="4" cellspacing="1" border="0">
+		<form name="{ordering.form.name}" method="POST" action="{ordering.form.action}" onSubmit="{ordering.form.onsubmit}">
+		<#if:ordering.details.loggedin:eq:N#>
+			<tr>
+				<td class="field-backing-title"><font class="normal-field-title">{labels.customer.emailaddress} *</font></td>
+				<td class="field-backing-content"><font class="normal-field-title">
+					<input type="TEXT" name="{ordering.customer.field.email.fieldname}" class="textbox" size="40" maxlength="200" value="{ordering.details.email}"> <#if:ordering.customer.field.email.error:eq:Y#><font class="text-small-red">< Invalid</font><#/if#>				
+				</font></td>
+			</tr>		
+		<#/if#>
+		<!-- include the billing address fields file -->
+		<#include:includes/order_customer_fields.html#>		
+		<tr>
+			<td colspan="2" class="field-backing-content" align="center"><input type="submit" name="submit" value="{labels.ordering.continue}" class="button"></td>
+		</tr>
+		</table>
+		</form>
+
+
+
+		<!-- /PAGE CONTENT -->
+	<!-- /CONTENT SECTION FEATURE -->
+
+<#include:includes/bottom.html#>

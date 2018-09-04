@@ -1,0 +1,45 @@
+<#include:includes/top.html#>
+	
+	<!-- CONTENT SECTION FEATURE -->
+	
+	<!-- PAGE CONTENT HEADER -->
+	<table width="100%" border="0" cellspacing="0" cellpadding="0">
+	<tr>
+	<td>
+	<h1>{labels.affiliates.titleAdministration}</h1> <!-- PAGE TITLE -->
+	<h2>{labels.affiliates.titleLogin}</h2> <!-- PAGE SUB TITLE -->
+	<p>Use this page to login and manage your Affiliate account details and check the status of commissions and payments.</p> <!-- PAGE INSTRUCTIONS -->
+	</td>
+	</tr>
+	</table>
+	<!-- /PAGE CONTENT HEADER -->
+
+		<!-- PAGE CONTENT -->
+
+		<table cellpadding="2" cellpading="0" border="0">
+		<#if:customer.login.error:eq:Y#>
+		<tr>
+			<td colspan="2" align="center"><font class="error-text">{labels.affiliates.errorLogin}</font></td>
+		</tr>
+		<#/if#>
+		<form name="{affiliate.login.form.name}" method="POST" action="{affiliate.login.form.action}" onSubmit="{affiliate.login.form.onsubmit}">
+		<tr>
+			<td valign="top" class="field-backing-title">{labels.affiliates.fieldUsername}</td>
+			<td valign="top" class="field-backing-content"><input type="text" name="{affiliate.login.form.username}" value="" size="15" class="textbox"></td>
+		</tr>
+		<tr>
+			<td valign="top" class="field-backing-title">{labels.affiliates.fieldPassword}</td>
+			<td valign="top" class="field-backing-content"><input type="password" name="{affiliate.login.form.password}" size="15" class="textbox"></td>
+		</tr>	
+		<tr>
+			<td valign="top" colspan="2" align="right" class="field-backing-content"><input type="submit" name="submit" value="{labels.affiliates.buttonLogin}" class="button"></td>
+		</tr>	
+
+		</form>
+		</table>
+
+		<!-- /PAGE CONTENT -->
+	<!-- /CONTENT SECTION FEATURE -->
+
+<#include:includes/bottom.html#>
+

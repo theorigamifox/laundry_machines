@@ -1,0 +1,152 @@
+<?php session_start(); ?>
+<!DOCTYPE html>
+<!--[if IE 7]>
+<html class="ie ie7" lang="en-GB" prefix="og: http://ogp.me/ns#">
+<![endif]-->
+<!--[if IE 8]>
+<html class="ie ie8" lang="en-GB" prefix="og: http://ogp.me/ns#"> 
+<![endif]-->
+<!--[if !(IE 7) | !(IE 8)  ]>
+<!-->
+<html lang="en-GB" prefix="og: http://ogp.me/ns#"> 
+    <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Laundry Equipment, Commercial Washing Machine, Commercial Laundry, Commercial Dryers - Mag UK</title>
+        <meta name="description" content="{meta.description}">
+        <meta name="keywords" content="{meta.keywords}">
+        <BASE HREF="{shop.baseDir}">
+        <meta name="google-site-verification" content="QCj4Jijdatbtt0w3rM4hCOaq6c5qKRrc6jIyP1y2p94" />            
+        <link rel="shortcut icon" href="http://www.laundrymachines.co.uk/favicon.ico" type="image/x-icon" />
+        <link href="css/custom.css" rel="stylesheet" type="text/css" >	
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">        
+        <script src="js/modernizr-2.6.2.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.5.18/webfont.js"></script>
+        
+        <script>
+            WebFont.load({
+                google: {
+                    families: ['Varela+Round', 'Montserrat:300,400,700']
+                }
+            });
+        </script>
+        <!-- WebStatsNOW web tools statistics hit counter code -->
+        <script id="wa_u"></script>
+        <script>//<![CDATA[
+            wa_account = "west63rd_mag1";
+            wa_location = 17;
+            wa_pageName = location.pathname;  // you can customize the page name here
+            document.cookie = '__support_check=1';
+            wa_hp = 'http';
+            wa_rf = document.referrer;
+            wa_sr = window.location.search;
+            wa_tz = new Date();
+            if (location.href.substr(0, 6).toLowerCase() == 'https:')
+                wa_hp = 'https';
+            wa_data = '&an=' + escape(navigator.appName) +
+                    '&sr=' + escape(wa_sr) + '&ck=' + document.cookie.length +
+                    '&rf=' + escape(wa_rf) + '&sl=' + escape(navigator.systemLanguage) +
+                    '&av=' + escape(navigator.appVersion) + '&l=' + escape(navigator.language) +
+                    '&pf=' + escape(navigator.platform) + '&pg=' + escape(wa_pageName);
+            wa_data = wa_data + '&cd=' +
+                    screen.colorDepth + '&rs=' + escape(screen.width + ' x ' + screen.height) +
+                    '&tz=' + wa_tz.getTimezoneOffset() + '&je=' + navigator.javaEnabled();
+            wa_img = new Image();
+            wa_img.src = wa_hp + '://loc1.hitsprocessor.com/statistics.asp' +
+                    '?v=1&s=' + wa_location + '&acct=' + wa_account + wa_data + '&tks=' + wa_tz.getTime();
+            document.getElementById('wa_u').src = wa_hp + '://loc1.hitsprocessor.com/track.js'; //]]>
+        </script>
+        <!-- End WebStatsNOW statistics web tools hit counter code -->
+
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-124755817-1"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag() {
+                dataLayer.push(arguments);
+            }
+            gtag('js', new Date());
+
+            gtag('config', 'UA-124755817-1');
+        </script>
+
+    </head>
+
+    <body>
+        <?php //echo "hello";?>
+        <div id="pageWrap">
+            <div id="top-bar">
+                <div class="row">
+                    <div id="top-contact" class="medium-6 columns">
+                        <ul>
+                            <li><a href="tel:01422244733">01422 244733</a></li>
+                            <li><a href="tel:08000288525">0800 028 8525</a></li>
+                        </ul>
+                    </div>
+                    <div class="medium-6 columns">
+                        <ul id="account-links">
+                            <li><a href="index.php" title="Go to our homepage">Home</a></li>
+                            <#if:customer.allowed:eq:Y#>
+                            <#if:customer.loggedin:eq:N#>
+                            <li><a href="{customer.accountlink}" title="{labels.customer.loginButton}">{labels.customer.loginButton}</a></li>
+                            <li><a href="{customer.registerlink}" title="{labels.navigation.openAccountLink}">{labels.navigation.openAccountLink}</a></li>
+                            <#else#>
+                            <li><a href="customer.php?xCmd=account" title="{labels.account.accountHomeLink}">{labels.account.accountHomeLink}</a></li>
+                            <li><a href="{customer.logoutlink}" title="labels.customer.logoutLink">{labels.customer.logoutLink}</a></li>
+                            <#/if#>
+                            <#/if#>	
+
+                            <#if:cart.totals.products:gt:0#>
+                            <li><a href="{cart.link}" title="{labels.navigation.cartLink}">{labels.navigation.cartLink}</a></li>
+                            <li><a href="{checkout.link}" title="{labels.navigation.checkoutLink}">{labels.navigation.checkoutLink}</a></li>
+                            <#/if#>
+                            <li><a href="contact.php?xCmd=send" title="{labels.navigation.contactLink}">{labels.navigation.contactLink}</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div id="header">
+                <div class="row">
+                    <div class="large-12 columns">
+                        <a href="http://www.maglaundryequipment.co.uk" target="_blank"><img src="images/MAG_Laundry_Equipment-banner.png"  title="commercial laundry equipment commercial washing machine" alt="commercial laundry equipment commercial washing machine"></a>
+                    </div>
+                </div>
+            </div>
+            <div id="nav">
+                <div class="row">
+                    <div class="large-12 columns">                
+                        <ul id="site-navigation">
+                            <li><a href="index.php">Home</a></li>
+                            <li><a href="page.php?xPage=about_us.html">About Us</a></li>
+                            <li><a href="page.php?xPage=second_hand.html">We Buy Used Equipment</a></li>
+                            <li><a href="page.php?xPage=finance_lease.html">Finance and Lease</a></li>
+                            <li><a href="https://maglaundryequipment.co.uk/commercial-laundry-parts/" target="_blank">Service & Parts</a></li>
+                            <li><a href="https://maglaundryequipment.co.uk/products/lease-laundry-equipment/" target="_blank">Rental</a></li>
+                            <li><a href="page.php?xPage=markets.html">Markets</a>
+                                <ul>
+                                    <li><a href="page.php?xPage=nursing_homes.html">Care &amp; Nursing Homes</a></li>
+                                    <li><a href="page.php?xPage=hotels.html">Hotels &amp; Guest Houses</a></li>
+                                    <li><a href="page.php?xPage=vets.html">Vets</a></li>
+                                    <li><a href="page.php?xPage=schools.html">Schools</a></li>
+                                    <li><a href="page.php?xPage=set_equine.html">Equine</a></li>
+                                    <li><a href="page.php?xPage=nurseries.html">Nurseries</a></li>
+                                    <li><a href="page.php?xPage=set_launderette.html">Laundrettes</a></li>
+                                    <li><a href="page.php?xPage=camping.html">Camping</a></li>
+                                    <li><a href="page.php?xPage=food.html">Food</a></li>
+                                    <li><a href="page.php?xPage=export.html">Export</a></li>
+                                    <li><a href="page.php?xPage=health.html">Health</a></li>
+                                    <li><a href="page.php?xPage=prison.html">HMS Prisons</a></li>
+                                </ul>
+                            <li><a href="page.php?xPage=mag_news.html">News</a></li>
+                            <li><a href="page.php?xPage=news.html">Testimonials</a></li>
+                            <li><a href="contact.php?xCmd=send">Contact Us</a></li>
+                            
+                        </ul>
+                        <div id="mobile-menu"></div>
+                    </div>
+                </div>
+            </div>
+            <div id="mainContainer">
+                <div class="row">

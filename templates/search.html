@@ -1,0 +1,146 @@
+
+<#include:includes/top.html#>
+	
+	<!-- CONTENT SECTION FEATURE -->
+	
+	<!-- PAGE CONTENT HEADER -->
+	<table width="100%" border="0" cellspacing="0" cellpadding="0">
+	<tr>
+	<td>
+	<h1>{labels.search.searchResultsTitle}</h1> <!-- PAGE TITLE -->
+	<h2>{snippet=SearchResults.content}</h2> <!-- PAGE SUB TITLE -->
+	<h4></h4> <!-- PAGE INSTRUCTIONS -->
+
+	</td>
+	</tr>
+	</table>
+	<!-- /PAGE CONTENT HEADER -->
+
+		<!-- PAGE CONTENT -->
+
+		<!-- output products if there are any results for this search -->
+		<#if:loop.search.products.total:neq:0#>			
+			<table cellpadding="2" cellspacing="2" border="0" width="98%">
+			<tr>
+				<td class="table-backing-title">
+					<font class="table-title-text">
+					{labels.search.searchForTitle} &quot;{search.query}&quot;<#if:search.pricerange:eq:Y#>, {labels.search.priceRangeTitle} {search.priceFrom} - {search.priceTo}<#/if#><br>
+					{labels.search.totalProductsFound} {search.totalproducts}, {labels.search.currentPage} {search.page}, {labels.search.showingResults} {search.from} -&gt; {search.to}<br>
+					{labels.search.sortByTitle} <a href="{search.sortcodelink}" class="middle-links">{labels.search.sortProductCode}</a> | <a href="{search.sortnamelink}" class="middle-links">{labels.search.sortProductName}</a> | <a href="{search.sortpricelhlink}" class="middle-links">{labels.search.sortPriceLowHigh}</a> | <a href="{search.sortpricehllink}" class="middle-links">{labels.search.sortPriceHighLow}</a>
+					</font>
+				</td>
+			</tr>
+			<!-- loop round product results -->
+			<#loop:search.products#>
+			<tr>
+				<td class="table-backing-content" valign="top">
+					<table border="0" cellpadding="2" cellspacing="0">
+					<!-- output individual product add to basket form -->
+					<form name="{search.products.form.name}" action="{search.products.form.action}" method="POST" onSubmit="{search.products.form.onsubmit}">
+					<tr>
+						<td valign="top"><a href="{search.products.link}">
+
+							<#if:search.products.extra_OutOfStock.content:neq:blank#>
+
+									<?php
+										$filename = {*search.products.thumbnail};
+										$filenametemp = substr("$filename", 0, -4);
+										$newfilename = str_replace($filename, ".jpg", "-oos.jpg");
+										$newfilename2 = $filenametemp.$newfilename;
+										$this->theVariables["new"]["filename"] = $newfilename2;
+									?>
+
+									<img src="{new.filename}" border="0" alt="{search.products.name}"width="115">
+								
+									<#else#>
+										<img src="{search.products.thumbnail}" border="0" alt="{search.products.name}" height="75">
+								<#/if#>
+
+							</a></td>
+						<td valign="top" align="left">
+							<a href="{search.products.link}" class="middle-links">{search.products.name}</a><br>
+							<#if:search.products.description:eq:blank#>
+								<font class="middle-normal-text">{search.products.shortdescription}
+							<#else#>
+								<font class="middle-normal-text">{search.products.description:150:dots}
+							<#/if#>
+							<br></font>
+							
+							<font class="specialoffer-text">
+
+							<#if:search.products.price1:eq:0#>
+									Call Us Now For Full Details<br>
+								
+								<#else#>
+									{labels.product.productPrice} {search.products.price}
+							<#/if#>
+
+							</font>
+							<br><a href="{search.products.wishlist.link}" class="middle-links">{labels.customer.addToWishListLink}</a> |
+							
+							<#if:search.products.price1:neq:0#>
+								<#if:search.products.scNoBuy:eq:N#><a href="javascript:document.{search.products.form.name}.submit();" class="middle-links">{labels.cart.addToCartLink}</a> | <#/if#>
+							<#/if#>
+							<a href="{search.products.link}" class="middle-links">{labels.product.moreInfoLink}</a>
+							
+						</td>
+					</tr>
+					</form>
+					</table>
+				</td>
+			</tr>
+			<#/loop#>
+			<!-- /loop round product results -->
+			
+			<!-- output page navigation for search results -->
+			<tr>
+				<td class="table-backing-content" align="center" align="right">
+					<font class="middle-normal-text">
+					<#if:search.previouslink:neq:blank#>
+						[<a href="{search.previouslink}" class="middle-links">{labels.search.previousLink}</a>]&nbsp;&nbsp;&nbsp;
+					<#/if#>
+					<#loop:search.pages#>
+						<#if:search.page:eq:search.pages.page#>
+						{search.pages.page}
+						<#else#>
+						<a href="{search.pages.link}" class="middle-links">{search.pages.page}</a> 
+						<#/if#>
+					<#/loop#>
+					<#if:search.nextlink:neq:blank#>
+						&nbsp;&nbsp;&nbsp;[<a href="{search.nextlink}" class="middle-links">{labels.search.nextLink}</a>]
+					<#/if#>
+					</font>
+				</td>
+			</tr>		
+			</table>
+		<#/if#>			
+<hr>
+		<!-- output section results (only applicable if includesection option is on -->
+		<#if:search.includesections:eq:1#>			
+			<#if:loop.search.sections.total:neq:0#>
+				<#if:search.page:eq:1#>
+					<table cellpadding="2" cellspacing="1" border="0" width="98%">
+					<tr>
+						<td class="table-backing-title" colspan="3"><h3>{labels.search.sectionSearchResults}</h3></td>
+					</tr>
+					<#loop:search.sections#>
+						<tr>
+						<td class="table-backing-content" valign="top">
+							<table border="0" cellpadding="2" cellspacing="0">
+							<tr>
+								<td valign="top"><a href="{search.sections.link}"><img src="{search.sections.thumbnail}" border="0" alt="{search.sections.title}" width="40" height="40"></a></td>
+								<td valign="top" align="left"><font class="middle-normal-text"><a href="{search.sections.link}" class="middle-links">{search.sections.title}</a><br></font><font class="middle-normal-text">{search.sections.shortdescription}<br></font></td>
+							</tr>
+							</table>
+						</td>
+						</tr>
+					<#/loop#>
+					</table>
+				<#/if#>
+			<#/if#>
+		<#/if#>	
+
+		<!-- /PAGE CONTENT -->
+	<!-- /CONTENT SECTION FEATURE -->
+
+<#include:includes/bottom.html#>

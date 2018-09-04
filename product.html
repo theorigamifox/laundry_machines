@@ -1,0 +1,444 @@
+<HTML>
+<HEAD>
+<TITLE>{company.companyname} > {product.name} </TITLE>
+<META NAME="description" CONTENT="{meta.description}">
+<META NAME="keywords" CONTENT="{meta.keywords}">
+<#include:includes/top.html#>
+
+<!-- MAGNIFICATION SCRIPT -->
+<script src="/images-magnified/magicmagnify.js" type="text/javascript"></script>
+<!-- END MAGNIFICATION SCRIPT -->
+
+
+		<font class="text-path"><a href="{product.link}">&nbsp;{product.name}</a></font>
+		<center>
+		<table width="98%" cellpadding="2" cellspacing="1" border="0">
+			
+    <!-- product add to basket form -->
+			
+    <form name="{product.form.name}" action="{product.form.action}" method="POST" onSubmit="{product.form.onsubmit}">
+			
+      <tr>
+				
+        <td valign="top" width="204">
+					<table cellpadding="2" cellspacing="1" border="0" width="100%">
+					
+            <tr>
+						
+              <td class="field-backing-title" align="center"><font class="table-title-text">{product.shortdescription}</font></td>
+            </tr>
+					
+            <tr>
+						
+              <td valign="top"><div align="center">
+			
+
+			<!-- IMAGE MAGNIFIER -->
+			<?php
+				// GET THE FILENAME WITHOUT PATH AND EXTENSION
+				$pieces = explode(".", {*product.mainimage});
+				
+				$pieces2 = explode("/", $pieces[0]);
+
+				// BUILD THE URL FOR THE MAGNIFIED IMAGE
+				$filename = "images-magnified/".$pieces2[3]."_L.".$pieces[1];
+
+				// CHECK IF A MAGNIFIED IMAGE EXISTS
+				if (file_exists($filename))
+				{
+					// OUTPUT MAGNIFIED IMAGE DETAILS
+					echo "<a href='$filename' class='MagicMagnify' rel='zoom-color: #ffffff; size: 210px'>";
+				}
+
+			?>
+
+			
+
+			<img src="{product.mainimage}" alt="{product.name}" border="0">
+			
+
+			<!-- FINISH MAGNIFIED IMAGE -->
+			<?php
+
+				if (file_exists($filename))
+				{
+					echo "</a>";
+				}
+			?>
+			
+			
+			</div></td>
+            </tr>
+					
+            <tr>
+						
+              <td>
+						<p>
+                  <!-- output quantity discounts table -->
+                  <#if:product.pricing.quantitytable.available:eq:Y#>
+                <table cellpadding="2" cellspacing="2" border="0" width="100%">
+                  <tr>
+                    <td class="darkshade-backing"><font class="product-field-title">{labels.product.qtyTableQty}</font></td>
+                    <td class="darkshade-backing"><font class="product-field-title">{labels.product.qtyTableDiscount}</font></td>
+                  </tr>
+                  <#loop:product.pricing.quantitytable.entries#>
+                  <tr>
+		<#if:product.pricing.quantitytable.entries.to:neq:99999#>
+                    <td class="lightshade-backing"><font class="product-field-content">{product.pricing.quantitytable.entries.from} - {product.pricing.quantitytable.entries.to}</font></td>
+                    <#else#>
+                    <td class="lightshade-backing"><font class="product-field-content">{product.pricing.quantitytable.entries.from} +</font></td>
+                    <#/if#>
+                    <td class="lightshade-backing"><font class="product-field-content">{product.pricing.quantitytable.entries.discount}</font></td>
+                  </tr>
+                  <#/loop#>
+                </table>
+                <#/if#>	
+                <!-- /output quantity discounts table -->
+                <p>
+                  <!-- output pricing combinations table -->
+                  <#if:product.pricing.combinationstable.available:eq:Y#>
+                <table cellpadding="2" cellspacing="2" border="0" width="100%">
+                  <tr>
+                    <td class="darkshade-backing"><font class="product-field-title">{labels.product.combinationsTitle}</font></td>
+                    <td class="darkshade-backing"><font class="product-field-title">{labels.product.combinationsPrice}</font></td>
+                  </tr>
+                  <#loop:product.pricing.combinationstable.entries#>
+                  <tr>
+                    <td class="lightshade-backing" valign="top"><font class="product-field-content">
+			<#loop:product.pricing.combinationstable.entries.fields#>
+			{product.pricing.combinationstable.entries.fields.field}: {product.pricing.combinationstable.entries.fields.value}<br>
+                      <#if:product.pricing.combinationstable.entries.qtyfrom:neq:product.pricing.combinationstable.entries.qtyto#>
+			{labels.product.qtyTableQty}: {product.pricing.combinationstable.entries.qtyfrom} - {product.pricing.combinationstable.entries.qtyto}<br>
+                      <#/if#>
+			<#/loop#>
+		</font></td>
+                    <td class="lightshade-backing" valign="top"><font class="product-field-content">{product.pricing.combinationstable.entries.price}</font></td>
+                  </tr>
+                  <#/loop#>
+                </table>
+                <#/if#>	
+						
+                <!-- /output pricing combinations table -->
+						<p>
+						
+                  <!-- output exclusions table -->
+						<#if:product.exclusionstable.available:eq:Y#>
+							
+                <table cellpadding="2" cellspacing="2" border="0" width="100%">
+							
+                  <tr>
+								
+                    <td class="darkshade-backing"><font class="product-field-title">{labels.product.exclusionsTitle}</font></td>
+                  </tr>
+							<#loop:product.exclusionstable.entries#>
+							
+                  <tr>
+								
+                    <td class="lightshade-backing" valign="top"><font class="product-field-content">
+								<#loop:product.exclusionstable.entries.fields#>
+									{product.exclusionstable.entries.fields.field}: {product.exclusionstable.entries.fields.value}<br>
+								<#/loop#>
+								</font></td>
+                  </tr>
+							<#/loop#>
+							
+                </table>
+                <#/if#>	
+						
+                <!-- /output exclusions table -->
+                											
+						<p>
+						
+                  <!-- output customer reviews -->
+						<#if:reviews.enabled:eq:Y#>
+							<#if:reviews.total:neq:0#>
+								
+                <table cellpadding="2" cellspacing="2" border="0" width="100%">
+								
+                  <tr>
+									
+                    <td class="review-title-backing" align="center"><font class="review-title-text">{labels.product.customerReviewsTitle} <a href="{reviews.link}" class="middle-links">{labels.product.customerReviewsAllLink}</a></font><font class="review-title-text"><br>
+                      {labels.product.customerReviewsAverageRating} {reviews.averagerating}</font></td>
+                  </tr>
+								
+                </table>
+                <#loop:reviews.content#>
+								<p>
+								
+                <table cellpadding="2" cellspacing="0" border="0" width="100%">
+								
+                  <tr>
+									
+                    <td class="review-title-backing"><font class="review-title-text">{reviews.content.name}</font></td>
+                    <td class="review-title-backing" align="right"><font class="review-title-text">{labels.product.customerReviewsRating} {reviews.content.rating}</font></td>
+                  </tr>
+								<#if:reviews.content.title:neq:blank#>
+								
+                  <tr>
+									
+                    <td class="review-subject-backing" colspan="2"><font class="review-content-text">{reviews.content.title}</font></td>
+                  </tr>
+                  							
+								<#/if#>
+								
+                  <tr>
+									
+                    <td class="review-content-backing" colspan="2"><font class="review-content-text">{reviews.content.review}</font></td>
+                  </tr>
+                  							
+								
+                </table>
+                <#/loop#>
+							<#else#>
+								<font class="middle-normal-text">{labels.product.customerReviewsNoReviews}</font>
+							<#/if#>
+							<p><A href="{product.review.link}" class="middle-links">{labels.product.customerReviewsReviewLink}</a>
+						<#/if#>
+						
+                  <!-- /output customer reviews -->
+						</td>
+            </tr>
+					</table></td>
+      </tr>
+      <tr>
+				
+        <td valign="top" align="left">
+					<font class="description-text">{product.description}<br>
+          </font>
+          <p>
+						
+            <!-- output special offer line if item is marked as special offer -->
+						<#if:product.specialoffer:eq:Y#>
+							<font class="specialoffer-text"><center>BE QUICK - THIS ITEM HAS LIMITED STOCK<br>ONCE THEY'VE GONE, THEY'VE GONE !!</center><br>
+            </font>
+          <p>
+						<#/if#>
+	
+	</td>
+	</tr>
+	<td align="center" bgcolor="#FFFF66">
+		<font class="other-title-text">WE CURRENTLY HAVE {product.scLevel} AVAILABLE.</font><br>
+	</td>
+	</tr>
+	<tr>
+		<td valign="top" align="center">
+				<br>	
+            <!-- output all the extra fields -->
+					<#loop:product.extrafields#>
+						
+            <!-- check to see if there is some content for an extra field -->
+						<#if:product.extrafields.content:neq:blank#>
+							
+            <!-- output USERINPUT extra fields -->
+							<#if:product.extrafields.type:eq:USERINPUT#>
+								<#if:product.extrafields.requirement:gt:0#>
+									<font class="extrafield-title-text">{product.extrafields.title}: </font>
+            <input type="TEXT" name="{product.extrafields.name}" size="{product.extrafields.size}" maxlength="{product.extrafields.maxlength}" class="textbox">
+									<#if:product.extrafields.error:eq:Y#>
+										<br>
+            {label.product.userInputRequired}
+									<#/if#>
+									
+          <p>
+								<#/if#>
+							<#/if#>
+							
+            <!-- output TEXT extra fields -->
+							<#if:product.extrafields.type:eq:TEXT#>
+								<#if:product.extrafields.name:neq:stokke#>
+									<font class="extrafield-title-text">{product.extrafields.title}: </font><font class="extrafield-content-text">{product.extrafields.content}</font>
+								<#/if#>
+          <p>
+							<#/if#>
+							
+            <!-- output TEXTAREA extra fields -->
+							<#if:product.extrafields.type:eq:TEXTAREA#>
+								<font class="extrafield-title-text">{product.extrafields.title}:</font><br>
+            <font class="extrafield-content-text">{product.extrafields.content}</font>
+          <p>
+							<#/if#>		
+							
+            <!-- output IMAGE extra fields -->
+							<#if:product.extrafields.type:eq:IMAGE#>
+								<!--<font class="extrafield-title-text">{product.extrafields.title}</font>-->
+								<img src="{product.extrafields.content}" alt="" border="1" align="top">
+          <p>
+							<#/if#>
+							
+            <!-- output SELECT extra fields -->
+							<#if:product.extrafields.type:eq:SELECT#>
+								<font class="extrafield-title-text">{product.extrafields.title}:</font>&nbsp;
+								
+            <select name="{product.extrafields.name}" onChange="{product.recalculateprice}" class="selectbox">
+									
+              <!-- loop through options -->
+									<#loop:product.extrafields.options#>
+										
+              <option value="{product.extrafields.options.id}">{product.extrafields.options.option}<#if:product.extrafields.options.price:neq:blank#>&nbsp;({product.extrafields.options.price})<#/if#></option>
+									<#/loop#>
+									
+              <!-- /loop through options -->
+								
+            </select>
+          <p>
+							<#/if#>
+							
+            
+
+		<!-- output CHECKBOXES extra fields -->
+		<#if:product.extrafields.type:eq:CHECKBOXES#>
+
+			<!-- DO NOT DISPLAY THE CHRISTMAS DEPOSIT FIELD -->
+			<#if:product.extrafields.name:neq:ChristmasDeposit#>
+				<font class="extrafield-title-text">{product.extrafields.title}:</font><br>
+		
+        			<!-- loop through options -->
+				<#loop:product.extrafields.options#>
+									
+	           			 <input type="checkbox" name="{product.extrafields.name}{loop.product.extrafields.options.count}" value="{product.extrafields.options.id}" onClick="{product.recalculateprice}">
+        	 			    <font class="extrafield-content-text">{product.extrafields.options.option} <#if:product.extrafields.options.price:neq:blank#>({product.extrafields.options.price})<#/if#></font><br>
+				<#/loop#>
+						
+          		  	<!-- /loop through options -->
+		          <p>
+			<#/if#>
+		<#/if#>
+
+							
+            <!-- output RADIOBUTTONS extra fields -->
+							<#if:product.extrafields.type:eq:RADIOBUTTONS#>
+								<font class="extrafield-title-text">{product.extrafields.title}:</font><br>
+								
+            <!-- loop through options -->
+								<#loop:product.extrafields.options#>
+									<#if:loop.product.extrafields.options.count:eq:1#>
+										
+            <input type="radio" name="{product.extrafields.name}" value="{product.extrafields.options.id}" onClick="{product.recalculateprice}" CHECKED>
+             <font class="extrafield-content-text">{product.extrafields.options.option} <#if:product.extrafields.options.price:neq:blank#>({product.extrafields.options.price})<#/if#></font><br>
+									<#else#>
+										
+            <input type="radio" name="{product.extrafields.name}" value="{product.extrafields.options.id}" onClick="{product.recalculateprice}">
+             <font class="extrafield-content-text">{product.extrafields.options.option} <#if:product.extrafields.options.price:neq:blank#>({product.extrafields.options.price})<#/if#></font><br>
+									<#/if#>
+								<#/loop#>
+								
+            <!-- /loop through options -->
+								
+          <p>
+							<#/if#>							
+						<#/if#>
+					<#/loop#>
+					
+            <!-- /output all the extra fields -->
+            <#if:product.minQty:gt:0#>
+<br>
+            <font class="other-title-text">{labels.product.minimumQuantity}</font> <font class="middles-normal-text">{product.minQty}</font>
+<#/if#>
+<#if:product.maxQty:gt:0#>
+<br>
+            <font class="other-title-text">{labels.product.maximumQuantity}</font> <font class="middle-normal-text">{product.maxQty}</font>
+<#/if#>
+          <p>
+          <blockquote>
+            <p align="center"><font class="qty-title-text">{labels.product.productQuantity} 
+              <input type="text" size="5" value="1" class="textbox" name="{product.qtyboxname}" onBlur="{product.recalculateprice}">
+            </p>
+          </blockquote>
+          <p>
+          <blockquote>
+            <p align="center"><font class="price-title-text">{labels.product.productPrice} <font class="price-content-text">{product.price}</font>
+
+
+	
+
+
+
+
+	
+
+
+	 
+
+
+
+	
+
+<#if:product.ooPrice1:gt:0#>
+</p>
+          </blockquote>
+ 
+
+         <p>
+          <blockquote>
+            <p align="center"><font class="price-title-text">{labels.product.oneoffPrice} <font class="price-content-text">{product.ooprice}</font>
+<#/if#>
+<#if:product.rrp1:gt:0#>
+</p>
+          </blockquote>
+          <p>
+          <blockquote>
+            <p align="center"><font class="text-path">{labels.product.rrpPrice} <font class="middle-links">{product.rrp}</font>
+<br><font class="text-path">
+          {labels.product.rrpDifference} <font class="middle-links">{product.rrpDifference}</font>
+<br><font class="text-path">
+          {labels.product.rrpPercent} <font class="middle-links">{product.rrpPercent}</font>
+<#/if#>
+              <!-- output any grouped products -->
+          <#if:loop.groupedproducts.total:neq:0#>
+</p>
+          </blockquote>
+          <p><font class="price-title-text">{labels.product.groupedProducts}</font>
+<br>
+            <#loop:groupedproducts#>
+<a href="{groupedproducts.link}" class="text-path">{groupedproducts.code}: {groupedproducts.name} x {groupedproducts.qty}</a><br>
+            <#/loop#>
+<#/if#>
+            <!-- /output any grouped products -->
+            
+					
+					
+            <!-- output recommended items -->
+					<#if:loop.recommended.total:neq:0#>
+						
+          <p ALIGN=CENTER><font class="other-title-text">{labels.product.recommendedProducsTitle}</font></ALIGN=CENTER><BR>
+						<br>
+						<#loop:recommended#>
+							<a href="{recommended.link}"><img src="{recommended.thumbnail" border="0" width="110" align="top"><br>
+<a href="{recommended.link}" class="middle-links">{recommended.code}: {recommended.name}</center></a><br>
+						<#/loop#>
+					<#/if#>
+					
+            <!-- /output recommended items -->
+					
+					
+            <p align="center">
+					<#if:product.scNoBuy:eq:N#>
+						
+            <input type="submit" name="submit" value="{labels.cart.addToCartLink}" class="button">
+            &nbsp;&nbsp;
+					<#/if#>
+					<!--<a href="{product.wishlist.link}" class="middle-links">{labels.customer.addToWishListLink}</a>-->
+				
+			<br><br>
+
+		<!-- output associated items
+		<#if:loop.associated.total:neq:0#>
+			<p><font class="other-title-text"><center>{labels.product.associatedProductsTitle}</font><br>
+			<br>
+				<#loop:associated#>
+					<a href="{associated.link}"><img src="{associated.thumbnail}" border="0" width="100" align="top"><br>{associated.name}</a><br>
+				<#/loop#>
+		<#/if#>
+		/output associated items -->
+
+
+		</td>
+      </tr>
+			
+    </form>
+			<!-- /product add to basket form -->
+
+	
+		</table>
+		</center>
+<#include:includes/bottom.html#>

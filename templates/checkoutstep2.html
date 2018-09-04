@@ -1,0 +1,95 @@
+<#include:includes/top.html#>
+	
+	<!-- CONTENT SECTION FEATURE -->
+	
+	<!-- PAGE CONTENT HEADER -->
+	<table width="100%" border="0" cellspacing="0" cellpadding="0">
+	<tr>
+	<td>
+	<h1>{labels.ordering.orderingStep2}</h1> <!-- PAGE TITLE -->
+	<p>You should enter/choose your delivery address in the form below.</p> <!-- PAGE SUB TITLE -->
+	</td>
+	</tr>
+	</table>
+	<!-- /PAGE CONTENT HEADER -->
+
+		<!-- PAGE CONTENT -->
+
+		<#include:includes/ordering_cart.html#>
+
+		<p>&nbsp;</p>
+		
+		<table cellpadding="4" cellspacing="0" border="0">
+		<tr>
+			<td valign="top">
+				<table cellpadding="4" cellspacing="1" border="0">
+				<tr>
+					<td class="table-backing-title"><strong>{labels.ordering.billingAddress}</strong></font></td>
+				</tr>
+				<tr>
+					<td class="table-backing-content">
+						<font class="middle-normal-text">
+						[<A href="{ordering.selectbillinglink}" class="middle-links">{labels.ordering.selectAddress}</a>]<br>
+						<!-- output billing address details -->
+						<#loop:ordering.customer.fields#>
+							<#if:ordering.customer.fields.content:neq:blank#>{ordering.customer.fields.content}<br><#/if#>
+						<#/loop#>
+						<!-- /output billing address details -->
+						</font>
+					</td>
+				</tr>
+				</table>
+			</td>
+			<!-- if the customer is logged in we can also show their address book -->
+			<#if:ordering.details.loggedin:eq:Y#>
+				<td valign="top">
+					<table cellpadding="4" cellspacing="1" border="0">
+					<tr>
+						<td colspan="2" class="table-backing-title"><strong>{labels.ordering.addressBook}</strong></td>
+					</tr>
+					<!-- output customer's addresses -->
+					<#loop:ordering.addresses#>
+						<#if:loop.ordering.addresses.count:mod2:1#>
+							<tr>
+						<#/if#>
+							<td class="table-backing-content">
+								<font class="middle-normal-text">
+								[<A href="{ordering.addresses.selectlink}" class="middle-links">{labels.ordering.selectAddress}</a>]<br>
+								{ordering.addresses.deliveryName}
+								<br>{ordering.addresses.deliveryAddress1}
+								<br><#if:ordering.addresses.deliveryAddress2:neq:blank#>{ordering.addresses.deliveryAddress2}<#/if#>
+								<br>{ordering.addresses.deliveryTown}
+								<br>{ordering.addresses.deliveryCounty}
+								<br>{ordering.addresses.deliveryCountry}
+								<br>{ordering.addresses.deliveryPostcode}
+							</td>
+						<#if:loop.ordering.addresses.count:mod2:0#>
+							</tr>
+						<#/if#>
+					<#/loop#>
+					<!-- /output customer's addresses -->
+					</table>			
+				</td>
+			<#/if#>
+		</tr>
+		</table>
+		<p>
+		<table cellpadding="4" cellspacing="1" border="0" width="70%">
+		<tr>
+			<td colspan="2" class="table-backing-title"><font class="table-title-text">{labels.ordering.newAddress}</font></td>
+		</tr>
+		<form name="{ordering.address.form.name}" method="POST" action="{ordering.address.form.action}" onSubmit="{ordering.address.form.onsubmit}">	
+		<#include:includes/order_address_fields.html#>
+		<tr>
+			<td colspan="2" class="table-backing-content" align="center"><input type="submit" name="submit" value="{labels.ordering.useThisAddress}" class="button"></td>
+		</tr>
+		</table>
+
+		<!-- /PAGE CONTENT -->
+	<!-- /CONTENT SECTION FEATURE -->
+
+<#include:includes/bottom.html#>
+
+
+
+

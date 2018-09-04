@@ -1,0 +1,82 @@
+<#include:includes/top.html#>
+	
+	<!-- CONTENT SECTION FEATURE -->
+	
+	<!-- PAGE CONTENT HEADER -->
+	<table width="100%" border="0" cellspacing="0" cellpadding="0">
+	<tr>
+	<td>
+	<h1>{labels.affiliates.titleAdministration}</h1> <!-- PAGE TITLE -->
+	<h2>{labels.affiliates.titleSignup}</h2> <!-- PAGE TITLE -->
+	<p>{snippet=AffiliateSignup.content}</p> <!-- PAGE INSTRUCTIONS -->
+	</td>
+	</tr>
+	</table>
+	<!-- /PAGE CONTENT HEADER -->
+
+		<!-- PAGE CONTENT -->
+
+		<table cellpadding="4" cellspacing="1" border="0" width="80%">
+		<#if:affiliate.error:eq:Y#>
+		<tr>
+			<td colspan="2" align="center"><font class="error-text">{labels.affiliates.errorSignup}</font></td>
+		</tr>
+		<#/if#>
+		<form name="{affiliate.details.form.name}" method="POST" action="{affiliate.details.form.action}">
+			<tr>
+				<td class="field-backing-title">{labels.affiliates.fieldUsername} *</td>
+				<td class="field-backing-content">
+					<input type="TEXT" name="{affiliate.details.form.username}" class="textbox" size="20" maxlength="15" value="{affiliate.username}">
+					<!-- error checking -->
+					<#if:affiliate.usernameerror:eq:BLANK#>
+						<br><font class="error-text">{labels.affiliates.errorUsernameBlank}</font>
+					<#/if#>	
+					<#if:affiliate.usernameerror:eq:EXISTS#>
+						<br><font class="error-text">{labels.affiliates.errorUsernameExists}</font>
+					<#/if#>	
+					<#if:affiliate.usernameerror:eq:INVALID#>
+						<br><font class="error-text">{labels.affiliates.errorUsernameInvalid}</font>
+					<#/if#>											
+				</td>
+			</tr>
+			<tr>
+				<td class="field-backing-title">{labels.affiliates.fieldPassword}</td>
+				<td class="field-backing-content">
+					<input type="PASSWORD" name="{affiliate.details.form.password}" class="textbox" size="20" maxlength="20" value="">
+					<!-- error checking -->
+					<#if:affiliate.passworderror:eq:NOTMATCHING#>
+						<br><font class="error-text">{labels.affiliates.errorPasswordNoMatch}</font>
+					<#/if#>	
+					<#if:affiliate.passworderror:eq:BLANK#>
+						<br><font class="error-text">{labels.affiliates.errorPasswordBlank}</font>
+					<#/if#>	
+					<#if:affiliate.passworderror:eq:TOOSHORT#>
+						<br><font class="error-text">{labels.affiliates.errorPasswordTooShort}</font>
+					<#/if#>											
+				</td>
+			</tr>	
+			<tr>
+				<td class="field-backing-title">{labels.affiliates.fieldRepeatPassword}</td>
+				<td class="field-backing-content">
+					<input type="PASSWORD" name="{affiliate.details.form.repeatpassword}" class="textbox" size="20" maxlength="20" value="">			
+				</td>
+			</tr>					
+		</table>
+		<p>
+		<table cellpadding="4" cellspacing="1" border="0" width="80%">
+		<tr>
+			<td colspan="2" class="field-backing-title">{labels.affiliates.titleAccountDetails}</td>
+		</tr>		
+		<!-- include the template that shows the affiliate field entry boxes -->		
+		<#include:includes/affiliate_fields.html#>
+		<tr>
+			<td colspan="2" class="field-backing-content" align="center"><input type="submit" name="submit" value="{labels.affiliates.buttonSubmitSignup}" class="button-search"></td>
+		</tr>
+		</table>
+		</form>
+
+		<!-- /PAGE CONTENT -->
+	<!-- /CONTENT SECTION FEATURE -->
+
+<#include:includes/bottom.html#>
+

@@ -1,0 +1,107 @@
+		#eucookielaw {
+			margin-bottom: 64px;
+			/*display:none;*/
+			direction: ltr;
+			color: #DDD;
+			font: normal 13px/28px arial;
+/*			height: 60px; */
+			line-height: 30px;
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			min-width: 600px;
+			z-index: 99999;
+			padding:2px 20px 0;
+			background-color: #464646;
+			background-image: -ms-linear-gradient(bottom, #373737, #464646 5px);
+			background-image: -moz-linear-gradient(bottom, #373737, #464646 5px);
+			background-image: -o-linear-gradient(bottom, #373737, #464646 5px);
+			background-image: -webkit-gradient(linear,left bottom,left top,from( #373737),to(#464646));
+			background-image: -webkit-linear-gradient(bottom, #373737, #464646 5px);
+			background-image: linear-gradient(bottom, #373737, #464646 5px);
+			text-align:center;
+			opacity:0.8;
+			filter:alpha(opacity=80); /* For IE8 and earlier */
+		}
+		#eucookielawaccepted {
+			margin-bottom: 64px;
+			/*display:none;*/
+			direction: ltr;
+			color: #DDD;
+			font: normal 13px/28px arial;
+/*			height: 60px; */
+			line-height: 30px;
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			min-width: 600px;
+			z-index: 99999;
+			padding:2px 20px 0;
+			background-color: #464646;
+			background-image: -ms-linear-gradient(bottom, #373737, #464646 5px);
+			background-image: -moz-linear-gradient(bottom, #373737, #464646 5px);
+			background-image: -o-linear-gradient(bottom, #373737, #464646 5px);
+			background-image: -webkit-gradient(linear,left bottom,left top,from( #373737),to(#464646));
+			background-image: -webkit-linear-gradient(bottom, #373737, #464646 5px);
+			background-image: linear-gradient(bottom, #373737, #464646 5px);
+			text-align:center;
+			opacity:0.8;
+			filter:alpha(opacity=80); /* For IE8 and earlier */
+		}
+
+		#eucookielaw a {
+			color:#000;
+			text-decoration: none;
+			color: #DDD;
+			font: normal 13px/28px arial;
+		}
+		#eucookielaw a:hover {
+			text-decoration: underline;
+		}
+		#eucookielaw .button-green, #eucookielawaccepted .button-green {
+			margin:0 5px;
+			line-height:20px;
+			background:#45AE52;
+			border:none;
+			color:#fff;
+			padding:0 12px;
+			border-radius: 3px;
+			cursor: pointer;
+			font-size: 13px;
+			font-weight: bold;
+			font-family: arial;
+			text-shadow: #555 1px 1px;
+			background:#5EC544;
+		}
+		#eucookielaw .button-green:hover, #eucookielawaccepted .button-green:hover {
+			background:#5ED644;
+		}
+
+		#eucookielaw .button-blue, #eucookielawaccepted .button-blue {
+			margin:0 5px;
+			line-height:20px;
+			background:#45AE52;
+			border:none;
+			color:#fff;
+			padding:0 12px;
+			border-radius: 3px;
+			cursor: pointer;
+			font-size: 13px;
+			font-weight: bold;
+			font-family: arial;
+			text-shadow: #555 1px 1px;
+			background:#00aadd;
+		}
+		#eucookielaw .button-blue:hover, #eucookielawaccepted .button-blue:hover {
+			background:#00BBEE;
+		}
+		#eucookielaw .infolink, #eucookielawaccepted .infolink{
+			color: #DDD;			
+			text-decoration: none;
+		}
+		#eucookielaw .infolink:hover, #eucookielawaccepted .infolink:hover {
+			color:#fff;
+			text-decoration: underline;
+		}

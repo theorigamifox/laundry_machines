@@ -1,0 +1,74 @@
+<#include:includes/top.html#>
+	
+	<!-- CONTENT SECTION FEATURE -->
+	
+	<!-- PAGE CONTENT HEADER -->
+	<table width="100%" border="0" cellspacing="0" cellpadding="0">
+	<tr>
+	<td>
+	<h1>{labels.affiliates.titleAdministration}</h1> <!-- PAGE TITLE -->
+	<h2>{labels.affiliates.titleEditAccount}</h2> <!-- PAGE SUB TITLE -->
+	<h4></h4> <!-- PAGE INSTRUCTIONS -->
+	<p>
+				<a href="affiliates.php?xCmd=account">Home</a> | 
+				<a href="{affiliate.logoutlink}">{labels.affiliates.logoutLink}</a> | 
+				<a href="{affiliate.editlink}">{labels.affiliates.editLink}</a> | 
+				<a href="{affiliate.bannerslink}">{labels.affiliates.bannersLink}</a> | 
+				<a href="{affiliate.statslink}">{labels.affiliates.statsLink}</a> | 
+				<a href="{affiliate.saleslink}">{labels.affiliates.salesLink}</a> | 
+				<a href="{affiliate.paymentslink}">{labels.affiliates.paymentsLink}</a>&nbsp;
+	</p> <!-- PAGE INSTRUCTIONS -->
+	</td>
+	</tr>
+	</table>
+	<!-- /PAGE CONTENT HEADER -->
+
+		<!-- PAGE CONTENT -->
+
+		<table cellpadding="4" cellspacing="1" border="0" width="80%">
+		<#if:affiliate.error:eq:Y#>
+		<tr>
+			<td colspan="2" align="center">{labels.affiliates.errorSignup}</td>
+		</tr>
+		<#/if#>
+		<form name="{affiliate.details.form.name}" method="POST" action="{affiliate.details.form.action}">
+			<tr>
+				<td class="field-backing-title">{labels.affiliates.fieldPassword}</td>
+				<td class="field-backing-content">
+					<input type="PASSWORD" name="{affiliate.details.form.password}" class="textbox" size="20" maxlength="20" value="">
+					<!-- error checking -->
+					<#if:affiliate.passworderror:eq:NOTMATCHING#>
+						<br><font class="error-text">{labels.affiliates.errorPasswordNoMatch}</font>
+					<#/if#>	
+					<#if:affiliate.passworderror:eq:BLANK#>
+						<br><font class="error-text">{labels.affiliates.errorPasswordBlank}</font>
+					<#/if#>	
+					<#if:affiliate.passworderror:eq:TOOSHORT#>
+						<br><font class="error-text">{labels.affiliates.errorPasswordTooShort}</font>
+					<#/if#>											
+				</td>
+			</tr>	
+			<tr>
+				<td class="field-backing-title">{labels.affiliates.fieldRepeatPassword}</td>
+				<td class="field-backing-content">
+					<input type="PASSWORD" name="{affiliate.details.form.repeatpassword}" class="textbox" size="20" maxlength="20" value="">			
+				</td>
+			</tr>					
+		</table>
+		<p>
+		<table cellpadding="4" cellspacing="1" border="0" width="80%">
+		<tr>
+			<td colspan="2" class="field-backing-title">{labels.affiliates.titleAccountDetails}</td>
+		</tr>		
+		<!-- include the template that shows the affiliate field entry boxes -->		
+		<#include:includes/affiliate_fields.html#>
+		<tr>
+			<td colspan="2" class="field-backing-content" align="center"><input type="submit" name="submit" value="{labels.affiliates.buttonAccountEdit}" class="button-search"></td>
+		</tr>
+		</table>
+		</form>
+
+		<!-- /PAGE CONTENT -->
+	<!-- /CONTENT SECTION FEATURE -->
+
+<#include:includes/bottom.html#>

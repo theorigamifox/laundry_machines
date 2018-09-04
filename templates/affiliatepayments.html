@@ -1,0 +1,50 @@
+<#include:includes/top.html#>
+	
+	<!-- CONTENT SECTION FEATURE -->
+	
+	<!-- PAGE CONTENT HEADER -->
+	<table width="100%" border="0" cellspacing="0" cellpadding="0">
+	<tr>
+	<td>
+	<h1>{labels.affiliates.titleAdministration}</h1> <!-- PAGE TITLE -->
+	<h2>{labels.affiliates.titlePayments}</h2> <!-- PAGE SUB TITLE -->
+	<h4></h4> <!-- PAGE INSTRUCTIONS -->
+	<p>
+				<a href="affiliates.php?xCmd=account">Home</a> | 
+				<a href="{affiliate.logoutlink}">{labels.affiliates.logoutLink}</a> | 
+				<a href="{affiliate.editlink}">{labels.affiliates.editLink}</a> | 
+				<a href="{affiliate.bannerslink}">{labels.affiliates.bannersLink}</a> | 
+				<a href="{affiliate.statslink}">{labels.affiliates.statsLink}</a> | 
+				<a href="{affiliate.saleslink}">{labels.affiliates.salesLink}</a> | 
+				<a href="{affiliate.paymentslink}">{labels.affiliates.paymentsLink}</a>&nbsp;
+	</p> <!-- PAGE INSTRUCTIONS -->
+	</td>
+	</tr>
+	</table>
+	<!-- /PAGE CONTENT HEADER -->
+
+		<!-- PAGE CONTENT -->
+
+		<table cellpadding="4" cellspacing="1" border="0">
+		<tr>
+			<td valign="top" class="field-backing-title"><u><strong>{labels.affiliates.paymentsDate}</u></strong></td>
+			<td valign="top" class="field-backing-title"><u><strong>{labels.affiliates.paymentsReference}</u></strong></td>
+			<td valign="top" class="field-backing-title" align="right"><u><strong>{labels.affiliates.paymentsAmount}</u></strong></td>
+		</tr>
+		<#loop:affiliate.payments#>
+		<tr>
+			<td valign="top" class="field-backing-content">{affiliate.payments.date}</td>
+			<td valign="top" class="field-backing-content">{affiliate.payments.reference}</td>
+			<td valign="top" class="field-backing-content" align="right"><font class="normal-field-content">{affiliate.payments.amount}</td>
+		</tr>
+		<#/loop#>
+		<tr>
+			<td valign="top" class="field-backing-title" colspan="2"><strong>{labels.affiliates.paymentsTotal}</strong></td>
+			<td valign="top" class="field-backing-title" align="right"><strong>{affiliate.paymentstotal}</strong></td>
+		</tr>
+		</table>
+
+		<!-- /PAGE CONTENT -->
+	<!-- /CONTENT SECTION FEATURE -->
+
+<#include:includes/bottom.html#>

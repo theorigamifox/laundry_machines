@@ -1,0 +1,72 @@
+
+<#include:includes/top.html#>
+
+	<!-- CONTENT SECTION FEATURE -->
+	
+	<!-- PAGE CONTENT HEADER -->
+	<table width="100%" border="0" cellspacing="0" cellpadding="0">
+	<tr>
+	<td>
+	<h1>{section.title}</h1> <!-- PAGE TITLE -->
+
+	</td>
+	</tr>
+	</table>
+	<!-- /PAGE CONTENT HEADER -->
+
+		<!-- PAGE CONTENT -->
+
+		
+		<!-- check if there are any products in this section -->
+		<#if:loop.specialoffers.total:neq:0#>
+			<table cellpadding="2" cellspacing="5" border="0" width="100%">
+			<tr>
+				<td align="center" colspan="4" class="field-backing-title"><font class="table-title-text">Items Currently on Special Offer</font></td>
+			</tr>
+			<#loop:specialoffers#>
+					<#if:loop.specialoffers.count:mod4:1#>
+						<tr>
+					<#/if#>
+					<!-- output product with individual add to basket form -->
+					<form name="{specialoffers.form.name}" action="{specialoffers.form.action}" method="POST" onSubmit="{specialoffers.form.onsubmit}">
+					<td class="table-backing-content" valign="top" align="center" width="25%" fixed style="border-style:dashed; border-color:#cccccc; border-width:1px;">
+						<table border="0" cellpadding="2" cellspacing="0">
+						<tr>
+							<td align="center" class="field-backing-title">{specialoffers.name}</td>
+						</tr>
+						<tr>
+							<td align="center" height="75"><a href="{specialoffers.link}"><img src="{specialoffers.thumbnail}" border="0" alt="{specialoffers.name}" height="75"></a></td>
+						</tr>
+						<tr>
+							<td align="center"><font class="specialoffer-text">{labels.product.productPrice}</a><br><font class="product-field-content">{specialoffers.price}</font></td>
+						</tr>
+						<tr>
+							<td align="center">{specialoffers.shortdescription:100:dots}</td>
+						</tr>
+						<tr>
+						<td align="center" bgcolor="#e5e5e5">
+						<a href="{specialoffers.link}" class="middle-links">{labels.product.moreInfoLink}</a>
+						<br>
+						<a href="{specialoffers.wishlist.link}" class="middle-links">{labels.customer.addToWishListLink}</a>
+						<#if:specialoffers.scNoBuy:eq:N#>
+						<br>
+						<a href="{specialoffers.add.link}" class="middle-links">{labels.cart.addToCartLink}</a>
+						<#/if#>
+						</td>
+						</tr>
+						</table>
+					</td>
+					</form>
+					<!-- /output product with individual add to basket form -->
+					<#if:loop.specialoffers.count:mod4:0#>
+						</tr>
+					<#/if#>
+			<#/loop#>
+
+			
+
+			</table>
+
+		<#/if#>
+
+<#include:includes/bottom.html#>

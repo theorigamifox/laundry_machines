@@ -1,0 +1,111 @@
+			<table cellpadding="4" cellspacing="1" border="0" class="field-backing-content">
+				<tr>			
+					<td class="field-backing-title"><font class="normal-field-title">{labels.cart.columnThumbnail}</font></td>
+					<td class="field-backing-title"><font class="normal-field-title">{labels.cart.columnCode}</font></td>
+					<td class="field-backing-title"><font class="normal-field-title">{labels.cart.columnName}</font></td>			
+					<td class="field-backing-title" align="right"><font class="normal-field-title">{labels.cart.columnQuantity}</font></td>
+					<td class="field-backing-title" align="right"><font class="normal-field-title">{labels.cart.columnPrice}</font></td>
+					<td class="field-backing-title" align="right"><font class="normal-field-title">{labels.cart.columnTotal}</font></td>			
+				</tr>
+
+				
+				<#loop:cart.products#>
+
+				<!-- DELIVERY SURCHARGE CHECK -->
+				<#if:cart.products.extra_surcharge.content:gt:0#>
+					<?php $this->theVariables["myvars"]["surcharge"] = 1; ?>
+				<#/if#>
+
+
+
+				<tr>
+					<td valign="top"><img src="{cart.products.thumbnail}" border="1" width="50" height="39"></td>
+					<td valign="top"><font class="normal-field-content">{cart.products.code}</font></td>
+					<td valign="top"><font class="normal-field-content">{cart.products.name}</font><br>
+						<#loop:cart.products.extrafields#>
+							<#if:cart.products.extrafields.content:neq:blank#>
+								<#if:cart.products.extrafields.type:eq:USERINPUT#>
+									<font class="normal-field-content">{cart.products.extrafields.title}: {cart.products.extrafields.content}<br></font>
+								<#/if#>
+								<#if:cart.products.extrafields.type:eq:SELECT#>
+									<font class="normal-field-content">{cart.products.extrafields.title}: {cart.products.extrafields.content}<br></font>
+								<#/if#>
+								<#if:cart.products.extrafields.type:eq:CHECKBOXES#>
+									<font class="normal-field-content">{cart.products.extrafields.title}:
+										<#loop:cart.products.extrafields.options#>
+											{cart.products.extrafields.options.option}, 
+										<#/loop#>
+									<br>
+								<#/if#>
+								<#if:cart.products.extrafields.type:eq:RADIOBUTTONS#>
+									<font class="normal-field-content">{cart.products.extrafields.title}: {cart.products.extrafields.content}<br></font>
+								<#/if#>							
+							<#/if#>
+						<#/loop#>
+					
+					</td>
+					<td valign="top" align="right"><font class="normal-field-content">{cart.products.qty}</font></td>
+					<td valign="top" align="right"><font class="normal-field-content">{cart.products.priceextax} <#if:cart.products.ooPrice1:gt:0#>+({cart.products.oopriceextax})<#/if#></font></td>
+					<td valign="top" align="right"><font class="normal-field-content">{cart.products.totalextax}</font></td>
+				</tr>
+				<#/loop#>
+				<tr>
+					<td colspan="5" class="field-backing-title"><font class="normal-field-title">{labels.cart.goodsTotalTitle}</font></td>
+					<td class="field-backing-title" align="right"><font class="normal-field-title">{cart.totals.goodsextax}</font></td>		
+				</tr>				
+				<#if:cart.shippingEnabled:eq:Y#>
+
+
+
+				<tr>
+					<td colspan="5" class="field-backing-title"><font class="normal-field-title">{labels.cart.shippingTotalTitle} 
+					
+					<#if:loop.ordering.shipping.types.count:gt:1#>			
+					<form name="{ordering.shippingchange.form.name}" method="POST" action="{ordering.shippingchange.form.action}">
+					<select name="xShippingSelect" onChange="" class="selectbox" onChange="selectShipping();">
+					
+					<#loop:ordering.shipping.types#>
+						<option value="{ordering.shipping.types.shippingID}" <#if:ordering.shipping.types.selected:eq:Y#>SELECTED<#/if#>>{ordering.shipping.types.name}</option>
+					<#/loop#>
+					</select>&nbsp;<input type="submit" name="submit" value="{labels.ordering.changeShipping}">
+					</form>
+					<#/if#>
+					</td>
+					<td class="field-backing-title" align="right"><font class="normal-field-title">{cart.totals.shipping}</font></td>		
+				</tr>				
+				<#/if#>
+
+
+				
+
+
+
+
+				<#if:cart.taxEnabled:eq:Y#>
+				<tr>
+					<td colspan="5" class="field-backing-title"><font class="normal-field-title">{labels.cart.taxTotalTitle}</font></td>
+					<td class="field-backing-title" align="right"><font class="normal-field-title">{cart.totals.tax}</font></td>		
+				</tr>	
+				<#/if#>
+				<#if:cart.totals.isDiscount:eq:Y#>
+				<tr>
+					<td colspan="5" class="field-backing-title"><font class="normal-field-title">{labels.cart.discountTotalTitle}</font></td>
+					<td class="field-backing-title" align="right"><font class="normal-field-title">-{cart.totals.discount}</font></td>		
+
+				</tr>					
+				<#/if#>	
+				<#if:cart.usingGiftCertificates:eq:Y#>
+				<tr>
+					<td colspan="5" class="field-backing-title" valign="top"><font class="normal-field-title">{labels.cart.giftCertTotalTitle}
+					<#loop:cart.giftcertificates#>
+						<br>&nbsp;{cart.giftcertificates.certificate} <a href="{cart.giftcertificates.removelink}">{labels.giftCertRemoveLink}</a>
+					<#/loop#>
+					</font></td>
+					<td class="field-backing-title" align="right" valign="top"><font class="normal-field-title">-{cart.totals.giftcertificates}</font></td>		
+				</tr>	
+				<#/if#>
+				<tr>
+					<td colspan="5" class="field-backing-title"><font class="normal-field-title">{labels.cart.orderTotalTitle}</font></td>
+					<td class="field-backing-title" align="right"><font class="normal-field-title">{cart.totals.order}</font></td>		
+				</tr>	
+			</table>

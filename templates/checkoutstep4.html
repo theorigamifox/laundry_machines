@@ -1,0 +1,80 @@
+
+<#include:includes/top.html#>
+	
+	<!-- CONTENT SECTION FEATURE -->
+	
+	<!-- PAGE CONTENT HEADER -->
+	<table width="100%" border="0" cellspacing="0" cellpadding="0">
+	<tr>
+	<td>
+	<h1>{labels.ordering.orderingStep4}</h1> <!-- PAGE TITLE -->
+	<p>Review and submit your order.</p> <!-- PAGE SUB TITLE -->
+	</td>
+	</tr>
+	</table>
+	<!-- /PAGE CONTENT HEADER -->
+
+		<!-- PAGE CONTENT -->
+
+		<#include:includes/ordering_cart.html#>
+
+		<p>&nbsp;</p>
+		
+<table cellpadding="4" cellspacing="1" border="0" width="100%">
+<tr>
+	<td class="table-backing-title"><h3>{labels.ordering.orderSummary}</h3></td>
+</tr>
+</table>
+<table cellpadding="4" cellspacing="1" border="0" width="100%">
+<tr>
+	<td valign="top" align="right"><font class="normal-field-title">{labels.ordering.billingAddress}</font><br><a href="{ordering.update.billing}" class="middle-links">{labels.ordering.change}</a></td>
+	<td valign="top"><font class="normal-field-content">{ordering.details.title} {ordering.details.forename} {ordering.details.surname}
+		<br>{ordering.details.address1}
+		<br>{ordering.details.address2}
+		<br>{ordering.details.town}
+		<br>{ordering.details.county}
+		<br>{ordering.details.country}
+		<br>{ordering.details.postcode}
+		
+	</td>
+	<#if:options.allowShippingAddress:eq:1#>
+	<td valign="top" align="right"><font class="normal-field-title">{labels.ordering.deliveryAddress}</font><br><a href="{ordering.update.shipping}" class="middle-links">{labels.ordering.change}</a></td>
+	<td valign="top"><font class="normal-field-content">{ordering.details.deliveryName}
+		<br>{ordering.details.deliveryAddress1}
+		<br>{ordering.details.deliveryAddress2}
+		<br>{ordering.details.deliveryTown}
+		<br>{ordering.details.deliveryCounty}
+		<br>{ordering.details.deliveryCountry}
+		<br>{ordering.details.deliveryPostcode}
+		
+	</td>
+	<#/if#>
+	<td valign="top" align="right"><font class="normal-field-title">{labels.ordering.paymentDetails}<br><a href="{ordering.update.payment}" class="middle-links">{labels.ordering.change}</a></font></td>
+	<td valign="top">
+		<font class="normal-field-content">
+		<#if:cart.usingGiftCertificates:eq:Y#>
+			Gift Certificates<br>
+		<#/if#>
+		<#if:ordering.payment.option.name:neq:None#>
+			{ordering.payment.option.name}<br>
+		<#/if#>
+		</font>
+		
+	</td>
+</tr>
+</table>
+<p>
+<form name="{ordering.form.name}" method="POST" action="{ordering.form.action}" onSubmit="{ordering.form.onsubmit}">
+<table cellpadding="4" cellspacing="1" border="0">
+<#include:includes/order_extra_fields.html#>		
+</table>				
+<p>
+<input type="submit" name="submit" value="{labels.ordering.submitOrder}" class="button">
+</p>
+</form>
+
+		<!-- /PAGE CONTENT -->
+	<!-- /CONTENT SECTION FEATURE -->
+
+<#include:includes/bottom.html#>
+

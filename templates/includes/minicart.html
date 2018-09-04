@@ -1,0 +1,30 @@
+		<!-- mini cart -->
+		<table cellpadding="1" cellpading="0" border="0" width="100%" class="menu-backing-content">
+		<tr>
+			<td align="center" class="menu-backing-title"><font class="menu-title-text">{labels.cart.miniCartTitle}</font></td>
+		</tr>
+		<#if:cart.totals.products:eq:0#>
+			<tr>
+				<td>
+					<font class="menu-normal-text">{labels.cart.miniCartEmpty}</font>
+				</td>
+			</tr>
+		<#else#>
+			<#loop:cart.products#>
+		        <tr>
+			  		<td><font class="menu-normal-text">{cart.products.qty} x <a href="{cart.products.link}" class="menu-links">{cart.products.name}</a></font></td>
+				</tr>
+			<#/loop#>
+			<tr>
+				<td><font class="menu-bold-text">{labels.cart.miniCartTotal} </font><font class="menu-normal-text">{cart.totals.goods}</font></td>
+			</tr>	
+		<#/if#>
+		<#if:options.recentViewActivated:eq:1#>
+			<tr>
+				<td>
+					<font class="menu-normal-text"><a href="page.php?xPage=recentview.html">{labels.general.recentlyViewedPage}</a></font>
+				</td>
+			</tr>
+		<#/if#>
+		</table>
+		<!-- /mini cart -->

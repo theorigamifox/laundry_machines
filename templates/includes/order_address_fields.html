@@ -1,0 +1,52 @@
+		<#loop:ordering.address.fields#>
+			<#if:ordering.address.fields.fieldtype:eq:SELECT#>
+			<tr>	
+				<td class="field-backing-title">
+					<font class="normal-field-title">{ordering.address.fields.titleText} <#if:ordering.address.fields.validation:neq:0#>*<#/if#></font>
+				</td>
+				<td class="field-backing-content">
+					<font class="normal-field-title">
+					<select name="{ordering.address.fields.fieldname}" class="selectbox">
+					<#loop:ordering.address.fields.options#>
+						<option value="{ordering.address.fields.options.value}" <#if:ordering.address.fields.selected:eq:ordering.address.fields.options.value#>SELECTED<#/if#>>{ordering.address.fields.options.name}</option>
+					<#/loop#>				
+					</select>
+					<Br><#if:ordering.address.fields.error:eq:Y#><font class="error-text">{ordering.address.fields.validationmessage}</font><#/if#>
+					</font>
+				</td>
+			<#/if#>
+			<#if:ordering.address.fields.fieldtype:eq:TEXT#>
+			<tr>	
+				<td class="field-backing-title">
+					<font class="normal-field-title">{ordering.address.fields.titleText} <#if:ordering.address.fields.validation:neq:0#>*<#/if#></font>
+				</td>
+				<td class="field-backing-content">
+					<font class="normal-field-title">
+					<input type="TEXT" name="{ordering.address.fields.fieldname}" class="textbox" size="{ordering.address.fields.size}" maxlength="{ordering.address.fields.maxlength}" value="{ordering.address.fields.content}">
+					<br><#if:ordering.address.fields.error:eq:Y#><font class="error-text">{ordering.address.fields.validationmessage}</font><#/if#>
+					</font>
+				</td>
+			<#/if#>
+			<#if:ordering.address.fields.fieldtype:eq:TEXTAREA#>
+			<tr>	
+				<td class="field-backing-title">
+					<font class="normal-field-title">{ordering.address.fields.titleText} <#if:ordering.address.fields.validation:neq:0#>*<#/if#></font>
+				</td>
+				<td class="field-backing-content">
+					<font class="normal-field-title">
+					<textarea name="{ordering.address.fields.fieldname}" cols="{ordering.address.fields.cols}" rows="{ordering.address.fields.rows}" class="textbox">{ordering.address.fields.content}</textarea>
+					<br><#if:ordering.address.fields.error:eq:Y#><font class="error-text">{ordering.address.fields.validationmessage}</font><#/if#>
+					</font>
+				</td>
+			<#/if#>			
+			<#if:ordering.address.fields.fieldtype:eq:CHECKBOX#>
+			<tr>	
+				<td class="field-backing-title" colspan="2">
+					<font class="normal-field-title">
+					<input type="CHECKBOX" name="{ordering.address.fields.fieldname}" value="Y" {ordering.address.fields.checked}> <strong>{ordering.address.fields.titleText}</strong>
+					<br><#if:ordering.address.fields.error:eq:Y#><font class="error-text">{ordering.address.fields.validationmessage}</font><#/if#>
+					</font>
+				</td>
+			<#/if#>
+			</tr>
+		<#/loop#>

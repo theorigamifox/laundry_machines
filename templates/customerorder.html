@@ -1,0 +1,159 @@
+<#include:includes/top.html#>
+	
+	<!-- CONTENT SECTION FEATURE -->
+	
+	<!-- PAGE CONTENT HEADER -->
+	<table width="100%" border="0" cellspacing="0" cellpadding="0">
+	<tr>
+	<td>
+	<h1>{labels.customer.accountHomePageTitle}</h1> <!-- PAGE TITLE -->
+	<h2>{labels.customer.orderViewPageTitle} {order.ordernumber}</h2> <!-- PAGE TITLE -->
+	<h3>{labels.words.date}: {order.orderdate} @ {order.ordertime}</h3>
+		<p>
+				<a href="customer.php?xCmd=account">Home</a> | 
+				<a href="{customer.logoutlink}">{labels.customer.logoutLink}</a> | 
+				<a href="{customer.accountlink}">{labels.customer.editAccountLink}</a> | 
+				<a href="{customer.addresseslink}">{labels.customer.editAddressesLink}</a> | 
+				<a href="{customer.orderslink}">{labels.customer.orderHistoryLink}</a> | 
+				<a href="{customer.wishlistlink}">{labels.customer.wishListLink}</a>&nbsp;
+	</p> <!-- PAGE INSTRUCTIONS -->
+
+	</td>
+	</tr>
+	</table>
+	<!-- /PAGE CONTENT HEADER -->
+
+		<!-- PAGE CONTENT -->
+
+
+			<table cellpadding="4" cellspacing="1" border="0" class="field-backing-content">
+				<tr>
+					<td class="field-backing-title"><strong><u>{labels.cart.columnCode}</strong></u></td>
+					<td class="field-backing-title"><strong><u>{labels.cart.columnName}</strong></u></td>			
+					<td class="field-backing-title" align="right"><strong><u>{labels.cart.columnQuantity}</strong></u></td>
+					<td class="field-backing-title" align="right"><strong><u>{labels.cart.columnPrice}</strong></u></td>
+					<td class="field-backing-title" align="right"><strong><u>{labels.cart.columnTotal}</strong></u></td>						
+				</tr>
+				<#loop:order.products#>
+				<tr>
+					<td valign="top"><font class="normal-field-content">{order.products.code}</font></td>
+					<td valign="top"><font class="normal-field-content">{order.products.name}</font><br>
+						<#loop:order.products.extrafields#>
+							<#if:order.products.extrafields.content:neq:blank#>
+								<#if:order.products.extrafields.type:eq:USERINPUT#>
+									<font class="normal-field-content">{order.products.extrafields.title}: {order.products.extrafields.content}<br></font>
+								<#/if#>
+								<#if:order.products.extrafields.type:eq:SELECT#>
+									<font class="normal-field-content">{order.products.extrafields.title}: {order.products.extrafields.content}<br></font>
+								<#/if#>
+								<#if:order.products.extrafields.type:eq:CHECKBOXES#>
+									<font class="normal-field-content">{order.products.extrafields.title}:
+										<#loop:order.products.extrafields.options#>
+											{order.products.extrafields.options.option}, 
+										<#/loop#>
+									<br>
+								<#/if#>
+								<#if:order.products.extrafields.type:eq:RADIOBUTTONS#>
+									<font class="normal-field-content">{order.products.extrafields.title}: {order.products.extrafields.content}<br></font>
+								<#/if#>							
+							<#/if#>
+						<#/loop#>
+						<#if:order.products.isDigital:eq:Y#>
+							<#if:order.products.downloadID:neq:0#>
+							<font class="normal-field-content"><br>{labels.order.downloadLink} <a href="{order.products.downloadLink}">{labels.order.downloadNow}</a>
+							<#if:order.products.regName:neq:blank#>
+							<br>{labels.order.registrationName} {order.products.regName}
+							<#/if#>
+							<#if:order.products.regCode:neq:blank#>
+							<br>{labels.order.registrationCode} {order.products.regCode}
+							<#/if#>
+							</font>
+							<#/if#>
+						<#/if#>					
+					</td>
+					<td valign="top" align="right"><font class="normal-field-content">{order.products.qty}</font></td>
+					<td valign="top" align="right"><font class="normal-field-content">{order.products.price} <#if:order.products.ooPrice1:gt:0#>+({order.products.ooprice})<#/if#></font></td>
+					<td valign="top" align="right"><font class="normal-field-content">{order.products.total}</font></td>
+				</tr>
+				<#/loop#>
+				<tr>
+					<td colspan="4" class="field-backing-title"><font class="normal-field-title">{labels.cart.goodsTotalTitle}</font></td>
+					<td class="field-backing-title" align="right"><font class="normal-field-title">{order.totals.goods}</font></td>		
+				</tr>
+				<#if:order.totals.isDiscount:eq:Y#>	
+				<tr>
+					<td colspan="4" class="field-backing-title"><font class="normal-field-title">{labels.cart.discountTotalTitle}</font></td>
+					<td class="field-backing-title" align="right"><font class="normal-field-title">-{order.totals.discount}</font></td>		
+				</tr>					
+				<#/if#>
+				<tr>
+					<td colspan="4" class="field-backing-title"><font class="normal-field-title">{labels.cart.shippingTotalTitle} <#if:order.shippingMethod:neq:blank#>({order.shippingMethod})<#/if#></font></td>
+					<td class="field-backing-title" align="right"><font class="normal-field-title">{order.totals.shipping}</font></td>		
+				</tr>
+				<tr>
+					<td colspan="4" class="field-backing-title"><font class="normal-field-title">{labels.cart.taxTotalTitle}</font></td>
+					<td class="field-backing-title" align="right"><font class="normal-field-title">{order.totals.tax}</font></td>		
+				</tr>
+				<#if:order.totals.isGiftCertificate:eq:Y#>	
+				<tr>
+					<td colspan="4" class="field-backing-title"><font class="normal-field-title">{labels.cart.giftCertTotalTitle}</font></td>
+					<td class="field-backing-title" align="right"><font class="normal-field-title">-{order.totals.giftcertificates}</font></td>		
+				</tr>
+				<#/if#>				
+				<tr>
+					<td colspan="4" class="field-backing-title"><font class="normal-field-title">{labels.cart.orderTotalTitle}</font></td>
+					<td class="field-backing-title" align="right"><font class="normal-field-title">{order.totals.order}</font></td>		
+				</tr>													
+			</table>
+		
+		
+		<p>
+		<table cellpadding="4" cellspacing="1" border="0" width="100%">
+		<tr>
+			<td align="left" class="table-backing-title"><h3>{labels.ordering.orderSummary}</h3></td>
+		</tr>
+		</table>
+		<table cellpadding="4" cellspacing="1" border="0" width="100%">
+		<tr>
+			<td valign="top" align="right"><font class="normal-field-title">{labels.ordering.billingAddress}</font></td>
+			<td valign="top"><font class="normal-field-content">{order.title} {order.forename} {order.surname}
+				<br>{order.address1}
+				<br>{order.address2}
+				<br>{order.town}
+				<br>{order.county}
+				<br>{order.country}
+				<br>{order.postcode}				
+			</td>
+			<#if:options.allowShippingAddress:eq:1#>
+				<#if:order.deliveryName:neq:blank#>
+					<td valign="top" align="right"><font class="normal-field-title">{labels.ordering.deliveryAddress}</font></td>
+					<td valign="top"><font class="normal-field-content">{order.deliveryName}
+						<br>{order.deliveryAddress1}
+						<br>{order.deliveryAddress2}
+						<br>{order.deliveryTown}
+						<br>{order.deliveryCounty}
+						<br>{order.deliveryCountry}
+						<br>{order.deliveryPostcode}				
+					</td>
+				<#/if#>
+			<#/if#>
+			<td valign="top" align="right"><font class="normal-field-title">{labels.ordering.paymentDetails}</font></td>
+			<td valign="top">
+				<font class="normal-field-content">
+				<#if:order.totals.isGiftCertificate:eq:Y#>
+					{labels.ordering.paymentGiftCertificate}<br>
+				<#/if#>
+				{order.paymentName}<br>
+				</font>
+				
+			</td>
+		</tr>
+		</table>
+
+		<!-- /PAGE CONTENT -->
+	<!-- /CONTENT SECTION FEATURE -->
+
+<#include:includes/bottom.html#>
+
+
+

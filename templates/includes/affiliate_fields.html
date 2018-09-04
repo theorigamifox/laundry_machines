@@ -1,0 +1,52 @@
+		<#loop:affiliate.fields#>
+			<#if:affiliate.fields.fieldtype:eq:SELECT#>
+			<tr>	
+				<td class="field-backing-title">
+					<font class="normal-field-title">{affiliate.fields.titleText} <#if:affiliate.fields.validation:neq:0#>*<#/if#></font>
+				</td>
+				<td class="field-backing-content">
+					<font class="normal-field-title">
+					<select name="{affiliate.fields.fieldname}" class="selectbox">
+					<#loop:affiliate.fields.options#>
+						<option value="{affiliate.fields.options.value}" <#if:affiliate.fields.selected:eq:affiliate.fields.options.value#>SELECTED<#/if#>>{affiliate.fields.options.name}</option>
+					<#/loop#>				
+					</select>
+					<Br><#if:affiliate.fields.error:eq:Y#><font class="error-text">{affiliate.fields.validationmessage}</font><#/if#>
+					</font>
+				</td>
+			<#/if#>
+			<#if:affiliate.fields.fieldtype:eq:TEXT#>
+			<tr>	
+				<td class="field-backing-title">
+					<font class="normal-field-title">{affiliate.fields.titleText} <#if:affiliate.fields.validation:neq:0#>*<#/if#></font>
+				</td>
+				<td class="field-backing-content">
+					<font class="normal-field-title">
+					<input type="TEXT" name="{affiliate.fields.fieldname}" class="textbox" size="{affiliate.fields.size}" maxlength="{affiliate.fields.maxlength}" value="{affiliate.fields.content}">
+					<br><#if:affiliate.fields.error:eq:Y#><font class="error-text">{affiliate.fields.validationmessage}</font><#/if#>
+					</font>
+				</td>
+			<#/if#>
+			<#if:affiliate.fields.fieldtype:eq:TEXTAREA#>
+			<tr>	
+				<td class="field-backing-title">
+					<font class="normal-field-title">{affiliate.fields.titleText} <#if:affiliate.fields.validation:neq:0#>*<#/if#></font>
+				</td>
+				<td class="field-backing-content">
+					<font class="normal-field-title">
+					<textarea name="{affiliate.fields.fieldname}" cols="{affiliate.fields.cols}" rows="{affiliate.fields.rows}" class="textbox">{affiliate.fields.content}</textarea>
+					<br><#if:affiliate.fields.error:eq:Y#><font class="error-text">{affiliate.fields.validationmessage}</font><#/if#>
+					</font>
+				</td>
+			<#/if#>			
+			<#if:affiliate.fields.fieldtype:eq:CHECKBOX#>
+			<tr>	
+				<td class="field-backing-title" colspan="2">
+					<font class="normal-field-title">
+					<input type="CHECKBOX" name="{affiliate.fields.fieldname}" value="Y" {affiliate.fields.checked}> <strong>{affiliate.fields.titleText}</strong>
+					<br><#if:affiliate.fields.error:eq:Y#><font class="error-text">{affiliate.fields.validationmessage}</font><#/if#>
+					</font>
+				</td>
+			<#/if#>
+			</tr>
+		<#/loop#>

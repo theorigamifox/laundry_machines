@@ -1,0 +1,53 @@
+<#include:includes/top.html#>
+
+<?php
+//if (!isset($_SESSION['hp_popup'])) { $_SESSION['hp_popup'] = false; }
+
+//if (!$_SESSION['hp_popup']) {
+//	echo '<input class="lbOn" id="lbOnAuto" type="hidden" value="home_pop.html">';
+//	$_SESSION['hp_popup'] = true;
+//}
+?>
+
+<!-- PAGE CONTENT HEADER -->
+<div id="mainContainerInner" class="large-12 columns mrgBtm50">
+    <h1 style="text-align:center">{snippet=Welcome.title}</h1> <!-- PAGE TITLE -->
+    <div class="row mrgBtm50">
+        <#if:snippet=Welcome.content:neq:blank#>
+        {snippet=Welcome.content} <!-- PAGE TITLE -->
+        <#/if#>
+    </div>
+    <!-- /PAGE CONTENT HEADER -->
+    <!-- check if there are any sub-sections -->
+    <#if:loop.sections.total:neq:0#>
+    <h2 style="text-align:center">Commercial and Industrial Laundry Equipment</h2>
+    <div class="row">
+        <?php
+        $loop_count = 0;
+        ?>	
+        <#loop:sections#>
+        <?php
+        if(({*sections.sectionID} !=59) && ({*sections.sectionID} !=60) && ({*sections.sectionID} !=61) && ({*sections.sectionID} !=62) && ({*sections.sectionID} !=63) && ({*sections.sectionID} !=64) && ({*sections.sectionID} !=69))
+        {
+        ?>
+        <div class="medium-4 small-6 columns">
+            <div class="hover-box">
+                <a href="{sections.link}"><img src="{sections.thumbnail}" alt="<#if:sections.metaKeywords:eq:blank#>{sections.title}<#else#>{sections.metaKeywords}<#/if#>">
+                <div class="hover-box-description">
+                    <div class="description-inner">
+                        <p>{sections.title}</p>
+                    </div>
+                </div>
+                </a>
+            </div>
+        </div>
+        <!-- /output product with individual add to basket form -->
+        <?php
+        }		
+        ?>
+        <#/loop#>
+    </div>
+    <#/if#>
+    <p>{snippet=FrontPageFooter.content}</p>
+    <#include:includes/bottom_sidebar.html#>
+    <#include:includes/bottom.html#>

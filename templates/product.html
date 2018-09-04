@@ -1,0 +1,422 @@
+<#include:includes/top.html#>
+<!-- CONTENT PAGE PRODUCT FEATURE -->
+<form name="{product.form.name}" action="{product.form.action}" method="POST" onSubmit="{
+            product.form.onsubmit
+        }">
+    <h1>{product.name}</h1>
+
+    <#if:product.mainimage:neq:blank#>
+    <div class="medium-6 columns">
+        <img src="{product.mainimage}" alt="{product.name}" align="left" border="0" hspace="15" width="175">
+    </div>
+    <#/if#>
+    <div class="medium-6 columns">
+
+        <p class="short-description-text">{product.shortdescription}</p>
+
+
+
+        <#if:product.price1:eq:0#>
+        <p class="price-title-text">Call Us Now For Full Detail</p>
+
+        <#else#>									  
+        <p class="price-title-text">{labels.product.productPrice}{product.price} (ex VAT)</p>
+        <#/if#>
+
+
+
+        <#if:product.extra_Rental.content:neq:blank#>
+        <p class="price-rental-title">Rental Price: <strong>{product.extra_Rental.content}</strong></p>
+        <#/if#>
+
+        <#if:product.extra_Lease.content:neq:blank#>
+        <p class="price-lease-title">Lease Price:<strong{product.extra_Lease.content}</strong></p>
+        <#/if#>
+
+        <#if:product.ooPrice1:gt:0#>
+        <p class="price-title-small">{labels.product.oneoffPrice} {product.ooprice}</p>
+        <#/if#>
+        <#if:product.rrp1:gt:0#>
+        <p class="price-title-text2">{labels.product.rrpPrice} <strong>{product.rrp}</strong></p>
+        <p class="price-title-text2">{labels.product.rrpDifference} <strong>{product.rrpDifference}</strong></p>
+        <p class="price-title-text2"><br>{labels.product.rrpPercent}<strong>({product.rrpPercent})</strong></p>
+        <#/if#>
+    </div>
+
+    <!-- output quantity discounts table -->
+    <#if:product.pricing.quantitytable.available:eq:Y#>
+    <p class="product-field-title-small">Quantity Discounts Available</p>
+<p class="product-field-title-small">{labels.product.qtyTableQty}</p>
+<p class="product-field-title-small">{labels.product.qtyTableDiscount}</p>
+        <#loop:product.pricing.quantitytable.entries#>
+            <#if:product.pricing.quantitytable.entries.to:neq:99999#>
+            <p class="product-field-content-small">{product.pricing.quantitytable.entries.from} - {product.pricing.quantitytable.entries.to}</p>
+            <#else#>
+            <p class="product-field-content-small">{product.pricing.quantitytable.entries.from} +</p>
+            <#/if#>
+            <p class="product-field-content-small">{product.pricing.quantitytable.entries.discount}</p>
+        <#/loop#>
+    <#/if#>	
+    <!-- /output quantity discounts table -->
+    <!-- output pricing combinations table -->
+    <#if:product.pricing.combinationstable.available:eq:Y#>
+           <p class="product-field-title-small">{labels.product.combinationsTitle}</p>
+           <p class="product-field-title-small">{labels.product.combinationsPrice}</p>
+        <#loop:product.pricing.combinationstable.entries#>
+<p class="product-field-content-small">
+                <#loop:product.pricing.combinationstable.entries.fields#>
+                {product.pricing.combinationstable.entries.fields.field}: {product.pricing.combinationstable.entries.fields.value}<br>
+                <#if:product.pricing.combinationstable.entries.qtyfrom:neq:product.pricing.combinationstable.entries.qtyto#>
+                {labels.product.qtyTableQty}: {product.pricing.combinationstable.entries.qtyfrom} - {product.pricing.combinationstable.entries.qtyto}<br>
+                <#/if#>
+                <#/loop#>
+                </p>
+<p class="product-field-content-small">{product.pricing.combinationstable.entries.price}</p>
+            <#/loop#>
+            <#/if#>	
+            <!-- /output pricing combinations table -->
+
+            <!-- output exclusions table -->
+            <#if:product.exclusionstable.available:eq:Y#>
+<p class="product-field-title-small">{labels.product.exclusionsTitle}</p>
+            <#loop:product.exclusionstable.entries#>
+                <p class="product-field-content-small">
+                    <#loop:product.exclusionstable.entries.fields#>
+                    {product.exclusionstable.entries.fields.field}: {product.exclusionstable.entries.fields.value}<br>
+                    <#/loop#>
+                    </p>
+            <#/loop#>
+        <#/if#>	
+        <!-- /output exclusions table -->											
+
+
+        <!-- output special offer line if item is marked as special offer -->
+        <#if:product.specialoffer:eq:Y#>
+        <p class="specialoffer-text">This product is on special offer!</p>
+        <#/if#>
+
+        <#if:product.newproduct:eq:Y#>
+        <p class="specialoffer-text">This product is new to our catalogue!</p>
+        <#/if#>
+
+        <#if:product.topproduct:eq:Y#>
+        <p class="specialoffer-text">This is one of our bestsellers</p>
+        <#/if#>
+
+        <!-- STOCK CONTROL -->
+        <#if:product.scEnabled:eq:Y#>			
+        <#if:product.scLevel:lt:1#>
+        <p class="specialoffer-text">This product is currently out of stock.</p>
+        <#/if#>
+        <#/if#>
+
+        <#if:product.extra_OutOfStock.content:neq:blank#>
+        <p class="specialoffer-text">This product is currently out of stock.</p>
+        <#/if#>
+
+        <#if:product.minQty:gt:0#>
+        <p class="product-field-title-small">{labels.product.minimumQuantity}<strong>{product.minQty}</strong></p>
+        <#/if#>
+        <#if:product.maxQty:gt:0#>
+        / <p class="product-field-title-small">{labels.product.maximumQuantity}<strong>{product.maxQty}</strong></p>
+        <#/if#>
+
+
+        <#if:product.price1:neq:0#>
+        <#if:product.scNoBuy:eq:N#>
+        <!--<br><br><font class="short-description-text">{labels.product.productQuantity} <input type="text" size="5" value="1" class="textbox" name="{product.qtyboxname}" onBlur="{product.recalculateprice}">
+        <input type="submit" name="submit" value="{labels.cart.addToCartLink}" class="button">-->
+        <p class="price-title-text">Please call 01422 314820</p>
+        <#/if#>
+        <#/if#>
+
+        <p><a href="{product.wishlist.link}" class="middle-links">{labels.customer.addToWishListLink}</a></p>
+
+        <!-- /CONTENT PAGE PRODUCT FEATURE -->
+
+        <#if:product.description:neq:blank#>
+
+        <hr>
+
+        <!-- DETAILS / EXTRA-FIELDS -->
+
+        <p>{product.description}</p>
+        <p>
+
+            <!-- output all the extra fields -->
+            <#loop:product.extrafields#>
+            <!-- check to see if there is some content for an extra field -->
+
+
+            <!-- DO NOT DISPLAY THE FILE, RENTAL OR LEASE FIELDS -->	
+            <#if:product.extrafields.name:ncontains:File#>
+            <#if:product.extrafields.name:ncontains:Rental#>
+            <#if:product.extrafields.name:ncontains:Lease#>
+            <#if:product.extrafields.content:neq:blank#>
+            <!-- output USERINPUT extra fields -->
+            <#if:product.extrafields.type:eq:USERINPUT#>
+            <#if:product.extrafields.requirement:gt:0#>
+            <font class="extrafield-title-text">{product.extrafields.title}: </font><input type="TEXT" name="{product.extrafields.name}" size="{product.extrafields.size}" maxlength="{product.extrafields.maxlength}" class="textbox">
+            <#if:product.extrafields.error:eq:Y#>
+            <br>{label.product.userInputRequired}
+            <#/if#>
+        <p>
+            <#/if#>
+            <#/if#>
+            <!-- output TEXT extra fields -->
+            <#if:product.extrafields.type:eq:TEXT#>
+        <p class="extrafield-title-text">{product.extrafields.title}: {product.extrafields.content}</p>
+            <#/if#>
+            <!-- output TEXTAREA extra fields -->
+            <#if:product.extrafields.type:eq:TEXTAREA#>
+        <p class="extrafield-title-text">{product.extrafields.title}:{product.extrafields.content}</p>
+            <#/if#>		
+            <!-- output IMAGE extra fields -->
+            <#if:product.extrafields.type:eq:IMAGE#>
+            <#if:product.extrafields.name:eq:PDFBrochure#>								
+            <p><a href="{product.extrafields.content}" title="Download PDF Brochure" target="_PDFBrochure">Click here to download a PDF brochure</a></p>
+            <#else#>
+            <p class="extrafield-title-text">{product.extrafields.title}:</p>
+        <img src="{product.extrafields.content}" alt="" width="60" height="60" border="1" align="top"><p>
+            <#/if#>
+            <#/if#>
+            <!-- output SELECT extra fields -->
+            <#if:product.extrafields.type:eq:SELECT#>
+            <p class="extrafield-title-text">{product.extrafields.title}:</p>
+            <select name="{product.extrafields.name}" onChange="{
+                        product.recalculateprice
+                    }" class="selectbox">
+                <!-- loop through options -->
+                <#loop:product.extrafields.options#>
+                <option value="{product.extrafields.options.id}">{product.extrafields.options.option}<#if:product.extrafields.options.price:neq:blank#>&nbsp;({product.extrafields.options.price})<#/if#></option>
+                <#/loop#>
+                <!-- /loop through options -->
+            </select>
+            <#/if#>
+            <!-- output CHECKBOXES extra fields -->
+            <#if:product.extrafields.type:eq:CHECKBOXES#>
+            <p class="extrafield-title-text">{product.extrafields.title}:</p>
+            <!-- loop through options -->
+            <#loop:product.extrafields.options#>
+            <input type="checkbox" name="{product.extrafields.name}{loop.product.extrafields.options.count}" value="{product.extrafields.options.id}" onClick="{
+                        product.recalculateprice
+                    }"> <font class="extrafield-content-text">{product.extrafields.options.option} <#if:product.extrafields.options.price:neq:blank#>({product.extrafields.options.price})<#/if#></font><br>
+            <#/loop#>
+            <!-- /loop through options -->
+        <p>
+            <#/if#>
+            <!-- output RADIOBUTTONS extra fields -->
+            <#if:product.extrafields.type:eq:RADIOBUTTONS#>
+            <font class="extrafield-title-text">{product.extrafields.title}:</font><br>
+            <!-- loop through options -->
+            <#loop:product.extrafields.options#>
+            <#if:loop.product.extrafields.options.count:eq:1#>
+            <input type="radio" name="{product.extrafields.name}" value="{product.extrafields.options.id}" onClick="{
+                        product.recalculateprice
+                    }" CHECKED> <font class="extrafield-content-text">{product.extrafields.options.option} <#if:product.extrafields.options.price:neq:blank#>({product.extrafields.options.price})<#/if#></font><br>
+            <#else#>
+            <input type="radio" name="{product.extrafields.name}" value="{product.extrafields.options.id}" onClick="{
+                        product.recalculateprice
+                    }"> <font class="extrafield-content-text">{product.extrafields.options.option} <#if:product.extrafields.options.price:neq:blank#>({product.extrafields.options.price})<#/if#></font><br>
+            <#/if#>
+            <#/loop#>
+            <!-- /loop through options -->
+        <p>
+            <#/if#>							
+            <#/if#>	
+            <!-- END IF NOT BLANK -->
+            <#/if#>		
+            <!-- END IF LEASE -->
+            <#/if#>
+            <!-- END IF RENTAL -->
+            <#/if#>
+            <!-- END IF FILE -->	
+            <#/loop#>
+            <!-- /output all the extra fields -->
+
+
+            <br>
+            <#if:product.extra_File1.content:neq:blank#>		
+        <p><a href="{product.extra_File1.content}" title="{product.extra_File1.content}" target="_new">{product.extra_File1Description.content}</a></p>
+            <#/if#>
+            <#if:product.extra_File2.content:neq:blank#>		
+            <p><a href="{product.extra_File2.content}" title="{product.extra_File2.content}" target="_new">{product.extra_File2Description.content}</a></p>
+            <#/if#>
+            <#if:product.extra_File3.content:neq:blank#>		
+            <p><a href="{product.extra_File3.content}" title="{product.extra_File3.content}" target="_new">{product.extra_File3Description.content}</a></p>
+            <#/if#>
+
+        </p>
+
+        <!-- DETAILS / EXTRA-FIELDS -->
+
+        <#/if#>
+
+        <!-- CUSTOMER REVIEWS -->
+        <#if:reviews.enabled:eq:Y#>
+        <hr>
+
+        <h1>{labels.product.customerReviewsTitle}</h1>
+
+        <#if:reviews.total:neq:0#>
+        <h3>{labels.product.customerReviewsAverageRating} {reviews.averagerating}/5</h3>
+        <#/if#>
+
+        <#if:reviews.total:neq:0#>
+
+
+
+        <#loop:reviews.content#>
+        <p class="product-field-title-small">Review By: {reviews.content.name}</p>
+
+        <p class="product-field-title-small">{labels.product.customerReviewsRating} {reviews.content.rating}/5</p>
+
+        <#if:reviews.content.title:neq:blank#>
+
+        <p class="product-field-title-small">{labels.review.title} {reviews.content.title}</p>
+
+        <#/if#>
+
+        <p class="product-field-content-small">{reviews.content.review}</p>
+
+        <#/loop#>
+
+        <#else#>
+        <!-- THERE ARE NO REVIEWS MESSAGE -->
+        <p class="product-field-title-small">{labels.product.customerReviewsNoReviews}</p>
+
+
+        <#/if#>
+
+        <p><a href="{product.review.link}" class="middle-links">{labels.product.customerReviewsReviewLink}</a>
+            <#if:reviews.total:neq:0#>
+            | <a href="{reviews.link}" class="middle-links">{labels.product.customerReviewsAllLink}
+                <#/if#>
+        </p>
+
+        <#/if#>
+        <!-- /CUSTOMER REVIEWS -->
+
+
+
+        <!-- output groupedproducts items -->
+        <#if:loop.groupedproducts.total:neq:0#>
+        <hr>
+        <!-- CONTENT SECTION FEATURE -->
+        <h1>{labels.product.groupedProducts}</h1>	
+
+            <p>
+
+                <#loop:groupedproducts#>
+                <#if:loop.groupedproducts.count:mod2:1#>
+                <#/if#>
+
+                <!-- GROUPED PRODUCT -->
+            <form name="{groupedproducts.form.name}" action="{groupedproducts.form.action}" method="POST" onSubmit="{
+                        groupedproducts.form.onsubmit
+                    }">
+                <a href="{groupedproducts.link}" title="{groupedproducts.name}">
+                    <#if:groupedproduct.thumbnail:neq:blank#>
+                    <img src="{groupedproducts.thumbnail}" border="0" alt="{groupedproducts.name}" hspace="5"></a>
+                <#/if#>
+                <p class="multi_feature_title">{groupedproducts.qty} x {groupedproducts.name} (SKU:{groupedproducts.code})</p>
+                <p class="multi_feature_text">{groupedproducts.shortdescription:150:dots}</p>
+                <p class="multi_feature_price">Our Price: {groupedproducts.price}</p>
+                <p><a href="{groupedproducts.link}">{labels.product.moreInfoLink}</a></p>
+            </form>
+            <!-- GROUPED PRODUCT -->
+
+            <#if:loop.groupedproducts.count:mod2:0#>
+            <#/if#>	
+
+
+            <#/loop#>
+
+            </p>
+
+            <!-- /CONTENT SECTION FEATURE -->
+            <#/if#>
+
+            <!-- output associated items -->
+            <#if:loop.associated.total:neq:0#>
+            <hr>
+            <!-- CONTENT SECTION FEATURE -->
+            <h1>{labels.product.associatedProductsTitle}</h1>	
+
+            <p>
+
+                <#loop:associated#>
+                <#if:loop.associated.count:mod2:1#>
+                <#/if#>
+
+                <!-- ASSOCIATED PRODUCT -->
+            <form name="{associated.form.name}" action="{associated.form.action}" method="POST" onSubmit="{
+                        associated.form.onsubmit
+                    }">
+                <a href="{associated.link}" title="{associated.name}">
+
+                    <#if:associated.thumbnail.mainimage:neq:blank#>
+                    <img src="{associated.thumbnail}" border="0" alt="{associated.name}" hspace="5" width="52"></a>
+                <#/if#>
+                <p class="multi_feature_title">{associated.name}</p>
+                <p class="multi_feature_text">{associated.shortdescription:150:dots}</p>
+                <p class="multi_feature_price">Our Price: {associated.price}</p>
+                <a href="{associated.link}">{labels.product.moreInfoLink}</a> | <a href="{associated.add.link}" title="{associated.name}">{labels.cart.addToCartLink}</a>
+            </form>
+            <!-- ASSOCIATED PRODUCT -->
+
+            <#if:loop.associated.count:mod2:0#>
+
+            <#/if#>	
+
+
+            <#/loop#>
+
+            <!-- /CONTENT SECTION FEATURE -->
+            <#/if#>
+            <!-- /output associated items -->
+
+
+            <!-- output recommended items -->
+            <#if:loop.recommended.total:neq:0#>
+            <hr>
+            <!-- CONTENT SECTION FEATURE -->
+
+            <h1>{labels.product.recommendedProducsTitle}</h1>	
+
+            <p>
+                <#loop:recommended#>
+                <#if:loop.recommended.count:mod2:1#>
+                <#/if#>
+
+                <!-- RECOMMENDED PRODUCT -->
+            <form name="{recommended.form.name}" action="{recommended.form.action}" method="POST" onSubmit="{
+                        recommended.form.onsubmit
+                    }">
+                <a href="{recommended.link}" title="{recommended.name}">
+
+                    <#if:recommended.thumbnail:neq:blank#>
+                    <img src="{recommended.thumbnail}" border="0" alt="{recommended.name}" hspace="5" width="75"></a>
+                <#/if#>
+                <p class="multi_feature_title">{recommended.name}</p>
+                <p class="multi_feature_text">{recommended.shortdescription:150:dots}</p>
+                <p class="multi_feature_price">Our Price: {recommended.price}</p>
+                <a href="{recommended.link}">{labels.product.moreInfoLink}</a> | <a href="{recommended.add.link}" title="{recommended.name}">{labels.cart.addToCartLink}</a>
+            </form>
+            <!-- RECOMMENDED PRODUCT -->
+
+            <#if:loop.recommended.count:mod2:0#>
+            <#/if#>	
+
+
+            <#/loop#>
+            </p>
+
+            <!-- /CONTENT SECTION FEATURE -->
+            <#/if#>
+            <!-- /output recommended items -->
+
+            <!-- /CONTENT PAGE PRODUCT MULTI FEATURE -->
+            </form>
+
+            <#include:includes/bottom.html#>

@@ -1,0 +1,36 @@
+<HTML>
+<HEAD>
+<TITLE>Order !TransNum! Receipt</TITLE>
+<BODY>
+
+  <TABLE width=600 border=1 cellPadding=10 cellSpacing=0 bordercolor="#000000">
+    <TBODY>
+      <TR bgcolor="#000000"> 
+        <TD vAlign=top>
+        	<p><font size="3" face="Verdana, Arial, Helvetica, sans-serif" color=FFFFFF><strong>{company.companyName}</strong></font></p>
+        </TD>
+        <TD align=right vAlign=top> 
+          <p><font size="2" face="Verdana, Arial, Helvetica, sans-serif" color=FFFFFF><strong>
+          Your Gift Certificate
+          </strong></font></p></TD>
+      </TR>
+      <TR>
+        <TD vAlign=top colspan="2"><font size="2" face="Verdana, Arial, Helvetica, sans-serif">
+        Certificate Number: {giftcertificate.certSerial}
+        <p><font size="6" face="Verdana, Arial, Helvetica, sans-serif"><strong>Value: {giftcertificate.amount}</strong>
+        </TD>
+      </TR>
+      <TR> 
+        <TD colSpan=2><font size="2" face="Verdana, Arial, Helvetica, sans-serif">
+        Dear {giftcertificate.toname},
+        <p>You have been sent a gift certificate for the {company.companyName} web store which can be found at {company.storeurl}.
+        <p>You are entitled to redeem this gift certificate against purchase made at our on-line web store.
+        <p>Your friend also wanted you to have this message:
+        <p><strong>{giftcertificate.messageFormatted}</strong>
+        <p>To use the gift certificate simply visit our store, choose your products and on the payment screen when you checkout enter the certificate number
+        above. It's as easy as that.
+   </TD>
+      </TR>
+    </TBODY>
+  </TABLE>
+</BODY></HTML>

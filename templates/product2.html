@@ -1,0 +1,946 @@
+
+<#include:includes/top.html#>
+
+<center></p>
+
+<form name="{product.form.name}" action="{product.form.action}" method="POST" onSubmit="{product.form.onsubmit}">
+
+
+<table width="664" border="0" cellspacing="0" cellpadding="0">
+	<tr>
+  		<td>
+  			<table cellpadding="0" cellspacing="0" border="0" width="664" valign="top">
+  				<tr valign="bottom">
+  					<td width="352"><font class="menu-links">{product.shortdescription}</font></td>
+
+
+					<!-- SHOW THE FINANCE TAB IS PRODUCT PRICE IS OVER £300 -->
+					<#if:product.price1:gt:300#>
+						<td><a href="/product.php?xProd={product.productID}#finance"><img src="/images-tvd/financeexampletab.gif" border="0" alt="Finance Example Tab" align="bottom"></a></td>
+
+						<#else#>
+							<td><img src="/images/blank.gif" width="105" height="1"></td>
+
+					<#/if#>
+
+					<td><a href="/product.php?xProd={product.productID}#accessories"><img src="/images-tvd/accessoriestab.gif" border="0" alt="Accessories Tab" align="bottom"></a></td>
+					<td><a href="/product.php?xProd={product.productID}#technical"><img src="/images-tvd/techspectab.gif" border="0" alt="Technical Specifications Tab" align="bottom"></a></td>
+  				</tr>  	
+				<tr>
+					<td colspan="4"><img src="/images-tvd/producttabseperator.gif" border="0" alt=""></td>
+  				</tr>
+  			</table>
+  		</td>
+
+  	</tr>
+    	<tr>
+  		<td>
+			<table cellpadding="0" cellspacing="0" border="0" width="664">
+  				<tr>
+					<td>
+  						<table cellpadding="2" cellspacing="2" border="0" width="664">
+  							<tr valign="top">
+  								<td rowspan="3" width="210px" valign="top" align="center">
+					
+									<!-- DISPLAY THE MANUFACTURER'S LOGO IF IT IS AVAILABLE -->										
+									<?php
+										$filename = "/var/www/html/images/logos/". {*product.extra_Manufacturer.content}.".jpg";
+										$filename = strtolower ($filename);
+										$this->theVariables["product"]["manufacturerlogo"] = $filename;
+							
+										if (file_exists($filename)) {
+											$filename = "/images/logos/". {*product.extra_Manufacturer.content}.".jpg";
+											$filename = strtolower ($filename);
+			
+											$this->theVariables["product"]["manufacturerlogo"] = $filename;
+										?>
+				
+											<img src="{product.manufacturerlogo}" border="1" alt="{product.extra_Manufacturer.content} Logo" align="top"><br>
+					
+											<?php
+										}
+									?>						
+									<!-- END DISPLAY MANUFACTURER'S LOGO -->
+
+									<img src="{product.mainimage}" alt="{product.name}" border="1" width="200" align="top"><br><br>
+					
+
+
+
+									<!-- CHECK IF THERE ARE PRODUCT OPTIONS -->
+									<#if:product.extra_LoeweOptions.content:neq:blank#>
+										<table cellpadding="2" cellspacing="2" border="0" width="100%">
+											<tr>
+												<td colspan="2" align="left"><font class="extrafield-title-text">Optional Upgrades:</font></td>
+												<td align="center"><font class="extrafield-title-text">Cost:</font></td>
+											</tr>
+					
+											<!-- LOOP THROUGH OPTIONS -->
+											<#loop:product.extra_LoeweOptions.options#>
+										
+					
+								
+												<!-- REMOVE THE SKU CODE FROM THE OPTION DESCRIPTION -->
+								
+												<?php
+												{
+													$option = explode ("(SKU", {*product.extra_LoeweOptions.options.option});	
+													
+													$this->theVariables["optionsummary"] = $option[0];
+
+													
+													
+												}
+												?>
+												
+												<tr>
+
+
+													
+													
+												<#if:loop.product.extra_LoeweOptions.options.count:eq:1#>
+														<td align="left" class="menu-backing-content" width="5"><input type="radio" name="{product.extra_LoeweOptions.name}" value="{product.extra_LoeweOptions.options.id}" onClick="{product.recalculateprice}" CHECKED></td>
+														<td align="left" class="menu-backing-content"><font class="extrafield-content-text">{optionsummary}</font></td>
+															
+
+																							
+														<#if:product.extra_LoeweOptions.options.price:neq:blank#>
+															 <td align="center" class="menu-backing-content"><font class="extrafield-content-text"><b>{product.extra_LoeweOptions.options.price}</b></font></td>
+																			
+															<#else#>
+																<td align="center" class="menu-backing-content"><font class="extrafield-content-text">-</font></td>
+														<#/if#>
+			
+														<#else#>
+
+
+
+													
+															<td align="left" class="menu-backing-content"><input type="radio" name="{product.extra_LoeweOptions.name}" value="{product.extra_LoeweOptions.options.id}" onClick="{product.recalculateprice}"></td>
+															<td align="left" class="menu-backing-content"><font class="extrafield-content-text">{optionsummary}</font></td>
+																
+															<#if:product.extra_LoeweOptions.options.price:neq:blank#>
+																<td align="center" class="menu-backing-content"><font class="extrafield-content-text"><b>{product.extra_LoeweOptions.options.price}</b></font></td>
+																
+																<#else#>
+																	<td align="center" class="menu-backing-content"><font class="extrafield-content-text">-</font></td>
+															<#/if#>
+											
+													<#/if#>
+				
+													</font>
+													</td>
+												</tr>
+											<#/loop#>
+											<!-- END LOOP THROUGH OPTIONS -->
+										</table>
+									<#/if#>
+									<!-- END CHECK FOR PRODUCT OPTIONS -->
+	
+								</td>
+
+
+								<!-- PRICE, AVAILABILITY AND SHIPPING COSTS -->
+								<td>
+				
+									<table cellpadding="2" cellspacing="2" border="0" width="430" valign="top">
+										<tr>
+											<td valign="top" width="430">
+												
+												<table cellpadding="2" cellspacing="2" border="0" width="240" height="100%" valign="top">
+													<tr valign="top">
+														<td colspan="2" valign="top" width="240">
+															<font class="price-newstyle-text"><b>Our Price: {product.price}</b></font><br>
+			
+															
+						
+															<br>
+		
+															<!-- DISPLAY WARRANTY DETAILS IF PRODUCT IS NOT A WARRANTY -->
+															<#if:section.rootsectionID:neq:56#>
+																<#if:product.extra_Warranty.content:eq:blank#>
+																	<font class="description-text"><b>1 Year Manufacturer's Warranty</b>
+												
+																	<#else#>		
+																		<font class="description-text"><b>{product.extra_Warranty.content} Years Manufacturer's Warranty</b>
+																<#/if#>
+											
+															<#/if#>
+
+														</td>	
+													</tr>
+													<tr>
+														<!-- SHOW THE AVAILABILITY LINK IF NOT HOME APPLIANCES OR WARRANTIES -->
+														<#if:section.rootsectionID:neq:39#>
+															<#if:section.rootsectionID:neq:56#>
+																<#if:product.extra_Availability.content:eq:blank#>
+																	
+																	<#if:product.productID:neq:2191#>
+																		<td valign="middle">
+																			<font class="price-newstyle-text-small"><b>Availability:</b> Usually in stock</font>
+																		</td>
+	
+																		<td valign="middle">
+																			<a href="javascript:openAvailable();" class="middle-links"><img src="images-tvd/infosmall.gif" border="0" alt="Stock Information" valign="middle"></a>
+																		</td>
+																	<#/if#>
+
+											
+																	<#else#>
+																		<td valign="middle" colspan="2"><font class="price-newstyle-text-small"><b>Availability:</b> {product.extra_Availability.content}</font></td>
+																<#/if#>
+															<#/if#>
+														<#/if#>
+											
+													</tr>
+
+													<!-- DON'T SHOW DELIVERY COSTS IF PRODUCT IS SHIPPED FREE -->
+													<#if:product.freeShipping:eq:N#>
+						
+														<!-- DON'T SHOW DELIVERY DETAILS IF PRODUCT IS INSTALLED-->
+														<#if:product.extra_Installed.content:neq:Yes#>
+															<tr>
+																<td>
+																	<font class="price-newstyle-text-small"><b>Delivery From: </b>£<script src="http://www.tvandvideodirect.com/cgi-bin/delcalc.pl?weight={product.weight}" type="text/javascript"></script></font>
+																</td>
+																<td>
+																	<A href="/templates/deliverypopup1.html" target="_new"><img src="/images-tvd/infosmall.gif" border="0" alt="Delivery Charges"></a>
+																</td>
+															</tr>
+														<#/if#>
+
+														<#else#>
+																	<tr>
+																		<td>
+																			<font class="price-newstyle-text-small"><b>Delivery:</b> Free</font>
+																		</td>
+																	</tr>
+	
+													<#/if#>
+
+											
+													<!-- END DON'T SHOW DELIVERY COSTS IF PRODUCT IS SHIPPED FREE -->
+													
+
+													<!-- DISPLAY THE COLOUR IF APPLICABLE -->
+													<#if:product.extra_Colour.content:neq:blank#>
+														<tr>
+															<td colspan="2">
+																<font class="price-newstyle-text-small"><b>Colour:</b> {product.extra_Colour.content}</font>
+															</td>
+														</tr>
+													<#/if#>
+
+												</table>
+
+
+												
+											</TD>
+											<!-- END PRICE, AVAILABILITY, AND SHIPPING COSTS -->
+
+
+
+											<!-- ADD, VIEW AND CHECKOUT -->
+										  	<td width="190" height="50" valign="top">
+												<table cellpadding="1" cellspacing="1" border="0" width="190" valign="top">
+													<tr>
+														<td>
+															<img src="/images/blank.gif" border="0" width="25" height="19"><a href="{product.add.link}" class="middle-links"><img src="/images-tvd/greenbasket.gif" border="0" alt="Add To Basket"></a>
+															<a href="{product.add.link}" class="middle-links">Add To Basket</a>
+														</td>
+													</tr>		
+													<tr>
+														<td>
+															<img src="/images/blank.gif" border="0" width="25" height="19"><a href="cart.php"><img src="/images-tvd/greeneye.gif" border="0" alt="View Your Basket"></a>
+															<a href="cart.php" class="middle-links">View Your Basket</a>
+														</td>
+													</tr>
+													<tr>
+														<td>	
+															<img src="/images/blank.gif" border="0" width="25" height="19"><A href="cart.php?xCmd=checkout" class="middle-links"><img src="/images-tvd/greentick.gif" border="0" alt="Checkout"></a>
+															<A href="cart.php?xCmd=checkout" class="middle-links">Checkout</a>
+															</form>
+														</td>
+													</tr>	
+				
+													<#if:product.extra_specialofferimage.content:eq:blank#>
+														<#if:product.extra_SpecialOffer.content:neq:blank#>
+															<!-- SPECIAL OFFERS -->
+															<tr>
+																<td>
+																	<font class="specialoffer-text"><br><b><u>{product.extra_SpecialOffer.title}</u></b></font><br>
+																	<font class="specialoffer-text">{product.extra_SpecialOffer.content}</font><p>
+																</td>	
+															</tr>
+														<#/if#>
+													<#/if#>
+	
+			
+
+												</table>
+											</td>
+		  
+  										</tr>
+
+
+			  							<!-- PRODUCT SUMMARY -->
+						
+										<?php
+										{
+											// SPLIT THE PRODUCT DESCRIPTION BY BR INTO AN ARRAY
+											$spec = explode ("<br>", {*product.description});
+											
+											// HOW MANY ARRAY ELEMENTS WE HAVE
+											$speclength = count($spec);	
+										}
+										?>
+
+										<tr>
+
+
+										
+											<td colspan="2" valign="top"><img src="/images-tvd/features.gif" border="0"><br>
+												
+
+												<!-- SPECIAL OFFERS -->
+												<#if:product.extra_specialofferimage.content:neq:blank#>
+													<img src="{product.extra_specialofferimage.content}" border="1" valign="top" align="right">
+												<#/if#>
+			
+												<font class="description-text">
+												
+
+												<#if:product.extra_Summary.content:eq:blank#>
+												<?php
+												{
+
+													if($speclength < 20)
+													{
+														$a = $speclength-1;
+													}
+														
+														else
+														{
+															$a = 20;
+														}
+
+													for($i=0;$i<$a;$i++)
+													{
+														if(strlen($spec[$i]) > 2)
+														{
+															print("$spec[$i]"." - ");
+														}
+										
+													}
+												}
+												?>
+
+						
+
+												
+					
+													<#else#>
+														{product.extra_Summary.content}
+												<#/if#>
+												
+												</font>
+
+
+												
+
+
+													
+					
+											</td>
+										  </tr>	
+									</table>
+								</td>
+							</tr>
+						</table>
+  					</td>
+  				</tr>
+			</table>
+		</td>
+
+  	</tr>
+	<tr>
+		<td>
+			<table cellpadding="1" cellspacing="1" border="0" width="664">
+				<tr>
+					<td bgcolor="#8D9CB4">
+	
+						<table cellpadding="2" cellspacing="2" border="0" bgcolor="#E1DDE1" width="662">
+  							<tr>
+								<td>
+									<font class="copyright-text">All prices quoted include VAT. We will only pre-authorise 
+										payment via our Secure Payment Gateway and no money will be taken from your 
+										account/card until we have confirmed your item is ready for dispatch. 
+										All copyrights and trademarks are recognised as property of their respective owners. <b>E&OE.</b></font>
+								</td>
+  							</tr>
+	
+	
+  						</table>
+						
+					</td>
+				</tr>
+			</table>
+			<br><br>
+		</td>	
+	</tr>
+    	<!--<tr>
+  		<td><img src="/images-tvd/dottedlineproducts.gif" border="0"></td>
+  	</tr>-->
+	
+
+	<!-- DISPLAY FINANCE EXAMPLES IF PRODUCT PRICE IS OVER £300 -->	
+
+	<#if:product.price1:gt:300#>
+
+		
+		<?php
+			$financeexample1 = 0;
+			$financeexample2 = 0;
+			$financeexample3 = 0;
+			$financeexample4 = 0;
+
+	
+			$financeexample1 = {*product.price1} * 0.04; //4% of total price
+			$financeexample1 = sprintf("%01.2f", $financeexample1);
+			$this->theVariables["product"]["financeexample1"] = $financeexample1;
+
+			$financeexample2 = {*product.price1} * 0.02986; //48 months at 19.9%		
+			$financeexample2 = sprintf("%01.2f", $financeexample2);
+			$this->theVariables["product"]["financeexample2"] = $financeexample2;
+
+		
+			$financeexample3 = {*product.price1} * 0.05290; //24 months at 24.9%
+			$financeexample3 = sprintf("%01.2f", $financeexample3);
+			$this->theVariables["product"]["financeexample3"] = $financeexample3;
+
+			$financeexample4 = {*product.price1} * 0.03445; //48 months at 29.9%
+			$financeexample4 = sprintf("%01.2f", $financeexample4);
+			$this->theVariables["product"]["financeexample4"] = $financeexample4;
+		?>
+
+		<tr>
+  			<td>
+				<table cellpadding="0" cellspacing="0" border="0" width="664">
+	  				<tr>
+  						<a name="finance"><td colspan="2"><img src="/images-tvd/financeexample.gif" border="0"></td>
+	 				</tr>
+					<tr>
+						<td>
+	
+							<table cellpadding="0" cellspacing="0" border="0" width="544" bgcolor="#ffffff">
+								<tr>
+									<td colspan="4"><img src="/images-tvd/greysquare.gif" border="0" width="544" height="1"></td>
+								</tr>
+								<tr>
+									<td width="1"><img src="/images-tvd/greysquare.gif" border="0" height="42" width="1"></td>	
+									<td width="22"><img src="/images-tvd/green1.gif" border="0" align="left" width="20"></td>
+									<td colspan="2"><font class="finance-apr">&nbsp;&nbsp;<b>No deposit and pay nothing for 9 months (minimum spend £500).<br>
+										&nbsp;&nbsp;Settle the remaining outstanding balance in or before the 9th month and pay no interest<bR>
+										&nbsp;&nbsp;(or £{product.financeexample4} per month based on 48 months at 29.8% APR).</b></font></td>
+								</tr>
+								<tr>
+									<td width="1"><img src="/images-tvd/greysquare.gif" border="0" height="20" width="1"></td>	
+									<td width="22"><img src="/images-tvd/green2.gif" border="0" align="left" width="20"></td>
+									<td width="125"><font class="finance-cost">&nbsp;<b>&nbsp;£{product.financeexample2} per month</b></font></td>
+									<td width="396">
+										<font class="finance-apr">&nbsp;<b>-&nbsp;&nbsp;Based on 48 months at 19.9% APR without Payment Protection</b></font>
+									</td>
+								</tr>
+								<tr>
+									<td width="1"><img src="/images-tvd/greysquare.gif" border="0" height="20" width="1"></td>	
+									<td width="22"><img src="/images-tvd/green3.gif" border="0" align="left" width="20"></td>
+									<td width="125"><font class="finance-cost">&nbsp;<b>&nbsp;£{product.financeexample3} per month</b></font></td>
+									<td width="396"><font class="finance-apr">&nbsp;<b>-&nbsp;&nbsp;Based on 24 months at 24.9% APR without Payment Protection</b></font></td>
+								</tr>
+								<tr>
+									<td colspan="4"><img src="/images-tvd/greysquare.gif" border="0" width="544" height="1"></td>
+								</tr>
+							</table>
+						</td>
+						<td>
+							<table cellpadding="0" cellspacing="0" border="0" width="120">
+								<tr>
+									<td><img src="/images-tvd/able2buyproduct.gif" border="0"></td>
+								</tr>
+							</table>
+  						</td>
+					</tr>
+				</table>
+  			</td>
+	
+  		</tr>
+
+	
+
+		<!-- BACK TO THE TOP  -->
+		<tr>
+			<td align="right"><a href="/product.php?xProd={product.productID}"><img src="/images-tvd/top.gif" border="0"></a></td>
+		<tr>
+
+	
+	<#/if#>
+	<!-- END FINANCE EXAMPLES -->
+
+
+
+
+	<!-- ASSOCIATED PRODUCTS -->
+	<!-- DO NOT SHOW ASSOCIATED PRODUCTS IF WARRANTIES, ACCESSORIES OR STAND SOLUTIONS -->
+	<#if:section.rootsectionID:neq:56#>
+		<#if:section.rootsectionID:neq:10#>
+			<#if:section.rootsectionID:neq:413#>
+
+				<tr>
+			  		<td><a name="accessories"><img src="/images-tvd/accessoriesinfo.gif" border="0"></td>
+				</tr>
+				<tr>
+			  		<td>
+						<table cellpadding="1" cellspacing="1" border="0" width="664" bgcolor="#8D9CB4">
+  						<tr>
+								<td>
+									<table cellpadding="0" cellspacing="0" border="0" width="662">
+										<tr>
+											<td>
+												<table cellpadding="0" cellspacing="0" border="0" width="662" bgcolor="#EDF0F5">
+													<tr>
+																	
+														<#loop:associated#>
+															<#if:loop.associated.count:neq:1#>
+																<#if:loop.associated.count:mod2:1#>
+																	</tr>
+																	<tr>		
+																		<td colspan="8"><img src="/images-tvd/accessoriesseperator.gif" width="662"></td>
+																	</tr>
+																	<tr>
+																<#/if#>
+															<#/if#>
+				
+															<form name="productForm{associated.productID}" action="http://www.tvandvideodirect.com/cart.php?xCmd=add&xProd={associated.productID}&xFwd=product.php%3FxProd%3D{product.productID}" method="POST" onSubmit="return true;">
+															<td bg color="#EDF0F5" align="middle" width="22"><img src="/images-tvd/greyblockproduct.gif" border="0" height="70" width="20" align="middle"></td>
+															<td><a href="{associated.link}" class="middle-links"><img src="{associated.thumbnail}" alt="{associated.name}" width="50" border="0" align="middle"></a>&nbsp;</td>
+															<td>
+																<table cellpadding="0" cellspacing="0" border="0">
+																	<tr height="46" valign="top" bgcolor="#EDF0F5">
+																		<td><a href="{associated.link}" class="middle-links">{associated.shortdescription}</a></td>
+																	</tr>
+																	<tr>
+																		<td><font class="specialoffer-text"><b>Our Price: {associated.price}</b></font></td>
+																	</tr>
+																</table>
+															</td>
+															<td bg color="#FFFFFF"><a href="javascript:document.productForm{associated.productID}.submit();"><img src="/images-tvd/addtobasket.gif" border="0" alt="Add To Basket"></a><br>
+															    <a href="{associated.link}" class="middle-links"><img src="/images-tvd/information.gif" border="0" alt="More Info"></a>
+																</form>
+															</td>
+										
+																								
+														<#/loop#>
+
+											
+
+														<!-- THE FIRST FIXED ASSOCIATED PRODUCT -->
+														<?php
+
+
+															$counter={*loop.associated.count}+1;
+														
+															if({*loop.associated.count} > 1)
+															{
+																if($counter % 2 == 1)
+																{
+	
+														?>	
+																	</tr>
+																	<tr>		
+																		<td colspan="8"><img src="/images-tvd/accessoriesseperator.gif" width="662"></td>
+																	</tr>
+																	<tr>
+																	
+														<?php
+																}
+															}
+														?>
+					
+														<form name="productForm1040" action="http://www.tvandvideodirect.com/cart.php?xCmd=add&xProd=1040&xFwd=product.php%3FxProd%3D{product.productID}" method="POST" onSubmit="return true;">
+														<td bg color="#EDF0F5" align="middle"><img src="/images-tvd/greyblockproduct.gif" border="0" height="69" width="20" align="middle"></td>
+														<td><a href="/product.php?xProd=1040" class="middle-links"><img src="{product=1040.thumbnail}" alt="{product=1040.name}" width="50" border="0" align="middle"></a>&nbsp;</td>
+														<td>
+															<table cellpadding="0" cellspacing="0" border="0">
+																<tr height="46" valign="top" bgcolor="#EDF0F5">
+																	<td><a href="/product.php?xProd=1040" class="middle-links">{product=1040.shortdescription}</a></td>
+																</tr>
+																<tr>
+																	<td><font class="specialoffer-text"><b>Our Price: {product=1040.price}</b></font></td>
+																</tr>
+															</table>
+														</td>
+														<td bg color="#FFFFFF"><a href="javascript:document.productForm1040.submit();"><img src="/images-tvd/addtobasket.gif" border="0" alt="Add To Basket"></a><br>
+														    <a href="/product.php?xProd=1040" class="middle-links"><img src="/images-tvd/information.gif" border="0" alt="More Info"></a>
+														</form>
+														</td>
+																						
+												
+														<!-- THE SECOND FIXED ASSOCIATED PRODUCT -->
+														<?php
+															$counter++;
+														
+															if($counter % 2 == 1)
+															{
+			
+														?>	
+																</tr>
+																<tr>		
+																	<td colspan="8"><img src="/images-tvd/accessoriesseperator.gif" width="662"></td>
+																</tr>
+																<tr>
+													
+														<?php
+															}
+														?>
+			
+														<form name="productForm632" action="http://www.tvandvideodirect.com/cart.php?xCmd=add&xProd=632&xFwd=product.php%3FxProd%3D{product.productID}" method="POST" onSubmit="return true;">
+														<td bg color="#EDF0F5" align="middle"><img src="/images-tvd/greyblockproduct.gif" border="0" height="69" width="20" align="middle"></td>
+														<td><a href="/product.php?xProd=632" class="middle-links"><img src="{product=632.thumbnail}" alt="{product=632.name}" width="50" border="0" align="middle"></a>&nbsp;</td>
+														<td>
+															<table cellpadding="0" cellspacing="0" border="0">
+																<tr height="46" valign="top" bgcolor="#EDF0F5">
+																	<td><a href="/product.php?xProd=632" class="middle-links">{product=632.shortdescription}</a></td>
+																</tr>
+																<tr>
+																	<td><font class="specialoffer-text"><b>Our Price: {product=632.price}</b></font></td>
+																</tr>
+															</table>
+														</td>
+														<td bg color="#FFFFFF"><a href="javascript:document.productForm632.submit();"><img src="/images-tvd/addtobasket.gif" border="0" alt="Add To Basket"></a><br>
+															<a href="/product.php?xProd=632" class="middle-links"><img src="/images-tvd/information.gif" border="0" alt="More Info"></a>
+															</form>
+														</td>
+
+
+
+														<!-- THE THIRD FIXED ASSOCIATED PRODUCT -->
+														<?php
+															$counter++;
+													
+															if($counter % 2 == 1)
+															{
+			
+														?>	
+																</tr>
+																<tr>		
+																	<td colspan="8"><img src="/images-tvd/accessoriesseperator.gif" width="662"></td>
+																</tr>
+																<tr>
+																
+														<?php
+															}
+														?>
+			
+														<form name="productForm633" action="http://www.tvandvideodirect.com/cart.php?xCmd=add&xProd=633&xFwd=product.php%3FxProd%3D{product.productID}" method="POST" onSubmit="return true;">
+														<td bg color="#EDF0F5" align="middle"><img src="/images-tvd/greyblockproduct.gif" border="0" height="69" width="20" align="middle"></td>
+														<td><a href="/product.php?xProd=633" class="middle-links"><img src="{product=633.thumbnail}" alt="{product=633.name}" width="50" border="0" align="middle"></a>&nbsp;</td>
+														<td>
+															<table cellpadding="0" cellspacing="0" border="0">
+																<tr height="46" valign="top" bgcolor="#EDF0F5">
+																	<td><a href="/product.php?xProd=633" class="middle-links">{product=633.shortdescription}</a></td>
+																</tr>
+																<tr>
+																	<td><font class="specialoffer-text"><b>Our Price: {product=633.price}</b></font></td>
+																</tr>
+															</table>
+														</td>
+														<td bg color="#FFFFFF"><a href="javascript:document.productForm633.submit();"><img src="/images-tvd/addtobasket.gif" border="0" alt="Add To Basket"></a><br>
+															<a href="/product.php?xProd=633" class="middle-links"><img src="/images-tvd/information.gif" border="0" alt="More Info"></a>
+															</form>
+														</td>
+
+
+
+														<!-- ADDITIONAL ASSOCIATED PRODUCTS FOR LCD, PLASMA, DVD AND HOME CINEMA -->
+														<?php
+															$section = {*section.rootsectionID};
+
+
+															if ($section == 400 OR $section == 402)
+															{
+														
+																
+																$counter++;
+														
+																if($counter % 2 == 1)
+																	{
+														?>	
+																		</tr>
+																		<tr>		
+																			<td colspan="8"><img src="/images-tvd/accessoriesseperator.gif" width="662"></td>
+																		</tr>
+																		<tr>
+																
+																<?php
+																	}
+																?>
+			
+																<form name="productForm1350" action="http://www.tvandvideodirect.com/cart.php?xCmd=add&xProd=1350&xFwd=product.php%3FxProd%3D{product.productID}" method="POST" onSubmit="return true;">
+																<td bg color="#EDF0F5" align="middle"><img src="/images-tvd/greyblockproduct.gif" border="0" height="69" width="20" align="middle"></td>
+																<td><a href="/product.php?xProd=1350" class="middle-links"><img src="{product=1350.thumbnail}" alt="{product=1350.name}" width="50" border="0" align="middle"></a>&nbsp;</td>
+																<td>
+																	<table cellpadding="0" cellspacing="0" border="0">
+																		<tr height="46" valign="top" bgcolor="#EDF0F5">
+																			<td><a href="/product.php?xProd=1350" class="middle-links">{product=1350.shortdescription}</a></td>
+																		</tr>
+																		<tr>
+																			<td><font class="specialoffer-text"><b>Our Price: {product=1350.price}</b></font></td>
+																		</tr>
+																	</table>
+																</td>
+																<td bg color="#FFFFFF"><a href="javascript:document.productForm1350.submit();"><img src="/images-tvd/addtobasket.gif" border="0" alt="Add To Basket"></a><br>
+																	<a href="/product.php?xProd=1350" class="middle-links"><img src="/images-tvd/information.gif" border="0" alt="More Info"></a>
+																	</form>
+																</td>
+
+
+															
+																<?php
+																	$counter++;
+														
+																	if($counter % 2 == 1)
+																	{
+			
+																?>	
+																		</tr>
+																		<tr>		
+																			<td colspan="8"><img src="/images-tvd/accessoriesseperator.gif" width="662"></td>
+																		</tr>
+																		<tr>
+																
+																<?php
+																	}
+																?>
+
+																<form name="productForm1349" action="http://www.tvandvideodirect.com/cart.php?xCmd=add&xProd=1349&xFwd=product.php%3FxProd%3D{product.productID}" method="POST" onSubmit="return true;">
+																<td bg color="#EDF0F5" align="middle"><img src="/images-tvd/greyblockproduct.gif" border="0" height="69" width="20" align="middle"></td>
+																<td><a href="/product.php?xProd=1349" class="middle-links"><img src="{product=1349.thumbnail}" alt="{product=1349.name}" width="50" border="0" align="middle"></a>&nbsp;</td>
+																<td>
+																	<table cellpadding="0" cellspacing="0" border="0">
+																		<tr height="46" valign="top" bgcolor="#EDF0F5">
+																			<td><a href="/product.php?xProd=1349" class="middle-links">{product=1349.shortdescription}</a></td>
+																		</tr>
+																		<tr>
+																			<td><font class="specialoffer-text"><b>Our Price: {product=1349.price}</b></font></td>
+																		</tr>
+																	</table>
+																</td>
+																<td bg color="#FFFFFF"><a href="javascript:document.productForm1349.submit();"><img src="/images-tvd/addtobasket.gif" border="0" alt="Add To Basket"></a><br>
+																	<a href="/product.php?xProd=1349" class="middle-links"><img src="/images-tvd/information.gif" border="0" alt="More Info"></a>
+																	</form>
+																</td>
+															<?php
+															}
+															?>
+		
+
+													</tr>
+												</table>			
+											</td>
+										</tr>
+									</table>	
+								</td>
+							</tr>
+						</table>			
+					</td>
+				</tr>
+				
+				<!-- BACK TO THE TOP  -->
+				<tr>
+					<td align="right"><a href="/product.php?xProd={product.productID}"><img src="/images-tvd/top.gif" border="0"></a></td>
+				<tr>
+			<#/if#>
+		<#/if#>
+	<#/if#>  	
+	<!-- END ASSOCIATED PRODUCTS -->
+
+
+	
+
+		<!-- TECHNICAL SPECIFICATIONS -->
+	<tr>
+  		<td><a name="technical"><img src="/images-tvd/technicalspecifications.gif" border="0"></td>
+  	</tr>
+
+	
+	<#if:product.description:eq:blank#>
+		<tr>
+			<td>
+				<table cellpadding="1" cellspacing="1" border="0" width="664">
+					<tr>
+						<td bgcolor="#8D9CB4">
+	
+							<table cellpadding="2" cellspacing="2" border="0" bgcolor="#F6F5F5" width="662">
+								<tr>
+									<td valign='top' width='502'>
+										<font class='description-text'>There Are No Technical Specifications Currently Available</font>
+									</td>
+								
+									<?php
+	
+										$minute = time("s");
+
+										$minute = $minute % 2;
+
+										if ($minute > 0)
+										{
+						
+											print ("<td valign='top'><a href='product.php?xProd=2191&xSec=475'><img src='/images-tvd/LaZBoyAdsmall.jpg' border='0'></a></td>");
+										}
+											else
+											{	
+												print ("<td valign='top'><a href='/section.php?xSec=335'><img src='/images-tvd/everio.gif' border='0'></a></td>");
+											}
+									?>
+								</tr>
+							</table>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+
+		
+		<#else#>	
+
+	
+			<!--  USE THE SPECIFICATION LENGTH FOUND EARLIER TO DETERMINE SPLIT POINT -->
+			<?php
+
+				
+				// THIS CONTROLS AT WHAT POINT THE SPECIFICATION SPLITS INTO TWO COLUMNS
+				$splitpoint = 30;
+	
+				// FIND THE MIDPOINT OF THE SPECIFICATION
+				$midpoint = $speclength / 2;
+		
+				
+				$divider = $speclength*8;	
+				$this->theVariables["speclength"] = $speclength;
+				$this->theVariables["splitpoint"] = $splitpoint;
+		
+
+			?>
+	
+			<tr>
+				<td>
+					<table cellpadding="1" cellspacing="1" border="0" width="664">
+						<tr>
+							<td bgcolor="#8D9CB4">
+	
+								<table cellpadding="2" cellspacing="2" border="0" bgcolor="#F6F5F5" width="662">
+									<tr>
+	
+										<?php
+												if ($speclength > $splitpoint)
+												{
+													print("<td valign='top' width='326'>");
+												}
+							
+													else
+													{
+														print("<td valign='top' width='502'>");
+													}
+			
+										?>
+		
+		
+										<font class='description-text'>
+	
+											<?php
+												if ($speclength > $splitpoint)
+												{
+													for ($f = 0; $f < $midpoint; $f++) 
+													{	
+														print ($spec[$f]."<br>");
+													}
+												
+												}
+													else
+													{
+														for ($f = 0; $f < $speclength; $f++) 
+														{	
+															print ($spec[$f]."<br>");
+														}
+													}
+											?>
+											</font>
+										</td>
+		
+										<!-- CREATE THE DIVIDER IF SPECIFICATION IS GREATER THAN SPECIFIED LENGTH -->
+		
+										<?php
+											if ($speclength > $splitpoint)
+											{
+		
+												print("<td align='center' width='10'><img src='/images/blank.gif' border='0' width='10' height='10'><br>");
+												print("<img src='/images-tvd/greysquare.gif' width='1' height='".$divider."' border='0'><br>");
+												print("<img src='/images/blank.gif' border='0' width='10' height='10'></td>");
+		
+												print("<td valign='top' width='326'><font class='description-text'>");
+		
+												
+													for (; $f < $speclength; $f++)
+													{
+														print ($spec[$f]."<br>");
+													}
+													
+												print ("</font></td>");
+	
+											}
+
+												else
+												{	
+													
+														
+													$minute = time("s");
+		
+													$minute = $minute % 2;
+	
+													if ($minute > 0)
+													{
+															
+															print ("<td valign='top'><a href='product.php?xProd=2191&xSec=475'><img src='/images-tvd/LaZBoyAdsmall.jpg' border='0'></a></td>");
+													}
+														else
+														{	
+															print ("<td valign='top'><a href='/section.php?xSec=335'><img src='/images-tvd/everio.gif' border='0'></a></td>");
+														}
+											
+												}
+										?>
+	  								</tr>
+								</table>
+							</td>
+						</tr>
+					</table>	
+				</td>
+			</tr>
+	
+	<#/if#>
+
+	
+	<!-- BACK TO THE TOP  -->
+	<tr>
+		<td align="right"><a href="/product.php?xProd={product.productID}"><img src="/images-tvd/top.gif" border="0"></a></td>
+	<tr>
+	
+</table>
+
+
+	
+
+
+
+
+<#include:includes/bottom.html#>

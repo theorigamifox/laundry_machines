@@ -1,0 +1,105 @@
+#nav {
+    position: relative;
+    z-index: 1000;
+    background:#f9f9f9;
+    padding:0;
+    margin-bottom:25px;
+    border-bottom:1px solid #CCC;
+    ul#site-navigation {
+        display:inline-block;
+        width:100%;
+        text-align:right;
+        padding:15px 0;
+        margin:0;
+        li {
+            position:relative;
+            display:inline-block;
+            list-style:none;
+            line-height:24px;
+            padding:10px;
+            a {
+                color:$black;
+                font-size:14px;
+                line-height:14px;
+                text-decoration:none;
+                padding:0;
+                font-family:$primaryfont;
+                display:block;
+                font-weight:bold;
+                &:hover {
+                    color:$green;
+                }
+            }
+            ul {
+                li {
+                    display: block;
+                }
+            }
+            &:last-of-type {
+                a {
+                    border:0 none;
+                }
+            }
+        }
+    }
+}
+#nav {
+   ul > li > ul > li > a {
+        display:block;
+        color:$white;
+        padding:0;
+        text-transform: uppercase;
+        transition: all 0.5s ease-in-out 0s;
+    }
+   ul > li > ul > li > a:hover {
+        transition: all 0.5s ease-in-out 0s;
+    }
+   ul > li > ul {
+        opacity: 0;
+        visibility: hidden;
+        padding: 20px;
+        text-align: center;  /* This is for the text when box is dropped down, centered isnt always totally in the middle so best to have on the left */
+        position: absolute;
+        z-index:1000;		/* This is for the drop down annimation */
+        left: 50%;
+        top: 75px;
+        margin-left: -120px;
+        width: 240px;
+        transition: all .3s .1s;
+        overflow:visible;
+        color: $white;
+        background:#f7f7f7;
+        box-shadow:0 5px 5px #999;
+        &:after{
+            content: '';
+            position: absolute;
+            left: 0;
+            top: -10px;
+            width: 180px;
+            height: 0px;
+        }
+    }
+    > li {
+        display:block;
+    }
+   ul > li:hover > ul {
+        opacity: 1;
+        top: 50px;				/* This is how far from the top the drop down annimation will go  */
+        visibility: visible;
+        @media #{$medium-down} {
+            top:62px;
+        }
+    }
+}
+@media #{$medium-only} {
+    #nav {
+        ul {
+            li {
+                a {
+                    padding:17px 5px;
+                    font-size:80%;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,84 @@
+<#include:includes/top.html#>
+	
+	<!-- CONTENT SECTION FEATURE -->
+	
+	<!-- PAGE CONTENT HEADER -->
+	<table width="100%" border="0" cellspacing="0" cellpadding="0">
+	<tr>
+	<td>
+	<h1>{labels.general.recentlyViewedPage}</h1> <!-- PAGE TITLE -->
+	<h2></h2> <!-- PAGE SUB TITLE -->
+	<h4></h4> <!-- PAGE INSTRUCTIONS -->
+	</td>
+	</tr>
+	</table>
+	<!-- /PAGE CONTENT HEADER -->
+
+		<!-- PAGE CONTENT -->
+
+		<#if:loop.recentlyviewed.products.total:gt:0#>
+			<table cellpadding="2" cellspacing="2" border="0" width="98%">
+			<tr class="table-backing-title">
+				<td colspan="3" align="center" class="menu-backing-title"><font class="menu-title-text">{labels.general.recentlyViewedProductsTitle}</font></td>
+			</tr>
+			<#loop:recentlyviewed.products#>
+			
+					<form name="{recentlyviewed.products.form.name}" action="{recentlyviewed.products.form.action}" method="POST" onSubmit="{recentlyviewed.products.form.onsubmit}">
+					<tr class="table-backing-content">
+						<td valign="top"><a href="{recentlyviewed.products.link}"><img src="{recentlyviewed.products.thumbnail}" border="0" alt="{recentlyviewed.products.name}" width="66" height="51"></a></td>
+						<td valign="top">
+							<a href="{recentlyviewed.products.link}" class="middle-links">{recentlyviewed.products.name}</a><br>
+							<#if:recentlyviewed.products.description:eq:blank#>
+								<font class="middle-normal-text">{recentlyviewed.products.shortdescription}
+							<#else#>
+								<font class="middle-normal-text">{recentlyviewed.products.description:150:dots}
+							<#/if#>
+							<br></font>
+							<font class="product-field-title">{labels.product.productPrice} <font class="product-field-entry">{recentlyviewed.products.price}</font>
+							<br><a href="{recentlyviewed.products.wishlist.link}" class="middle-links">{labels.customer.addToWishListLink}</a> | <a href="javascript:document.{recentlyviewed.products.form.name}.submit();" class="middle-links">{labels.cart.addToCartLink}</a> | <a href="{recentlyviewed.products.link}" class="middle-links">{labels.product.moreInfoLink}</a>
+						</td>
+					</tr>
+					</form>	
+			
+			<#/loop#>
+			</table>
+		<#/if#>
+		
+		<!-- recently viewed sections -->
+		<#if:loop.recentlyviewed.sections.total:gt:0#>
+			<table cellpadding="2" cellpadding="1" border="0" class="menu-backing-content">
+			<tr>
+				<td colspan="3" align="center" class="menu-backing-title"><font class="menu-title-text">{labels.general.recentlyViewedSectionsTitle}</font></td>
+			</tr>
+			<#loop:recentlyviewed.sections#>
+			<tr>
+				<td valign="top"><font class="menu-normal-text">{loop.recentlyviewed.sections.count}.</font></td>
+				<td valign="top"><a href="{recentlyviewed.sections.link}" class="menu-links"><img src="{recentlyviewed.sections.thumbnail}" alt="{recentlyviewed.sections.name}" border="0" width="40" height="30"></a></td>
+				<td valign="top"><font class="menu-normal-text">
+					<#loop:recentlyviewed.sections.path#>
+						<#if:loop.recentlyviewed.sections.path.count:gt:1#>
+							<#if:loop.recentlyviewed.sections.path.count:eq:loop.recentlyviewed.sections.path.total#>
+								<font class="text-path"><a href="{recentlyviewed.sections.path.link}" class="text-path">{recentlyviewed.sections.path.title}</a></font>
+							<#else#>
+								<font class="text-path"><a href="{recentlyviewed.sections.path.link}" class="text-path">{recentlyviewed.sections.path.title}</a> &gt; </font>
+							<#/if#>
+						<#/if#>
+					<#/loop#>
+					<br>{recentlyviewed.products.shortDescription}
+				</font>
+				</td>				
+			</tr>	
+			<#/loop#>
+			</table>
+		<#/if#>
+
+
+
+		<!-- /PAGE CONTENT -->
+	<!-- /CONTENT SECTION FEATURE -->
+
+<#include:includes/bottom.html#>
+
+
+
+

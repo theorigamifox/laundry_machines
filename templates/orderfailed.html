@@ -1,0 +1,34 @@
+<#include:includes/top.html#>
+	
+	<!-- CONTENT SECTION FEATURE -->
+	
+	<!-- PAGE CONTENT HEADER -->
+	<table width="100%" border="0" cellspacing="0" cellpadding="0">
+	<tr>
+	<td>
+	<h1>{labels.ordering.orderingFailure}</h1> <!-- PAGE TITLE -->
+	<h2>{labels.ordering.orderNumber} {order.ordernumber}</h2> <!-- PAGE TITLE -->
+	<h3>{labels.words.date}: {order.orderdate} @ {order.ordertime}</h3>
+	</td>
+	</tr>
+	</table>
+	<!-- /PAGE CONTENT HEADER -->
+
+		<!-- PAGE CONTENT -->
+
+<p><br><br>We have been unable to authorise payment for your order.
+<br><br>
+This can happen on internet transactions due to security reasons.
+<br><br>
+Your card company could have put a security check on your card, please contact your card issuer and ask them to take the security check off if this is the case.
+<br><br>
+Once you have done this, please contact us on {company.telephone} and we will be happy to arrange payment with you.
+<br><br>
+Thankyou for your business.</p>
+<p><a href="{order.resubmitpayment}" class="middle-links">{labels.ordering.makePaymentAgain}</a>
+
+
+		<!-- /PAGE CONTENT -->
+	<!-- /CONTENT SECTION FEATURE -->
+
+<#include:includes/bottom.html#>

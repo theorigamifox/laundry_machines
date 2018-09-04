@@ -1,0 +1,126 @@
+* {
+	margin: 0px;
+	padding: 0px;
+	border-top-style: none;
+	border-right-style: none;
+	border-bottom-style: none;
+	border-left-style: none;
+}
+body {
+	font-family: Arial, Helvetica, sans-serif;
+	text-align: center;
+}
+.cleaner {
+	font-size: 1px;
+	line-height: 1px;
+	clear: both;
+	height: 1px;
+}
+#document {
+	text-align: left;
+	width: 717px;
+	margin-right: auto;
+	margin-left: auto;
+	margin-top: 30px;
+}
+
+
+
+
+#subscribeButton {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	font-weight: bold;
+	color: #FFF;
+	background-image: url(../images-newsletter/button-subscribe.png);
+	height: 43px;
+	width: 153px;
+	cursor: hand;
+	background-position: left top;
+}
+#subscribeButton:hover {
+	background-position: left -43px;
+}
+#heading {
+	background-color: #10598F;
+	padding: 28px;
+}
+h1 {
+	font-size: 26px;
+	color: #FFF;
+}
+h1 span {
+	font-size: 20px;
+	color: #000;
+	display: block;
+}
+#content {
+	color: #FFF;
+	background-color: #1678C0;
+	padding: 28px;
+	margin-bottom: 15px;
+}
+label {
+	font-size: 18px;
+	font-weight: bold;
+	color: #FFF;
+	display: block;
+	margin-bottom: 10px;
+}
+ul {
+	margin-left: 10px;
+	padding-left: 10px;
+}
+li {
+	margin-bottom: 10px;
+	font-size: 14px;
+}
+h2 {
+	font-size: 18px;
+	color: #000;
+	margin-bottom: 15px;
+}
+
+.formField {
+	height: 26px;
+	width: 307px;
+	font-size: 18px;
+	margin-bottom: 20px;
+}
+#footer {
+	text-align: center;
+	background-color: #10598F;
+}
+#footer p {
+	font-size: 16px;
+	font-weight: bold;
+	color: #FFF;
+	padding-top: 10px;
+	padding-bottom: 15px;
+}
+.button {
+	background-repeat: no-repeat;
+	background-position: left top;
+	display: block;
+	height: 43px;
+	margin-bottom: 25px;
+	margin-top: 5px;
+}
+.button:hover {
+	background-position: left -43px;
+}
+.generalLaundry {
+	background-image: url(../images-newsletter/button-laundrymachines.png);
+	width: 248px;
+}
+.equineWash {
+	background-image: url(../images-newsletter/button-equinewash.png);
+	width: 208px;
+}
+.careHome {
+	background-image: url(../images-newsletter/button-carehomelaundry.png);
+	width: 242px;
+}
+.button span {
+	display: none;
+}

@@ -1,0 +1,33 @@
+{
+  "name": "grizzlybasetheme",
+  "email": "studio@grizzlybeardesign.co.uk",
+  "url": "http://grizzlybeardesign.co.uk/",
+  "version": "1.0.0",
+  "description": "a base theme for grizzly bear design websites",
+  "devDependencies": {
+    "bower": "^1.8",
+    "grunt": "^1.0.1",
+    "grunt-cli": "^1.2.0",
+    "grunt-contrib-concat": "^1.0.1",
+    "grunt-contrib-copy": "^1.0.0",
+    "grunt-contrib-uglify": "^2.0.0",
+    "grunt-contrib-watch": "^1.0.0",
+    "grunt-sass": "~2.0.0",
+    "grunt-string-replace": "^1.3.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Grizzlybeardesignltd/Grizzly-Bear-Base-Theme.git"
+  },
+  "dependencies": {
+    "time-grunt": "^1.1.0"
+  },
+  "scripts": {
+    "build": "grunt build",
+    "grunt": "grunt",
+    "postinstall": "bower install && grunt build",
+    "watch": "grunt watch"
+  },
+  "author": "Grizzly Bear Design <studio@grizzlybeardesign.co.uk>",
+  "license": "UNLICENSED"
+}

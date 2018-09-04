@@ -1,0 +1,107 @@
+<#include:includes/top.html#>
+	
+	<!-- CONTENT SECTION FEATURE -->
+	
+	<!-- PAGE CONTENT HEADER -->
+	<table width="100%" border="0" cellspacing="0" cellpadding="0">
+	<tr>
+	<td>
+	<h1>{labels.ordering.orderingStep3}</h1> <!-- PAGE TITLE -->
+	<p>Choose your preferred payment method below.</p> <!-- PAGE SUB TITLE -->
+	</td>
+	</tr>
+	</table>
+	<!-- /PAGE CONTENT HEADER -->
+
+		<!-- PAGE CONTENT -->
+
+		<#include:includes/ordering_cart.html#>
+
+		<p>&nbsp;</p>
+		
+		<#if:ordering.payment.ccDeclined:eq:Y#>
+			<font class="error-text">{labels.ordering.creditCardDeclined}</font>
+			<p>
+		<#/if#>
+		<table cellpadding="4" cellspacing="1" border="0">
+		<form name="{ordering.form.name}" method="POST" action="{ordering.form.action}" onSubmit="{ordering.form.onsubmit}">	
+		<#loop:ordering.payment.options#>
+		<tr>
+			<td class="table-backing-content"><font class="normal-field-title"><input type="radio" name="{ordering.form.paymentoption}" value="{ordering.payment.options.paymentID}" <#if:ordering.payment.paymentID:eq:ordering.payment.options.paymentID#>CHECKED<#/if#>> {ordering.payment.options.name}
+			<#if:ordering.payment.options.type:eq:CC#><br>
+				<#loop:ordering.payment.options.input.fields#>
+					<#if:ordering.payment.options.input.fields.fieldtype:eq:TEXT#>
+					{ordering.payment.options.input.fields.titleText} <input type="text" name="{ordering.payment.options.input.fields.fieldname}" size="{ordering.payment.options.input.fields.size}" maxlength="{ordering.payment.options.input.fields.maxlength}" class="textbox" value="{ordering.payment.options.input.fields.content}"> <#if:ordering.payment.options.input.fields.error:eq:Y#><font class="error-text">{ordering.payment.options.input.fields.validationmessage}</font><#/if#><br>
+					<#/if#>
+					<#if:ordering.payment.options.input.fields.fieldtype:eq:SELECT#>
+					{ordering.payment.options.input.fields.titleText} <select name="{ordering.payment.options.input.fields.fieldname}" class="selectbox">
+						<#loop:ordering.payment.options.input.fields.options#>
+							<#if:ordering.payment.options.input.fields.content:eq:ordering.payment.options.input.fields.options.name#>
+							<option SELECTED>{ordering.payment.options.input.fields.options.name}</option>
+							<#else#>
+							<option>{ordering.payment.options.input.fields.options.name}</option>
+							<#/if#>
+						<#/loop#>
+					</select><Br>
+					<#/if#>
+				<#/loop#>
+			<#/if#>
+			</td>
+		</tr>
+		<#/loop#>
+		<#if:options.giftCertificatesEnabled:eq:1#>
+		<tr>
+			<td class="table-backing-content"><font class="normal-field-title"><input type="radio" name="{ordering.form.paymentoption}" value="GIFTCERT" <#if:ordering.payment.giftCertificateError:neq:blank#>CHECKED<#/if#>> {labels.ordering.paymentGiftCertificate}
+			<br>{labels.ordering.giftCertificateNumber} <input type="text" name="{ordering.payment.giftCertField}" size="40" maxlength="32" class="textbox" value="">
+			<#if:ordering.payment.giftCertificateError:eq:INVALID#>
+				<br><font class="error-text">{labels.ordering.giftCertErrorInvalid}</font>
+			<#/if#>
+			<#if:ordering.payment.giftCertificateError:eq:USED#>
+				<br><font class="error-text">{labels.ordering.giftCertErrorUsed}</font>
+			<#/if#>
+			<#if:ordering.payment.giftCertificateError:eq:DUPLICATE#>
+				<br><font class="error-text">{labels.ordering.giftCertErrorDuplicate}</font>
+			<#/if#>
+			<#if:ordering.payment.giftCertificateError:eq:EXPIRED#>
+				<br><font class="error-text">{labels.ordering.giftCertErrorExpired}</font>
+			<#/if#>
+			<#if:ordering.payment.giftCertificateError:eq:CURRENCY#>
+				<br><font class="error-text">{labels.ordering.giftCertErrorCurrency}</font>
+			<#/if#>
+		</tr>
+		<#/if#>
+		<#if:options.offerCodesEnabled:eq:1#>
+			<#if:ordering.payment.offerCode:eq:blank#>
+			<tr>
+				<td class="table-backing-content"><font class="normal-field-title"><input type="radio" name="{ordering.form.paymentoption}" value="OFFERCODE" <#if:ordering.payment.giftCertificateError:neq:blank#>CHECKED<#/if#>> {labels.ordering.offerCodeHeading}
+				<br>{labels.ordering.offerCodeTitle} <input type="text" name="xOfferCode" size="40" maxlength="32" class="textbox" value="">
+				<#if:ordering.payment.offerCodeError:eq:INVALID#>
+					<br><font class="error-text">{labels.ordering.offerCodeErrorInvalid}</font>
+				<#/if#>
+				<#if:ordering.payment.offerCodeError:eq:EXPIRED#>
+					<br><font class="error-text">{labels.ordering.offerCodeErrorExpired}</font>
+				<#/if#>
+				<#if:ordering.payment.offerCodeError:eq:CURRENCY#>
+					<br><font class="error-text">{labels.ordering.offerCodeErrorCurrency}</font>
+				<#/if#>
+				<#if:ordering.payment.offerCodeError:eq:USED#>
+					<br><font class="error-text">{labels.ordering.offerCodeErrorUsed}</font>
+				<#/if#>
+				<#if:ordering.payment.offerCodeError:eq:BELOWVALUE#>
+					<br><font class="error-text">{labels.ordering.offerCodeErrorBelowValue}</font>
+				<#/if#>
+			</tr>
+			<#/if#>
+		<#/if#>
+		</table>	
+		<p><input type="submit" name="submit" value="{labels.ordering.continue}" class="button">
+		</form>
+
+		<!-- /PAGE CONTENT -->
+	<!-- /CONTENT SECTION FEATURE -->
+
+<#include:includes/bottom.html#>
+
+
+
+

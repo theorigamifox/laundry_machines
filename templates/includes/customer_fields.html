@@ -1,0 +1,57 @@
+		<#loop:customer.fields#>
+			<#if:customer.fields.fieldtype:eq:SELECT#>
+			<tr>	
+				<td class="field-backing-title">
+					<font class="normal-field-title">{customer.fields.titleText} <#if:customer.fields.validation:neq:0#>*<#/if#></font>
+				</td>
+				<td class="field-backing-content">
+					<font class="normal-field-title">
+					<select name="{customer.fields.fieldname}" class="selectbox">
+					<#loop:customer.fields.options#>
+						<option value="{customer.fields.options.value}" <#if:customer.fields.selected:eq:customer.fields.options.value#>SELECTED<#/if#>>{customer.fields.options.name}</option>
+					<#/loop#>				
+					</select>
+					<Br><#if:customer.fields.error:eq:Y#><font class="error-text">{customer.fields.validationmessage}</font><#/if#>
+					</font>
+				</td>
+			<#/if#>
+			<#if:customer.fields.fieldtype:eq:TEXT#>
+			<tr>	
+				<td class="field-backing-title">
+					<font class="normal-field-title">{customer.fields.titleText} <#if:customer.fields.validation:neq:0#>*<#/if#></font>
+				</td>
+				<td class="field-backing-content">
+					<font class="normal-field-title">
+					<input type="TEXT" name="{customer.fields.fieldname}" class="textbox" size="{customer.fields.size}" maxlength="{customer.fields.maxlength}" value="{customer.fields.content}">
+					<br><#if:customer.fields.error:eq:Y#><font class="error-text">{customer.fields.validationmessage}</font><#/if#>
+					</font>
+				</td>
+			<#/if#>
+			<#if:customer.fields.fieldtype:eq:TEXTAREA#>
+			<tr>	
+				<td class="field-backing-title">
+					<font class="normal-field-title">{customer.fields.titleText} <#if:customer.fields.validation:neq:0#>*<#/if#></font>
+				</td>
+				<td class="field-backing-content">
+					<font class="normal-field-title">
+					<textarea name="{customer.fields.fieldname}" cols="{customer.fields.cols}" rows="{customer.fields.rows}" class="textbox">{customer.fields.content}</textarea>
+					<br><#if:customer.fields.error:eq:Y#><font class="error-text">{customer.fields.validationmessage}</font><#/if#>
+					</font>
+				</td>
+			<#/if#>			
+			<#if:customer.fields.fieldtype:eq:CHECKBOX#>
+			<tr>	
+				<td class="field-backing-title" colspan="2">
+					<font class="normal-field-title">
+					<input type="CHECKBOX" name="{customer.fields.fieldname}" value="Y" {customer.fields.checked}> <strong>{customer.fields.titleText}</strong>
+					<br><#if:customer.fields.error:eq:Y#><font class="error-text">{customer.fields.validationmessage}</font><#/if#>
+					</font>
+				</td>
+			<#/if#>
+			</tr>
+		<#/loop#>
+		<tr>
+			<td class="field-backing-title" colspan="2">
+				<font class="normal-field-title"><input type="checkbox" name="{customer.field.newsletter.fieldname}" value="Y" <#if:customer.field.newsletter.content:eq:Y#>CHECKED<#/if#>>Please keep me on your mailing list</font>
+			</td>
+		</tr>

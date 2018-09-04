@@ -1,0 +1,52 @@
+<#include:includes/top.html#>
+	
+	<!-- CONTENT SECTION FEATURE -->
+	
+	<!-- PAGE CONTENT HEADER -->
+	<table width="100%" border="0" cellspacing="0" cellpadding="0">
+	<tr>
+	<td>
+	<h1>{labels.customer.accountHomePageTitle}</h1> <!-- PAGE TITLE -->
+	<h2>{labels.customer.loginPageTitle}</h2> <!-- PAGE SUB TITLE -->
+	<p>Use this page to login and manage your Customer account details and check the status of your orders.</p> <!-- PAGE INSTRUCTIONS -->
+	</td>
+	</tr>
+	</table>
+	<!-- /PAGE CONTENT HEADER -->
+
+		<!-- PAGE CONTENT -->
+
+		<table cellpadding="2" cellpading="0" border="0">
+		<#if:customer.login.error:eq:Y#>
+		<tr>
+			<td colspan="2" align="center"><font class="error-text">{labels.customer.loginError}</font></td>
+		</tr>
+		<#/if#>
+		<form name="{customer.login.form.name}" method="POST" action="{customer.login.form.action}" onSubmit="{customer.login.form.onsubmit}">
+		<tr>
+			<td valign="top" class="field-backing-title"><font class="normal-field-title">{labels.customer.emailaddress}</font></td>
+			<td valign="top" class="field-backing-content"><input type="text" name="{customer.login.form.email}" value="{customer.email}" size="30" class="textbox"></td>
+		</tr>
+		<tr>
+			<td valign="top" class="field-backing-title"><font class="normal-field-title">{labels.customer.password}</font></td>
+			<td valign="top" class="field-backing-content"><input type="password" name="{customer.login.form.password}" size="20" class="textbox"></td>
+		</tr>	
+		<tr>
+			<td valign="top" colspan="2" align="right" class="field-backing-content"><input type="submit" name="submit" value="Login" class="button"></td>
+		</tr>
+		<tr>
+		<td>
+		<a href="{customer.forgottenlink}" title="{labels.navigation.forgottenPasswordLink}">{labels.navigation.forgottenPasswordLink}</a>
+		</td>
+		</tr>
+		</form>
+		</table>
+
+		<!-- /PAGE CONTENT -->
+	<!-- /CONTENT SECTION FEATURE -->
+
+<#include:includes/bottom.html#>
+
+
+
+

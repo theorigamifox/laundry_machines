@@ -1,0 +1,57 @@
+<#include:includes/top.html#>
+	
+	<!-- CONTENT SECTION FEATURE -->
+	
+	<!-- PAGE CONTENT HEADER -->
+	<table width="100%" border="0" cellspacing="0" cellpadding="0">
+	<tr>
+	<td>
+	<h1>{labels.affiliates.titleAdministration}</h1> <!-- PAGE TITLE -->
+	<h2>{labels.affiliates.titleBanners}</h2> <!-- PAGE SUB TITLE -->
+	<h4></h4> <!-- PAGE INSTRUCTIONS -->
+	<p>
+				<a href="affiliates.php?xCmd=account">Home</a> | 
+				<a href="{affiliate.logoutlink}">{labels.affiliates.logoutLink}</a> | 
+				<a href="{affiliate.editlink}">{labels.affiliates.editLink}</a> | 
+				<a href="{affiliate.bannerslink}">{labels.affiliates.bannersLink}</a> | 
+				<a href="{affiliate.statslink}">{labels.affiliates.statsLink}</a> | 
+				<a href="{affiliate.saleslink}">{labels.affiliates.salesLink}</a> | 
+				<a href="{affiliate.paymentslink}">{labels.affiliates.paymentsLink}</a>&nbsp;
+	</p> <!-- PAGE INSTRUCTIONS -->
+	</td>
+	</tr>
+	</table>
+	<!-- /PAGE CONTENT HEADER -->
+
+		<!-- PAGE CONTENT -->
+
+		<#loop:affiliate.banners#>
+		<form>
+		<table cellpadding="4" cellspacing="1" border="0">
+		<tr>
+			<td valign="top" class="field-backing-title" colspan="2">{affiliate.banners.name}</td>
+		</tr>
+		<tr>
+			<td valign="top" class="field-backing-content" align="center">
+				<img src="{affiliate.banners.filename}" border="0" width="{affiliate.banners.width}" height="{affiliate.banners.height}"><br>{affiliate.banners.width} x {affiliate.banners.height}
+			</td>
+			<td valign="top" class="field-backing-content">{affiliate.banners.description}</td>
+		</tr>
+		<tr>
+			<td valign="top" class="field-backing-content" colspan="2" align="center">
+				<textarea name="banner{affiliate.banners.bannerID}"  class="textbox" rows="5" cols="55">{affiliate.banners.link}</textarea>
+			</td>
+		</tr>
+		</table>
+		</form>
+		<#/loop#>
+
+		<!-- /PAGE CONTENT -->
+	<!-- /CONTENT SECTION FEATURE -->
+
+<#include:includes/bottom.html#>
+
+
+
+
+

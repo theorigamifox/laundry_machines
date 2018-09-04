@@ -1,0 +1,148 @@
+<html><head><title>SecureTrading Default Payment Form</title></head>
+
+<SCRIPT Language="javascript">
+<!--
+var firsttime
+function validator(theForm)
+{
+    if (firsttime == "Y")
+  {
+    alert("Please wait your payment is being processed.");
+    return (false);
+  }
+
+  firsttime = "Y";
+  return (true);
+
+}
+//-->
+</SCRIPT>
+
+<BODY BGCOLOR="white" vlink="003333" alink="003333" link="003333">
+<IMG src="https://securetrading.net/images/securesite-border.gif" align=left border=0>
+
+<table width=80% border=0 cellspacing=0 cellpadding=0>
+<tr><td valign=top>
+</td><td>
+
+<font size=5><i>Y o u r </i><b>c o m p a n y </b>. c o m</font><br><br>
+
+<table width=80% cellpadding=5 cellspacing=0 border=1>
+<tr><td bgcolor="336666" colspan=2><font face="verdana, tahoma, arial" size="4" color="ffffff"><b> example payment</b> form</font></td></tr></table>
+
+<br><br>
+
+<table width=80% cellpadding=5 cellspacing=0 border=1>
+<tr>
+<td bgcolor="99cccc"><font face="verdana, tahoma, arial" size="-2"><b>Order reference no:</b></font></td>
+<td bgcolor="99cccc"><font face="verdana, tahoma, arial" size="-2">$orderref</font></td>
+</tr>
+<tr>
+<td bgcolor="99cccc"><font face="verdana, tahoma, arial" size="-2"><b>Total:</b></font></td>
+<td bgcolor="99cccc"><font face="verdana, tahoma, arial" size="-2">$formattedamount</font></td>
+</tr>
+<tr bgcolor="ccffff">
+<td>&nbsp</td>
+<td>&nbsp</td>
+</tr>
+
+<font face="Arial,Helvetica" size=-1>
+
+<FORM METHOD="POST" ACTION="https://securetrading.net/authorize/process.cgi" onsubmit="return validator(this)">
+
+<INPUT TYPE=hidden NAME="requiredfields" VALUE="$requiredfields">
+<INPUT TYPE=hidden NAME="merchant" VALUE="$merchant">
+<INPUT TYPE=hidden NAME="amount" VALUE="$amount">
+<INPUT TYPE=hidden NAME="orderref" VALUE="$orderref">
+<INPUT TYPE=hidden NAME="orderinfo" VALUE="$orderinfo">
+<INPUT TYPE=hidden NAME="merchantemail" VALUE="$merchantemail">
+<INPUT TYPE=hidden NAME="currency" VALUE="$currency">
+<INPUT TYPE=hidden NAME="customeremail" VALUE="$customeremail">
+<INPUT TYPE=hidden NAME="callbackurl" VALUE="$callbackurl">
+<INPUT TYPE=hidden NAME="failureurl" VALUE="$failureurl">
+<INPUT TYPE=hidden NAME="fax" VALUE="$fax">
+<INPUT TYPE=hidden NAME="url" VALUE="$url">
+<INPUT TYPE=hidden NAME="rnd" VALUE="$rnd">
+
+<tr bgcolor="ccffff"><td><font face="verdana, tahoma, arial" size="-2"><b>Name of Company or Organisation</b>:</td>
+<td><font face="verdana, tahoma, arial" size="-2"><input type="hidden" size=30 value="$company" name="company"> $company</td></tr>
+
+<tr bgcolor="ccffff"><td><font face="verdana, tahoma, arial" size="-2"><b>Contact Name:</b></td>
+<td><font face="verdana, tahoma, arial" size="-2"><input type="hidden" size=30 value="$name" name="name"> $name</td></tr>
+
+<tr bgcolor="ccffff"><td><font face="verdana, tahoma, arial" size="-2"><b>Address:</b></td>
+<td><font face="verdana, tahoma, arial" size="-2"><input type="hidden" size=30 value="$address" name="address"> $address</td></tr>
+
+<tr bgcolor="ccffff"><td><font face="verdana, tahoma, arial" size="-2"><b>Town or City:</b></td>
+<td><font face="verdana, tahoma, arial" size="-2"><input type="hidden" size=20 value="$town" name="town"> $town</td></tr>
+
+<tr bgcolor="ccffff"><td><font face="verdana, tahoma, arial" size="-2"><b>County:</b></td>
+<td><font face="verdana, tahoma, arial" size="-2"><input type="hidden" size=20 value="$county" name="county"> $county</td></tr>
+
+<tr bgcolor="ccffff"><td><font face="verdana, tahoma, arial" size="-2"><b>Postcode or ZIP:</b></td>
+<td><font face="verdana, tahoma, arial" size="-2"><input type="hidden" size=20 value="$postcode" name="postcode"> $postcode</td></tr>
+
+<tr bgcolor="ccffff"><td><font face="verdana, tahoma, arial" size="-2"><b>Country:</b></td>
+<td><font face="verdana, tahoma, arial" size="-2"><input type="hidden" size=20 value="$country" name="country"> $country</td></tr>
+
+<tr bgcolor="ccffff"><td><font face="verdana, tahoma, arial" size="-2"><b>Email:</b></td>
+<td><font face="verdana, tahoma, arial" size="-2"><input type="hidden" size=20 value="$email" name="email"> $email</td></tr>
+
+<tr bgcolor="ccffff"><td><font face="verdana, tahoma, arial" size="-2"><b>Phone:</b></td>
+<td><font face="verdana, tahoma, arial" size="-2"><input type="hidden" size=20 value="$telephone" name="telephone"> $telephone</td></tr>
+
+
+<tr bgcolor="ccffff"><td><font face="verdana, tahoma, arial" size="-2"><b>Credit Card Type:</b></td>
+<td><font face="verdana, tahoma, arial" size="-2"><select name="cctype">
+<option>$cctype
+<option>Visa
+<option>Switch
+<option>Mastercard
+<option>Eurocard
+<option>Delta
+
+</Select></td></tr>
+
+<tr bgcolor="ccffff"><td><font face="verdana, tahoma, arial" size="-2"><b>Credit Card Number:</b></td>
+
+<td><font face="verdana, tahoma, arial" size="-2"><input type="text"  value="$ccnumber" size=20 name="ccnumber"></td></tr>
+
+<tr bgcolor="ccffff"><td><font face="verdana, tahoma, arial" size="-2"><b>If Switch,<BR> Issue No.: </b></td>
+<td><font face="verdana, tahoma, arial" size="-2"><input type="text"  value="$ccissue" size=1 name="ccissue"></td></tr>
+
+
+<tr bgcolor="ccffff"><td><font face="verdana, tahoma, arial" size="-2"><b>Expires End:</b></td>
+
+<td><select name="month">
+<option>$month
+<option>01<option>02<option>03<option>04<option>05<option>06<option>07<option>08<option>09<option>10<option>11<option>12
+</Select>
+
+<select name="year">
+<option>$year
+<option>1999<option>2000<option>2001<option>2002<option>2003<option>2004<option>2005<option>2006<option>2007<option>2008<option>2009<option>2010
+</select></td></tr>
+
+<tr bgcolor="ccffff">
+<td colspan=2><br>
+<CENTER>
+<input type= submit value="Send Payment"><input type=reset value="Clear Form">
+</CENTER>
+</FORM></td></tr></table>
+
+<br>
+
+<table width=50% cellpadding=5 cellspacing=0 border=0>
+<tr>
+<td>
+<a href="http://www.securetrading.com"><IMG src="https://securetrading.net/images/securesite.gif" align=left border=0>
+
+<td>
+<font face="verdana, tahoma, arial" size="-2">This site is powered by the <a href="http://www.securetrading.com">SecureTrading</a> payment system which means that your credit card details are fully encrypted using the most sophisticated e-payment software.
+</tr></TABLE>
+
+</td>
+</tr>
+</table>
+</body>
+</html>

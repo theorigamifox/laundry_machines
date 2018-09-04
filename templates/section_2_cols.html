@@ -1,0 +1,186 @@
+
+<#include:includes/top.html#>
+
+	<!-- CONTENT SECTION FEATURE -->
+	
+	<!-- PAGE CONTENT HEADER -->
+	<table width="100%" border="0" cellspacing="0" cellpadding="0">
+	<tr>
+	<td>
+	<h1>{section.title}</h1> <!-- PAGE TITLE -->
+
+	</td>
+	</tr>
+	</table>
+	<!-- /PAGE CONTENT HEADER -->
+
+		<!-- PAGE CONTENT -->
+
+
+		<!-- check if there are any sub-sections -->
+		<#if:loop.sections.total:neq:0#>
+		<table cellpadding="2" cellspacing="2" border="0" width="90%">
+			<tr>
+				<td align="left" colspan="2"><font class="table-title-text">Click on a logo below to view products in that category<br><br></font></td>
+			</tr>
+			
+			<#loop:sections#>
+				<#if:loop.sections.count:mod2:1#>
+					<tr>
+				<#/if#>
+	
+					<#if:sections.image:neq:blank#>
+						<td align="center">
+							<table width="100%" cellpadding="0" cellspacing="0">
+								<tr>
+									<td align="center" valign="middle">
+										<a href="{sections.link}" class="middle-links"></a><a href="{sections.link}" class="middle-links"><img src="{sections.image}" alt="{sections.shortdescription}" border="0"></a><br>
+									</td>
+								</tr>
+								<tr>
+									<td valign="bottom" align="center"><a href="{sections.link}" class="middle-links">{sections.title}</a></td>
+								</tr>
+							</table>
+						</td>
+					<#/if#>
+
+				<#if:loop.sections.count:mod2:0#>
+					</tr>
+					<tr>
+						<td colspan="2" align="center"><hr></td>
+					</tr>
+				<#/if#>
+			<#/loop#>
+		</table>
+		<#/if#>
+
+
+
+
+		<#if:section.sectionID:eq:7#>
+			<table width="500" height="480" cellspacing="4" cellpadding="0" border="0" background="images/warranty-background.jpg" style='background-repeat: no-repeat'>
+				<tr>
+					<td height="176">&nbsp;</td>
+				</tr>
+				<tr>
+					<td><p>All our pre-owned laundry machines are fully<bR>
+						inspected and undergo a full six hour load test,<br>
+						overlooked by an experienced engineer.<br>
+						Any parts we feel may be suspect are replaced<br>
+						in order to comply with our <font color="red" size="2"><strong>5 Star Warranty</strong></font>,<br>
+						that all our machines receive. Every pre-owned<bR>
+						machine comes complete with full operating<br>
+						instructions and installation manuals.<br></p>
+					<p>
+					<img src="images/certificate.png" align="left">
+					<font color="red" size="4">MAG</font> Warranty with every machine.<br>
+								We are so confident with our reconditioned machines<br>that we offer extended warranties to all our customers.</p>
+					<p align="center"><font size="-3"><br>All our service engineers are fully qualified with all the necessary qualifications to work on all 
+						commercial laundry equipment including LPG gas in-house and on-site.</font></p>
+						
+					</td>
+				</tr>
+			</table>
+		<#/if#>		
+		<!-- check if there are any products in this section -->
+		<#if:loop.products.total:neq:0#>
+			<table cellpadding="2" cellspacing="5" border="0" width="100%">
+			<tr>
+				<td align="center" colspan="2" class="field-backing-title"><font class="table-title-text">{labels.section.productsTitle} {section.title} ({labels.section.productsTotal} {sectionpages.totalproducts}, {labels.section.productsShowing} {sectionpages.from} -&gt; {sectionpages.to})</font></td>
+			</tr>
+			<#loop:products#>
+					<#if:loop.products.count:mod2:1#>
+						<tr>
+					<#/if#>
+					<!-- output product with individual add to basket form -->
+					<form name="{products.form.name}" action="{products.form.action}" method="POST" onSubmit="{products.form.onsubmit}">
+					<td class="table-backing-content" valign="top" align="center" width="25%" fixed style="border-style:dashed; border-color:#cccccc; border-width:1px;">
+						<table border="0" cellpadding="2" cellspacing="0">
+						<tr>
+							<td align="center" class="field-backing-title"><a href="{products.link}" class="middle-links">{products.name}</a></td>
+						</tr>
+						<tr>
+							<td align="center" height="75"><a href="{products.link}">
+								<#if:products.extra_OutOfStock.content:neq:blank#>
+
+									<?php
+										$filename = {*products.thumbnail};
+										$filenametemp = substr("$filename", 0, -4);
+										$newfilename = str_replace($filename, ".jpg", "-oos.jpg");
+										$newfilename2 = $filenametemp.$newfilename;
+										$this->theVariables["new"]["filename"] = $newfilename2;
+									?>
+
+									<img src="{new.filename}" border="0" alt="{products.name}" height="75">
+								
+									<#else#>
+										<img src="{products.thumbnail}" border="0" alt="{products.name}" height="75">
+								<#/if#>
+
+								</a></td>
+						</tr>
+						<tr>
+							<td align="center"><font class="specialoffer-text">
+				
+								<#if:products.price1:eq:0#>
+									Call Us Now For Full Details<br><br>
+								
+									<#else#>
+										{labels.product.productPrice}</a><br><font class="product-field-content">{products.price} (ex VAT)
+								<#/if#>
+
+								</font>
+							</td>
+						</tr>
+						<tr>
+							<td align="center">{products.shortdescription:100:dots}</td>
+						</tr>
+						<tr>
+						<td align="center" bgcolor="#e5e5e5">
+						<a href="{products.link}" class="middle-links">{labels.product.moreInfoLink}</a>
+						<br>
+						<a href="{products.wishlist.link}" class="middle-links">{labels.customer.addToWishListLink}</a>
+						<#if:products.scNoBuy:eq:N#>
+						<br>
+						<#if:products.price1:neq:0#><a href="{products.add.link}" class="middle-links">{labels.cart.addToCartLink}</a><#/if#>
+						<#/if#>
+						</td>
+						</tr>
+						</table>
+					</td>
+					</form>
+					<!-- /output product with individual add to basket form -->
+					<#if:loop.products.count:mod2:0#>
+						</tr>
+					<#/if#>
+			<#/loop#>
+
+			<!-- output page navigation if there is more than one page in this section -->
+			<#if:loop.sectionpages.pages.total:gt:1#>
+			<tr>
+				<td class="field-backing-title" align="center" colspan="4">
+					<font class="middle-normal-text">
+					<#if:sectionpages.previouslink:neq:blank#>
+						[<a href="{sectionpages.previouslink}" class="middle-links">{labels.section.previousLink}</a>]&nbsp;&nbsp;&nbsp;
+					<#/if#>
+					<#loop:sectionpages.pages#>
+						<#if:sectionpages.page:eq:search.pages.page#>
+							{sectionpages.pages.page}
+						<#else#>
+							<a href="{sectionpages.pages.link}" class="middle-links">{sectionpages.pages.page}</a> 
+						<#/if#>
+					<#/loop#>
+					<#if:sectionpages.nextlink:neq:blank#>
+						&nbsp;&nbsp;&nbsp;[<a href="{sectionpages.nextlink}" class="middle-links">{labels.section.nextLink}</a>]
+					<#/if#>
+					</font>
+				</td>
+			</tr>		
+			<#/if#>
+			<!-- /output page navigation if there is more than one page in this section -->
+
+			</table>
+
+		<#/if#>
+
+<#include:includes/bottom.html#>

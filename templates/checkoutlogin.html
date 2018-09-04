@@ -1,0 +1,59 @@
+<#include:includes/top.html#>
+	
+	<!-- CONTENT SECTION FEATURE -->
+	
+	<!-- PAGE CONTENT HEADER -->
+	<table width="100%" border="0" cellspacing="0" cellpadding="0">
+	<tr>
+	<td>
+	<h1>{labels.ordering.signInPageTitle}</h1> <!-- PAGE TITLE -->
+	<h2>{labels.ordering.signInAccountLogin}</h2> <!-- PAGE SUB TITLE -->
+	</td>
+	</tr>
+	</table>
+	<!-- /PAGE CONTENT HEADER -->
+
+		<!-- PAGE CONTENT -->
+
+		<table cellpadding="2" cellpading="0" border="0" class="field-backing-content">
+		<#if:customer.allowed:eq:Y#>
+		<form name="{customer.login.form.name}" method="POST" action="{customer.login.form.action}" onSubmit="{customer.login.form.onsubmit}">
+		<tr>
+			<td valign="top" class="field-backing-title">{labels.customer.emailaddress}</td>
+			<td valign="top" class="field-backing-content"><input type="text" name="{customer.login.form.email}" value="{customer.email}" size="30" class="textbox"></td>
+		</tr>
+		<tr>
+			<td valign="top" class="field-backing-title">{labels.customer.password}</td>
+			<td valign="top" class="field-backing-content"><input type="password" name="{customer.login.form.password}" size="20" class="textbox"></td>
+		</tr>	
+		<tr>
+			<td valign="top" colspan="2" align="right" class="field-backing-content"><input type="submit" name="submit" value="Login" class="button"></td>
+		</tr>	
+		</form>
+		</table>
+
+	<table width="100%" border="0" cellspacing="0" cellpadding="0">
+	<tr>
+	<td>
+	<h3>{labels.ordering.signInOpenAccount} <A href="{customer.registerlink}">{labels.ordering.signInOpenAccountLink}</a></h3> <!-- PAGE SUB TITLE -->
+	</td>
+	</tr>
+	</table>
+	<#/if#>
+		
+	<#if:ordering.forceaccount:eq:N#>		
+	<table width="100%" border="0" cellspacing="0" cellpadding="0">
+	<tr>
+	<td>
+	<h3>{labels.ordering.signInNoAccount} <A href="{ordering.noaccount}">{labels.ordering.signInNoAccountLink}</a></h3> <!-- PAGE SUB TITLE -->
+	</td>
+	</tr>
+	</table>
+	<#/if#>		
+
+		<!-- /PAGE CONTENT -->
+	<!-- /CONTENT SECTION FEATURE -->
+
+<#include:includes/bottom.html#>
+
+

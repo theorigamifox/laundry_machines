@@ -1,0 +1,51 @@
+<#include:includes/top.html#>
+<div id="mainContainerInner" class="medium-9 columns right">
+
+    <div class="row">
+        <div class="medium-6 columns">
+            <img src="images/the_studio.jpg" alt="MAG House Chatham Street. Halifax HX1 5BU" style="border: 1px #000 solid">
+        </div>    
+        <div class="medium-6 columns">
+            <h1>{labels.contact.contactPageTitle}</h1> <!-- PAGE TITLE -->
+            <p>{snippet=ContactForm.content}
+        </div>
+    </div>
+    <div class="row">
+        <div class="large-12 columns">
+            <form name="{contactform.form.name}" action="{contactform.form.action}" method="POST">
+                <#loop:contactform.fields#>
+                <#if:contactform.fields.fieldtype:eq:SELECT#>
+                <p><!--{contactform.fields.titleText}--> </p>
+                <p><select name="{contactform.fields.fieldname}" class="selectbox">
+                        <#loop:contactform.fields.options#>
+                        <option value="{contactform.fields.options.value}" <#if:contactform.fields.selected:eq:contactform.fields.options.value#>SELECTED<#/if#>>{contactform.fields.options.name}</option>
+                        <#/loop#>				
+                    </select></p>
+                <#if:contactform.fields.error:eq:Y#><p class="error-text">{contactform.fields.validationmessage}</p><#/if#>
+                <#/if#>
+
+                <#if:contactform.fields.fieldtype:eq:TEXT#>
+                <p><!--{contactform.fields.titleText}--> </p>
+                <input type="TEXT" name="{contactform.fields.fieldname}" class="textbox" placeholder="{contactform.fields.titleText}<#if:contactform.fields.validation:neq:0#>*<#/if#>" size="{contactform.fields.size}" maxlength="{contactform.fields.maxlength}" value="{contactform.fields.content}">
+                <#if:contactform.fields.error:eq:Y#><p class="error-text">{contactform.fields.validationmessage}</p><#/if#>
+                <#/if#>
+                <#if:contactform.fields.fieldtype:eq:TEXTAREA#>
+                <p><!--{contactform.fields.titleText}--></p>
+                <textarea name="{contactform.fields.fieldname}" cols="{contactform.fields.cols}" rows="{contactform.fields.rows}" class="textbox" placeholder="{contactform.fields.titleText}<#if:contactform.fields.validation:neq:0#>*<#/if#>">{contactform.fields.content}</textarea>
+                <#if:contactform.fields.error:eq:Y#><p class="error-text">{contactform.fields.validationmessage}</p><#/if#>
+                <#/if#>	
+
+                <#if:contactform.fields.fieldtype:eq:CHECKBOX#>
+                <p><input type="CHECKBOX" name="{contactform.fields.fieldname}" value="Y" checked {contactform.fields.checked}> <strong>{contactform.fields.titleText}</strong></p>
+                <#if:contactform.fields.error:eq:Y#><p class="error-text">{contactform.fields.validationmessage}</p><#/if#>
+                <#/if#>
+                <#/loop#>
+                <input type="hidden" name="enquiry1" value="">
+                <p><input type="submit" name="submit" value="Send Message" class="button"></p>
+
+        </div>
+    </div>
+</div>
+<#include:includes/sidebar.html#>
+<#include:includes/bottom.html#>
+

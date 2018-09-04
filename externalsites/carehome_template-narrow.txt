@@ -1,0 +1,35 @@
+
+<link href="styles/template-narrow.css" rel="stylesheet" type="text/css">
+
+<div id="newsletterSubscription">
+
+<div class="wrapper">
+
+<p id="newsletterSubscriptionHeading">Subscribe to <strong>our Newsletter</strong></p>
+
+<p>Get great laundry equipment offers and tips to you mailbox!</p>
+
+<form action="http://live.subscriptiondesk.com/subscribe.php" method="post">
+
+<label for="whichNewsletter">What are you interested in?</label>
+
+<select class="formField" id="whichNewsletter" name="FormValue_ListID">
+<option value="61">General Laundry Eq.</option>
+<option value="62">Animal &amp; Equine</option>
+<option value="63">Care &amp; Nursing Home</option>
+</select>
+
+<label for="emailAddress">Your e-mail address</label>
+<input type="text" name="FormValue_Fields[EmailAddress]" value="" id="FormValue_EmailAddress" class="formField">
+<!--<input type="submit" name="FormButton_Subscribe" value="Subscribe" id="FormButton_Subscribe">-->
+<!--<input type="hidden" name="FormValue_ListID" value="63" id="FormValue_ListID">-->
+<input type="hidden" name="FormValue_Command" value="Subscriber.Add" id="FormValue_Command">
+<input type="image" src="images/spacer.gif" value="Subscribe" id="newsletterSubscribeButton" />
+
+<div class="cleaner"></div>
+
+</form>
+
+</div>
+
+</div>

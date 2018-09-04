@@ -1,0 +1,55 @@
+<#include:includes/top.html#>
+	
+	<!-- CONTENT SECTION FEATURE -->
+	
+	<!-- PAGE CONTENT HEADER -->
+	<table width="100%" border="0" cellspacing="0" cellpadding="0">
+	<tr>
+	<td>
+	<h1>{labels.customer.accountHomePageTitle}</h1> <!-- PAGE TITLE -->
+	<h2>{labels.customer.addReviewPageTitle}</h2> <!-- PAGE SUB TITLE -->
+	<h4></h4> <!-- PAGE INSTRUCTIONS -->
+	<p>Here you can write a review about a product.</p>
+	</td>
+	</tr>
+	</table>
+	<!-- /PAGE CONTENT HEADER -->
+
+		<!-- PAGE CONTENT -->
+
+		<table cellpadding="2" cellpading="0" border="0" class="field-backing-content">
+		<form name="{customer.review.form.name}" method="POST" action="{customer.review.form.action}" onSubmit="{customer.review.form.onsubmit}">
+		<tr>
+			<td class="field-backing-title"><font class="normal-field-title">{labels.review.product}</font> <font class="normal-field-content">{customer.review.product.name}</font></td>
+		</tr>
+		<tr>
+			<td valign="top"><font class="normal-field-title">{labels.review.rating}</font><br><select name="{customer.review.form.rating}" class="selectbox"><option value="5">5</option><option value="4">4</option><option value="3">3</option><option value="2">2</option><option value="1">1</option></select></td>
+		</tr>
+		<tr>
+			<td valign="top"><font class="normal-field-title">{labels.review.title}</font><br><input type="text" name="{customer.review.form.title}" size="40" class="textbox"></td>
+		</tr>	
+		<tr>
+			<td valign="top"><font class="normal-field-title">{labels.review.review}</font><#if:customer.review.error:eq:NOREVIEW#><font class="error-text">{labels.review.errorNoReview}</font><#/if#>
+			<br><textarea name="{customer.review.form.review}" rows="5" cols="40" class="textbox"></textarea></td>
+		</tr>
+		<tr>
+			<td valign="top"><font class="normal-field-title">{labels.review.nameDisplayed}
+			<br><input type="radio" name="{customer.review.form.displayname}" value="0" CHECKED>Yes
+			<br><input type="radio" name="{customer.review.form.displayname}" value="1">No
+			</td>
+		</tr>				
+		<tr>
+			<td colspan="2" class="field-backing-content" align="center"><input type="submit" name="submit" value="{labels.review.submitButton}" class="button"></td>
+		</tr>
+		</form>
+		</table>
+
+
+		<!-- /PAGE CONTENT -->
+	<!-- /CONTENT SECTION FEATURE -->
+
+<#include:includes/bottom.html#>
+
+
+
+

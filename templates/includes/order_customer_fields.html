@@ -1,0 +1,57 @@
+		<#loop:ordering.customer.fields#>
+			<#if:ordering.customer.fields.fieldtype:eq:SELECT#>
+			<tr>	
+				<td class="field-backing-title">
+					<font class="normal-field-title">{ordering.customer.fields.titleText} <#if:ordering.customer.fields.validation:neq:0#>*<#/if#></font>
+				</td>
+				<td class="field-backing-content">
+					<font class="normal-field-title">
+					<select name="{ordering.customer.fields.fieldname}" class="selectbox">
+					<#loop:ordering.customer.fields.options#>
+						<option value="{ordering.customer.fields.options.value}" <#if:ordering.customer.fields.selected:eq:ordering.customer.fields.options.value#>SELECTED<#/if#>>{ordering.customer.fields.options.name}</option>
+					<#/loop#>				
+					</select>
+					<Br><#if:ordering.customer.fields.error:eq:Y#><font class="error-text">{ordering.customer.fields.validationmessage}</font><#/if#>
+					</font>
+				</td>
+			<#/if#>
+			<#if:ordering.customer.fields.fieldtype:eq:TEXT#>
+			<tr>	
+				<td class="field-backing-title">
+					<font class="normal-field-title">{ordering.customer.fields.titleText} <#if:ordering.customer.fields.validation:neq:0#>*<#/if#></font>
+				</td>
+				<td class="field-backing-content">
+					<font class="normal-field-title">
+					<input type="TEXT" name="{ordering.customer.fields.fieldname}" class="textbox" size="{ordering.customer.fields.size}" maxlength="{ordering.customer.fields.maxlength}" value="{ordering.customer.fields.content}">
+					<br><#if:ordering.customer.fields.error:eq:Y#><font class="error-text">{ordering.customer.fields.validationmessage}</font><#/if#>
+					</font>
+				</td>
+			<#/if#>
+			<#if:ordering.customer.fields.fieldtype:eq:TEXTAREA#>
+			<tr>	
+				<td class="field-backing-title">
+					<font class="normal-field-title">{ordering.customer.fields.titleText} <#if:ordering.customer.fields.validation:neq:0#>*<#/if#></font>
+				</td>
+				<td class="field-backing-content">
+					<font class="normal-field-title">
+					<textarea name="{ordering.customer.fields.fieldname}" cols="{ordering.customer.fields.cols}" rows="{ordering.customer.fields.rows}" class="textbox">{ordering.customer.fields.content}</textarea>
+					<br><#if:ordering.customer.fields.error:eq:Y#><font class="error-text">{ordering.customer.fields.validationmessage}</font><#/if#>
+					</font>
+				</td>
+			<#/if#>			
+			<#if:ordering.customer.fields.fieldtype:eq:CHECKBOX#>
+			<tr>	
+				<td class="field-backing-title" colspan="2">
+					<font class="normal-field-title">
+					<input type="CHECKBOX" name="{ordering.customer.fields.fieldname}" value="Y" {ordering.customer.fields.checked}> <strong>{ordering.customer.fields.titleText}</strong>
+					<br><#if:ordering.customer.fields.error:eq:Y#><font class="error-text">{ordering.customer.fields.validationmessage}</font><#/if#>
+					</font>
+				</td>
+			<#/if#>
+			</tr>
+		<#/loop#>
+		<tr>
+			<td class="field-backing-title" colspan="2">
+				<font class="normal-field-title"><input type="checkbox" name="{ordering.customer.field.newsletter.fieldname}" value="Y" CHECKED>Please keep me on your mailing list</font>
+			</td>
+		</tr>

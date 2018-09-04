@@ -1,0 +1,59 @@
+<#include:includes/top.html#>
+	
+	<!-- CONTENT SECTION FEATURE -->
+	
+	<!-- PAGE CONTENT HEADER -->
+	<table width="100%" border="0" cellspacing="0" cellpadding="0">
+	<tr>
+	<td>
+	<h1>{labels.customer.accountHomePageTitle}</h1> <!-- PAGE TITLE -->
+	<h2>{labels.customer.orderHistoryPageTitle}</h2> <!-- PAGE SUB TITLE -->
+	<h4></h4> <!-- PAGE INSTRUCTIONS -->
+	<p>
+				<a href="customer.php?xCmd=account">Account Home</a> | 
+				<a href="{customer.logoutlink}">{labels.customer.logoutLink}</a> | 
+				<a href="{customer.accountlink}">{labels.customer.editAccountLink}</a> | 
+				<a href="{customer.addresseslink}">{labels.customer.editAddressesLink}</a> | 
+				<a href="{customer.orderslink}">{labels.customer.orderHistoryLink}</a> | 
+				<a href="{customer.wishlistlink}">{labels.customer.wishListLink}</a>&nbsp;
+	</p> <!-- PAGE INSTRUCTIONS -->
+	</td>
+	</tr>
+	</table>
+	<!-- /PAGE CONTENT HEADER -->
+
+		<!-- PAGE CONTENT -->
+
+		<table cellpadding="4" cellspacing="1" border="0" class="field-backing-content">
+			<tr>
+				<td class="field-backing-title"><strong><u>{labels.customer.historyColumnOrder}</strong></u></td>
+				<td class="field-backing-title"><strong><u>{labels.customer.historyColumnDate}</strong></u></td>
+				<td class="field-backing-title"><strong><u>{labels.customer.historyColumnName}</strong></u></td>
+				<td class="field-backing-title" align="right"><strong><u>{labels.customer.historyColumnTotal}</strong></u></td>
+				<td class="field-backing-title" align="right"><strong><u>{labels.customer.historyColumnStatus}</strong></u></td>
+				<td class="field-backing-title" align="right"><strong><u>{labels.customer.historyColumnAction}</strong></u></td>
+			</tr>
+			<#loop:orderlist.orders#>
+			<tr>
+				<td valign="top"><font class="normal-field-content">{orderlist.orders.ordernumber}</font></td>
+				<td valign="top"><font class="normal-field-content">{orderlist.orders.orderdate}</font></td>
+				<td valign="top"><font class="normal-field-content">{orderlist.orders.deliveryName}</font></td>
+				<td valign="top" align="right"><font class="normal-field-content">{orderlist.orders.totals.order}</font></td>
+				<td valign="top" align="right"><font class="normal-field-content">
+					<#if:orderlist.orders.status:eq:N#>{labels.order.statusNew}<#/if#>
+					<#if:orderlist.orders.status:eq:P#>{labels.order.statusProcessed}<#/if#>
+					<#if:orderlist.orders.status:eq:F#>{labels.order.statusFailed}<#/if#>
+					<#if:orderlist.orders.status:eq:D#>{labels.order.statusDispatched}<#/if#>
+					<#if:orderlist.orders.status:eq:I#>{labels.order.statusPartDispatched}<#/if#>
+					<#if:orderlist.orders.status:eq:C#>{labels.order.statusCancelled}<#/if#>
+				</font></td>
+				<td valign="top" align="right"><font class="normal-field-content"><A href="{orderlist.orders.viewlink}" class="middle-links">{labels.customer.orderViewDetails}</a></td>
+			</tr>
+			<#/loop#>		
+		</table>
+
+
+		<!-- /PAGE CONTENT -->
+	<!-- /CONTENT SECTION FEATURE -->
+
+<#include:includes/bottom.html#>

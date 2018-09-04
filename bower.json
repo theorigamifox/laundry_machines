@@ -1,0 +1,13 @@
+{
+  "name": "grizzlybeardesign",
+  "main": [
+    "css/foundation.css",
+    "js/foundation.js"
+  ],
+  "ignore": [],
+  "dependencies": {
+    "foundation": "zurb/bower-foundation",
+    "fontawesome": "~4.6.0",
+    "flexslider": "~2.6.3"
+  }
+}

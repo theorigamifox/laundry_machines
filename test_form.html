@@ -1,0 +1,107 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd";>
+<html xmlns="http://www.w3.org/1999/xhtml";>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Untitled Document</title>
+<style>
+<!--
+form {
+        font-family:Arial, Helvetica, sans-serif;
+        font-size:12px;
+		background-color:#CCCCCC;
+		padding:3px;
+		border: 1px solid #666666;
+		width:300px;
+}
+input {
+	background-color:#00FF33;
+
+}
+label {
+background-color:#ff6600;
+
+}
+select {
+background-color:#000000;
+}
+option {
+
+background-color:#ff0000;
+}
+
+.textbox {
+        border:1px solid #999999;
+        background-color:#efefef;
+}
+.textbox:focus {
+        border:1px solid #000000;
+}
+.button {
+background-color:#0000CC;
+color:#000000;
+font-weight:bold;
+       
+}
+-->
+</style>
+</head>
+
+<body>
+<form name="affiliateLogin" method="POST" action="http://it.voov.co.uk/testform.php"; onSubmit="">
+
+<table cellpadding="2" cellpading="0" border="0">
+
+        <tr>
+        <td valign="top"><label for="username">Username </label></td>
+
+        <td valign="top"><input type="text" name="xUsername" value="" size="15"></td>
+        </tr>
+        <tr>
+        <td valign="top" ><label for="xPassword">Password</label></td> 
+         <td valign="top""><input type="password" name="xPassword" size="15" ></td>
+        </tr>
+        <tr>
+        <td valign="top" colspan="2" align="right"
+class="field-backing-content"><input type="submit" name="submit"
+value="Login" class="button"></td>
+        </tr>
+
+
+
+        </table></form>
+<hr/>
+<form id="form1" name="form1" method="get" action="http://it.voov.co.uk/testform.php";>
+<div id="normalinputs">
+<label for="username" accesskey="u">Enter a username</label><input name="username" type="text" />
+<br />
+
+<label for="passworda" accesskey="p">Enter a password</label><input name="passworda" type="password" /><br />
+
+<label for="passwordb" accesskey="p">Retype password</label><input name="passwordb" type="password" /><br />
+</div>
+<label for="gender" accesskey="g">Gender</label>
+  <label>
+  <input type="radio" name="Gender" value="Female" class="noborder"/>
+    Female</label>
+  <label>
+  <input type="radio" name="Gender" value="Male" />
+    Male</label>
+  <br />
+
+<label for="mailinglist" accesskey="m">Add me to your mailing
+list</label><input name="mailinglist" type="checkbox" value="I want to be added to your mailing list" /><br />
+
+<label for="favecolour" accesskey="f">My favorite colour is</label>
+<select name="favecolour">
+<option value="red" class="red">pick red</option>
+<option value="green" class="green">green</option>
+<option value="blue" class="blue">blue, like the sky</option>
+</select><br />
+
+<button type="submit" value="submit">submit</button><br />
+
+<input type="submit" value="submit" />
+</form>
+</body>
+</html>

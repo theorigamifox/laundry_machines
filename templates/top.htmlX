@@ -1,0 +1,205 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<TITLE>{company.companyname}</TITLE>
+<META NAME="description" CONTENT="{meta.description}">
+<META NAME="keywords" CONTENT="{meta.keywords}">
+<BASE HREF="{shop.baseDir}">
+
+<script language="JavaScript1.2" src="{shop.baseDir}resources/jserver.js" type="text/javascript"></script>
+<script language="JavaScript1.2" src="{shop.baseDir}resources/price.js" type="text/javascript"></script>
+<script language="javascript" src="{shop.baseDir}resources/common.js"></script>
+<!-- InstanceEndEditable -->
+
+<link href="stylesheet.css" rel="stylesheet" type="text/css" >	
+<link href="/templates-pcs/includes/shop_stylesheet.css" rel="stylesheet" type="text/css" >
+
+
+
+<script language="JavaScript" type="text/JavaScript">
+<!--
+function MM_swapImgRestore() { //v3.0
+  var i,x,a=document.MM_sr; for(i=0;a&&i<a.length&&(x=a[i])&&x.oSrc;i++) x.src=x.oSrc;
+}
+
+function MM_preloadImages() { //v3.0
+  var d=document; if(d.images){ if(!d.MM_p) d.MM_p=new Array();
+    var i,j=d.MM_p.length,a=MM_preloadImages.arguments; for(i=0; i<a.length; i++)
+    if (a[i].indexOf("#")!=0){ d.MM_p[j]=new Image; d.MM_p[j++].src=a[i];}}
+}
+
+function MM_findObj(n, d) { //v4.01
+  var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
+    d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
+  if(!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
+  for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document);
+  if(!x && d.getElementById) x=d.getElementById(n); return x;
+}
+
+function MM_swapImage() { //v3.0
+  var i,j=0,x,a=MM_swapImage.arguments; document.MM_sr=new Array; for(i=0;i<(a.length-2);i+=3)
+   if ((x=MM_findObj(a[i]))!=null){document.MM_sr[j++]=x; if(!x.oSrc) x.oSrc=x.src; x.src=a[i+2];}
+}
+//-->
+</script>
+<style type="text/css">
+<!--
+body {
+	background-color: #b5bec9;
+}
+-->
+</style>
+<!-- InstanceBeginEditable name="head" --><!-- InstanceEndEditable -->
+
+
+</head>
+
+<body onLoad="MM_preloadImages('images/reconditioned_banner_roll.jpg')">
+<table width="751px"  border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td colspan="2"><a href="index.php"><img src="images/header.gif" width="751" height="120" border="0"></a></td>
+  </tr>
+  <tr>
+
+    <td colspan="2"></td>
+  </tr>
+  <tr>
+    <td width="200px" rowspan="2" valign="top" id="leftcell_bg">
+	<table width="200px" border="0" cellspacing="0" cellpadding="0" id="nav">
+      <tr>
+
+        <td id="nav_bg"><a href="index.php">Homepage</a></td>
+      </tr>
+      <tr>
+        <td id="nav_bg"><a href="page.php?xPage=about_us.html">About Us</a></td>
+      </tr>
+      <tr>
+         <td id="nav_bg"><a href="page.php?xPage=finance_lease.html">Finance and Lease</a></td>
+
+      </tr>
+      <tr>
+        <td id="nav_bg"><a href="page.php?xPage=set_launderette.html">Setting Up a Launderette</a></td>
+      </tr>
+      <tr>
+
+        <td id="nav_bg"><a href="index.php">Products</a></td>
+      </tr>
+      <tr>
+        <td id="nav_bg"><a href="page.php?xPage=mag_news.html">News</a></td>
+      </tr>
+      <tr>
+        <td id="nav_bg"><a href="page.php?xPage=testimonials.html">Testimonials</a></td>
+
+      </tr>
+      <tr>
+        <td id="nav_bg"><a href="page.php?xPage=catering.html">Catering</a></td>
+      </tr>
+      <tr>
+        <td id="nav_bg"><a href="section.php?xSec=7">Reconditioned Machines</a></td>
+      </tr>
+	  <tr>
+        <td id="nav_bg"><a href="page.php?xPage=contact_us.html">Contact Us</a></td>
+      </tr>
+    </table>
+	
+	<table width="200" border="0" cellspacing="0" cellpadding="0" id="leftcell_bg">
+    <tr>
+    <td align="center">
+        <!-- search -->
+        <br>
+        <table cellpadding="0" cellpadding="0" border="0">
+        <tr>
+        <td align="center" class="menu-backing-title"><h3>Product Search</h3></td>
+        </tr>
+                <form name="{search.form.name}" method="GET" action="{search.form.action}" onSubmit="{search.form.onsubmit}">
+                <td align="right">
+                <input type="text" name="{search.form.string}" value="{search.query}" class="textbox" size="15">&nbsp;<input type="submit" name="submit" value="Go" class="button">
+                </td>
+        </tr>
+        </form>
+        </table>
+        <br><br>
+        <!-- /search -->
+  </td>
+  </tr>
+   <tr>
+    <td><a href="section.php?xSec=6"><img src="images/specialoffers_banner.jpg" border="0"></a></td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+
+  </tr>
+  <tr>
+    <td><a href="section.php?xSec=7" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('reconditioned_banner','','images/reconditioned_banner_roll.jpg',1)"><img src="images/reconditioned_banner.jpg" name="reconditioned_banner" width="200" height="172" border="0"></a></td>
+ </tr>
+ <tr id="leftcell_bg">
+ <td>&nbsp;</td>
+</tr>
+
+<tr>
+<td>
+
+                 <!-- newsletter joining form -->
+                <table cellpadding="1" cellpading="0" border="0">
+                <tr>
+                        <td align="center" class="menu-backing-title"><h3>{labels.navigation.joinNewsletterTitle}</h3></td>
+                </tr>
+                <form name="{newsletter.join.form.name}" method="POST" action="{newsletter.join.form.action}" onSubmit="{newsletter.join.form.onSubmit}">
+                <tr>
+                        <td align="center"><font class="menu-normal-text">{labels.newsletter.instructions}</font></td>
+                </tr>
+                <tr>
+                        <td align="center"><input type="text" name="{newsletter.join.form.emailaddress}" size="20" class="textbox"></td>
+                </tr>
+                <tr>
+                        <td align="center"><input type="submit" name="submit" value="{labels.newsletter.joinButton}" class="button"></td>
+                </tr>
+                </form>
+                </table>
+                <!-- /newsletter joining form -->
+<br><br>    
+</td>
+</tr>
+ 
+</table>
+<td valign="top" id="main">
+
+<table cellspacing="0" cellpadding="2" border="0" width="100%">
+<tr>
+<td align="center" colspan="4" class="field-backing-title">
+    <div class="topusermenu">
+    <a href="index.php" title="Go to our homepage">Home</a> | 
+		<#if:customer.allowed:eq:Y#>
+			<#if:customer.loggedin:eq:N#>
+				<a href="{customer.accountlink}" title="{labels.customer.loginButton}">{labels.customer.loginButton}</a> | 
+				<a href="{customer.registerlink}" title="{labels.navigation.openAccountLink}">{labels.navigation.openAccountLink}</a> | 
+			<#else#>
+				<a href="customer.php?xCmd=account" title="{labels.account.accountHomeLink}">{labels.account.accountHomeLink}</a> | 
+				<a href="{customer.logoutlink}" title="labels.customer.logoutLink">{labels.customer.logoutLink}</a> | 
+			<#/if#>
+		<#/if#>	
+
+<#if:cart.totals.products:gt:0#>
+	<a href="{cart.link}" title="{labels.navigation.cartLink}">{labels.navigation.cartLink}</a> | 
+	<a href="{checkout.link}" title="{labels.navigation.checkoutLink}">{labels.navigation.checkoutLink}</a> | 
+<#/if#>
+	<a href="page.php?xPage=contact_us.html" title="{labels.navigation.contactLink}">{labels.navigation.contactLink}</a>&nbsp;
+	</div>
+	</td>
+	
+</tr>
+<tr>
+	<td colspan="4">
+		<#loop:section.path#>
+			<#if:loop.section.path.count:eq:loop.section.path.total#>
+				<a href="{section.path.link}" id="papertrail">{section.path.title}</font></a>
+			<#else#>
+				<a href="{section.path.link}" id="papertrail">{section.path.title}</a> - </font>
+			<#/if#>
+		<#/loop#>
+
+</tr>
+<!-- InstanceBeginEditable name="main content" -->
+
+

@@ -1,0 +1,111 @@
+
+</div>
+</div>
+</div>
+</div>
+<#if:loop.topproducts.total:neq:0#>
+<div id="featured_prod">
+    <div class="row">
+        <h4>Featured Products</h4>
+        <ul>
+            <#loop:topproducts#>
+            <li>
+                <a href="{topproducts.link}"><img src="{topproducts.thumbnail}" alt=""></a>
+                <p class="feat_title"><a href="{topproducts.link}">{topproducts.name}</a>
+                <p class="feat_price">
+                    <#if:topproducts.price1:neq:0#>
+                    Price: {topproducts.price}
+                    <#else#>
+                    <#/if#>
+                </p>
+                <#/loop#>
+        </ul>
+    </div>
+</div>
+<#/if#>
+
+<div id="footer">
+    <div class="row">
+        <div class="medium-3 columns">
+            <p><strong>MAG EQUIPMENT LIMITED</strong><br>
+                2.5 Holmfield Mills<br>
+                Holdsworth Road<br>
+                Holmfield<br>
+                HX3 6SN</p>
+        </div>
+        <div class="medium-3 columns">
+
+            <p><strong>Tel:</strong> 01422 244733<br>
+                <strong>Fax:</strong> 01422 244736<br>
+                <strong>Email:</strong> <a href="mailto:sales@laundrymachines.co.uk">sales@laundrymachines.co.uk</a><br>
+                <strong>Web:</strong> www.laundrymachines.co.uk</p>
+        </div>
+    </div>
+    <div id="footer-menu">
+        <div class="row">
+            <ul class="menu">
+                <li class="menu-item-has-children"><a href="index.php">Laundry Machines</a>
+                    <ul class="sub-menu">
+                        <li><a href="index.php">Home</a></li>
+                        <li><a href="page.php?xPage=finance_lease.html">Finance</a></li>
+                        <li><a href="page.php?xPage=set_launderette.html">Setting Up A Launderette</a></li>
+                        <li><a href="index.php">Products</a></li>
+                        <li><a href="page.php?xPage=mag_news.html">News</a></li>
+                        <li><a href="page.php?xPage=testimonials.html">Testimonials</a></li>
+                        <li><a href="page.php?xPage=catering.html">Catering</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <ul class="menu">
+                <li class="menu-item-has-children"><a href="index.php">Information</a>
+                    <ul class="sub-menu">
+                        <li><a href="contact.php?xCmd=send">Contact Us</a></li>
+                        <li><a href="page.php?xPage=privacy_statement.html">Privacy Statement</a></li>
+                        <li><a href="page.php?xPage=term_use.html">Terms of Use</a></li>
+                        <li><a href="page.php?xPage=shop_policy.html">Shopping Policy</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <ul class="menu">
+                <li class="menu-item-has-children"><a href="page.php?xPage=markets.html">Markets</a>
+                    <ul class="sub-menu">
+                        <li><a href="page.php?xPage=nursing_homes.html">Care & Nursing Homes</a></li>
+                        <li><a href="page.php?xPage=hotels.html">Hotels &amp; Guest Houses</a></li>
+                        <li><a href="page.php?xPage=vets.html">Vets</a></li>
+                        <li><a href="page.php?xPage=schools.html">Schools &amp; Colleges</a></li>
+                        <li><a href="page.php?xPage=set_equine.html">Equine Laundry</a></li>
+                        <li><a href="page.php?xPage=nurseries.html">Nurseries</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <ul class="menu">
+                <li class="menu-item-has-children"><a href="page.php?xPage=markets.html">Markets</a>
+                    <ul class="sub-menu">
+                        <li><a href="page.php?xPage=set_launderette.html">Laundrettes</a></li>
+                        <li><a href="page.php?xPage=camping.html">Camping</a></li>
+                        <li><a href="page.php?xPage=food.html">Food</a></li>
+                        <li><a href="page.php?xPage=export.html">Export</a></li>
+                        <li><a href="page.php?xPage=health.html">Health</a></li>
+                        <li><a href="page.php?xPage=prison.html">HMS Prisons</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div id="copyright">
+    <div class="row">
+        <div class="medium-6 columns">
+            <small>&copy; 2018 Laundry Machines. All Rights Reserved.</small>
+        </div>
+        <div class="medium-6 columns">
+            <p><a href="page.php?xPage=cookiepolicy.html">Cookie Policy</a> | <a href="https://maglaundryequipment.co.uk/terms-and-conditions">Terms and Conditions</a> | <a href="https://maglaundryequipment.co.uk/privacy-policy/">Privacy Policy</a></p>
+        </div>
+    </div>
+</div>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+<script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="{shop.baseDir}js/plugins.js"></script>    
+<script src="{shop.baseDir}js/app.js"></script>         
+</body>
+</html>

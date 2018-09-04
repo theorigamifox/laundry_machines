@@ -1,0 +1,46 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<!-- TEMPLATE_SPLASH -->
+  <title>{labels.ordering.transferToGateway}</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <BASE HREF="{shop.baseDir}">
+	<link rel="stylesheet" href="{shop.baseDir}templates/imcludes/stylesheet.css" type="text/css">
+</head>
+<body bgcolor="#ffffff" text="#000000">
+<form name="manualForm" method="{manualForm.method}" action="{manualForm.action}">
+<table cellpadding="0" cellspacing="0" width="100%" height="100%">
+<tr>
+	<td valign="center" align="center">
+		<#loop:manualForm.fields#>
+			<#if:manualForm.fields.full:neq:blank#>
+				{manualForm.fields.full}
+			<#else#>
+				<input type="hidden" name="{manualForm.fields.name}" value="{manualForm.fields.value}">
+			<#/if#>
+		<#/loop#>
+		<font class="copyright-text"<strong>{labels.ordering.transferToGateway}</strong></font><p>
+		<font class="copyright-text">{labels.ordering.gatewayInstructions}</font>
+		<p>
+		<input type="submit" name="submit" value="{labels.ordering.gatewayContinue}" class="button">
+		</p>
+		</form>
+
+		<form name="automaticForm" method="{automaticForm.method}" action="{automaticForm.action}">
+		<#loop:automaticForm.fields#>
+			<#if:automaticForm.fields.full:neq:blank#>
+				{automaticForm.fields.full}
+			<#else#>
+				<input type="hidden" name="{automaticForm.fields.name}" value="{automaticForm.fields.value}">
+			<#/if#>
+		<#/loop#>
+		</form>
+		<script language="JavaScript">{automaticForm.process}</script>
+	</td>
+</tr>
+</table>
+<!-- TEMPLATE_SPLASH -->
+
+</body>
+</html>
+

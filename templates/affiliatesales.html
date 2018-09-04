@@ -1,0 +1,88 @@
+<#include:includes/top.html#>
+	
+	<!-- CONTENT SECTION FEATURE -->
+	
+	<!-- PAGE CONTENT HEADER -->
+	<table width="100%" border="0" cellspacing="0" cellpadding="0">
+	<tr>
+	<td>
+	<h1>{labels.affiliates.titleAdministration}</h1> <!-- PAGE TITLE -->
+	<h2>{labels.affiliates.titleSales}</h2> <!-- PAGE SUB TITLE -->
+	<h4></h4> <!-- PAGE INSTRUCTIONS -->
+	<p>
+				<a href="affiliates.php?xCmd=account">Home</a> | 
+				<a href="{affiliate.logoutlink}">{labels.affiliates.logoutLink}</a> | 
+				<a href="{affiliate.editlink}">{labels.affiliates.editLink}</a> | 
+				<a href="{affiliate.bannerslink}">{labels.affiliates.bannersLink}</a> | 
+				<a href="{affiliate.statslink}">{labels.affiliates.statsLink}</a> | 
+				<a href="{affiliate.saleslink}">{labels.affiliates.salesLink}</a> | 
+				<a href="{affiliate.paymentslink}">{labels.affiliates.paymentsLink}</a>&nbsp;
+	</p> <!-- PAGE INSTRUCTIONS -->
+	</td>
+	</tr>
+	</table>
+	<!-- /PAGE CONTENT HEADER -->
+
+		<!-- PAGE CONTENT -->
+
+		<table cellpadding="2" cellpading="0" border="0">
+		<form name="{affiliate.salesform.name}" action="{affiliate.salesform.action}" method="POST">
+		<tr>
+			<td valign="top" align="center"><font class="normal-field-title">
+				{labels.affiliates.selectMonth} <select name="{affiliate.salesform.month}" class="selectbox">
+				<#loop:affiliate.salesform.monthlist#>
+					<#if:affiliate.salesform.selectedMonth:eq:affiliate.salesform.monthlist#>
+						<option SELECTED>{affiliate.salesform.monthlist}</option>
+					<#else#>
+						<option>{affiliate.salesform.monthlist}</option>
+					<#/if#>
+				<#/loop#>
+				</select></font>
+			</td>
+			<td valign="top" align="center"><font class="normal-field-title">
+				{labels.affiliates.selectYear} <select name="{affiliate.salesform.year}" class="selectbox">
+				<#loop:affiliate.salesform.yearlist#>
+					<#if:affiliate.salesform.selectedYear:eq:affiliate.salesform.yearlist#>
+						<option SELECTED>{affiliate.salesform.yearlist}</option>
+					<#else#>
+						<option>{affiliate.salesform.yearlist}</option>
+					<#/if#>
+				<#/loop#>
+				</select>
+				</font>
+			</td>
+			<td valign="top" align="center">
+				<input type="submit" name="submit" value="{labels.affiliates.buttonResults}" class="button-search">
+			</td>
+		</tr>
+		</form>
+		</table>
+		<p>
+		<table cellpadding="4" cellspacing="1" border="0">
+		<tr>
+			<td valign="top" class="field-backing-title"><u><strong>{labels.affiliates.salesDate}</u></strong></td>
+			<td valign="top" class="field-backing-title"><u><strong>{labels.affiliates.salesReference}</u></strong></td>
+			<td valign="top" class="field-backing-title"><u><strong>{labels.affiliates.salesType}</u></strong></td>
+			<td valign="top" class="field-backing-title" align="right"><u><strong>{labels.affiliates.salesAmount}</u></strong></td>
+		</tr>
+		<#loop:affiliate.sales#>
+		<tr>
+			<td valign="top" class="field-backing-content">{affiliate.sales.date}</td>
+			<td valign="top" class="field-backing-content">{affiliate.sales.reference} <#if:affiliate.sales.secondtier:eq:Y#>{labels.affiliates.2ndTier}<#/if#></td>
+			<td valign="top" class="field-backing-content">
+				<#if:affiliate.sales.type:eq:C#>{labels.affiliates.credit}<#/if#>
+				<#if:affiliate.sales.type:eq:D#>{labels.affiliates.debit}<#/if#>
+			</font></td>
+			<td valign="top" class="field-backing-content" align="right">{affiliate.sales.amount}</td>
+		</tr>		
+		<#/loop#>
+		<tr>
+			<td valign="top" class="field-backing-title" colspan="3"><strong>{labels.affiliates.salesTotal}</strong></td>
+			<td valign="top" class="field-backing-title" align="right"><strong>{affiliate.salestotal}</strong></td>
+		</tr>	
+		</table>
+
+		<!-- /PAGE CONTENT -->
+	<!-- /CONTENT SECTION FEATURE -->
+
+<#include:includes/bottom.html#>

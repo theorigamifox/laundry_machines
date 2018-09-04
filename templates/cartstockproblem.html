@@ -1,0 +1,116 @@
+<#include:includes/top.html#>
+	
+	<!-- CONTENT SECTION FEATURE -->
+	
+	<!-- PAGE CONTENT HEADER -->
+	<table width="100%" border="0" cellspacing="0" cellpadding="0">
+	<tr>
+	<td>
+	<h1>{labels.cart.cartTitle}</h1> <!-- PAGE TITLE -->
+	<h2></h2> <!-- PAGE SUB TITLE -->
+	<!-- PAGE INSTRUCTIONS -->
+	</td>
+	</tr>
+	</table>
+	<!-- /PAGE CONTENT HEADER -->
+
+		<!-- PAGE CONTENT -->
+
+		<P>
+		<#if:cart.checkouterror:eq:STOCK#>
+			<font class="error-text">{snippet=StockProblem.content}<br></font><p>
+		<#/if#>
+		<#if:loop.cart.products.total:eq:0#>
+			<font class="error-text">{labels.cart.cartEmpty}</font>
+		<#else#>
+			<!-- output of shopping cart -->
+			<table cellpadding="4" cellspacing="1" border="0"  class="field-backing-content">
+				<tr>
+					<td class="field-backing-title"><strong>{labels.cart.columnThumbnail}</td>
+					<td class="field-backing-title"><strong>{labels.cart.columnCode}</strong></td>
+					<td class="field-backing-title"><strong>{labels.cart.columnName}</strong></td>			
+					<td class="field-backing-title" align="right"><strong>{labels.cart.columnQuantity}</strong></td>
+					<td class="field-backing-title" align="right"><strong>{labels.cart.columnPrice}</strong></td>
+					<td class="field-backing-title" align="right"><strong>{labels.cart.columnTotal}</strong></td>
+					<td class="field-backing-title" align="right"><strong>{labels.cart.stockStatus}</strong></td>
+					<td class="field-backing-title" align="right"><strong>{labels.cart.columnAction}</strong></td>
+				</tr>
+				<form name="{cart.form.name}" action="{cart.form.action}" method="POST">
+				<!-- loop round each product -->
+				<#loop:cart.products#>
+				<tr>
+					<td valign="top" align="center"><img src="{cart.products.thumbnail}" border="1" width="50" height="39"></td>
+					<td valign="top">{cart.products.code}</td>
+					<td valign="top"><a href="{cart.products.link}" class="middle-links">{cart.products.name}</a><br>
+						<!-- output extra fields for this item -->
+						<#loop:cart.products.extrafields#>
+							<#if:cart.products.extrafields.content:neq:blank#>
+								<#if:cart.products.extrafields.type:eq:USERINPUT#>
+									{cart.products.extrafields.title}: {cart.products.extrafields.content}<br>
+								<#/if#>
+								<#if:cart.products.extrafields.type:eq:SELECT#>
+									{cart.products.extrafields.title}: {cart.products.extrafields.content}<br>
+								<#/if#>
+								<#if:cart.products.extrafields.type:eq:CHECKBOXES#>
+									{cart.products.extrafields.title}:
+										<#loop:cart.products.extrafields.options#>
+											{cart.products.extrafields.options.option}, 
+										<#/loop#>
+									<br>
+								<#/if#>
+								<#if:cart.products.extrafields.type:eq:RADIOBUTTONS#>
+									{cart.products.extrafields.title}: {cart.products.extrafields.content}<br>
+								<#/if#>							
+							<#/if#>
+						<#/loop#>
+						<!-- /output extra fields for this item -->
+					</td>
+					<td valign="top" align="right"><input type="text" name="{cart.products.qtyboxname}" value="{cart.products.qty}" class="textbox" size="3"></td>
+					<td valign="top" align="right">{cart.products.price}</td>
+					<td valign="top" align="right">{cart.products.total}</td>
+					<td valign="top" align="right">
+						<#if:cart.products.stockcheck:eq:na#>{labels.cart.notAvailable}<#/if#>
+						<#if:cart.products.stockcheck:eq:li#>{labels.cart.limitedStock}<#/if#>
+						<#if:cart.products.stockcheck:eq:ok#>{labels.cart.stockOK}<#/if#>
+					</font></td>
+					<td valign="top"><A href="{cart.products.deletelink}" class="middle-links">{labels.cart.deleteItemLink}</a></td>
+				</tr>
+				<#/loop#>
+				<!-- /loop round each product -->
+				<!-- goods total -->
+				<tr>
+					<td colspan="5" class="field-backing-title"><strong>{labels.cart.goodsTotalTitle}</strong></td>
+					<td class="field-backing-title" align="right"><strong>{cart.totals.goods}</strong></td>		
+					<td class="field-backing-title"><strong>&nbsp;</strong></td>	
+				</tr>	
+				<!-- /goods total -->
+				
+				<!-- if there's a discount output it -->
+				<#if:cart.totals.isDiscount:eq:Y#>
+				<tr>
+					<td colspan="5" class="field-backing-title"><strong>{labels.cart.discountTotalTitle}</strong></td>
+					<td class="field-backing-title" align="right">-{cart.totals.discount}</td>		
+					<td class="field-backing-title">&nbsp;</td>	
+				</tr>	
+				<tr>
+					<td colspan="5" class="field-backing-title">{labels.cart.orderTotalTitle}</td>
+					<td class="field-backing-title" align="right">{cart.totals.order}</td>		
+					<td class="field-backing-title">&nbsp;</td>	
+				</tr>									
+				<#/if#>					
+				<!-- /if there's a discount output it -->
+			</table>
+			<!-- /output shopping cart -->
+			<br>
+			<input type="submit" name="update" value="{labels.cart.updateCartLink}" class="button"><p><a href="{cart.emptylink}" class="middle-links">{labels.cart.emptyCartLink}</a>
+			</form>
+		<#/if#>
+		
+		</p>
+
+		<!-- /PAGE CONTENT -->
+	<!-- /CONTENT SECTION FEATURE -->
+	
+	<#include:includes/bottom.html#>
+
+

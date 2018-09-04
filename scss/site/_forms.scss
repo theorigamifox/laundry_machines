@@ -1,0 +1,196 @@
+::-webkit-input-placeholder { /* WebKit browsers */
+    opacity: 1 !important;
+}
+::-moz-placeholder { /* Firefox browsers */
+    opacity: 1;
+} 
+:-ms-input-placeholder {
+    opacity: 1;
+}
+input:-moz-placeholder {
+    opacity: 1;
+}
+/* Form fields, general styles first. */
+
+label {
+    font-family:$primaryfont;
+    font-size:14px;
+    font-weight:bold;
+    text-transform: uppercase;
+}
+button,
+input,
+textarea {
+    font: 400 17px $secondaryfont;
+    padding: 11px 15px;
+    border: 0;
+}
+select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+input[type="text"],
+input[type="email"],
+input[type="search"],
+input[type="password"],
+input[type="number"],
+textarea,
+select {
+    font-size: 16px;
+    padding: 10px 14px;
+    background: $white;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    width: 100%;
+}
+input:focus,
+textarea:focus,
+select:focus {
+    outline: 0;
+}
+/* Buttons */
+
+button,
+input[type="submit"],
+input[type="button"],
+input[type="reset"] {
+    display: inline-block;
+    color: $white;
+    text-decoration: none;
+    border-radius: 3px;
+}
+button:hover,
+button:focus,
+input[type="submit"]:hover,
+input[type="button"]:hover,
+input[type="reset"]:hover,
+input[type="submit"]:focus,
+input[type="button"]:focus,
+input[type="reset"]:focus {}button:active,
+input[type="submit"]:active,
+input[type="button"]:active,
+input[type="reset"]:active {}
+
+.button:hover,
+a.button-secondary,
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+input[type="search"]:focus,
+input[type="number"]:focus,
+select:focus,
+textarea:focus,
+#wp-submit:hover,
+#submitcomment:hover,
+#searchsubmit:hover,
+input[type="submit"]:hover {
+    border-color: $primarycolor;
+    background:$white;
+}
+label {
+    text-align: left;
+    display:inline-block;
+}
+form {
+    margin: 0;
+}
+//fieldset {
+//    border: 1px solid #c0c0c0;
+//    margin: 0 2px;
+//    padding: 0.35em 0.625em 0.75em;
+//}
+form{
+    fieldset:first-child{
+        float: left;
+        margin-right: 4%;
+        width: 48%;
+        ul{
+            li{
+                padding-right:0!important;
+            }
+        }
+    }
+    fieldset:nth-child(2){
+        clear: none;
+        float: right;
+        margin-right: 0;
+        width: 46%;
+        ul{
+            margin-left:0!important;
+            li{
+                padding-right:0!important;
+            }
+        }
+    }
+}
+fieldset{
+    border:0!important;
+}
+legend {
+    border: 0;
+    padding: 0;
+    white-space: normal;
+}
+button,
+input,
+select,
+textarea {
+    font-size: 100%;
+    margin: 0;
+    max-width: 100%;
+    vertical-align: baseline;
+}
+textarea {
+    overflow: auto;
+    vertical-align: top;
+}
+button,
+input {
+    line-height: normal;
+}
+button,
+html input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+    -webkit-appearance: button;
+    cursor: pointer;
+}
+button[disabled],
+input[disabled] {
+    cursor: default;
+    opacity: 0.8;
+}
+input[type="checkbox"],
+input[type="radio"] {
+    padding: 0;
+}
+input[type="search"] {
+    -webkit-appearance: textfield;
+    padding-right: 2px;
+    /* Don't cut off the webkit search cancel button */
+}
+input[type="search"]::-webkit-search-decoration {
+    -webkit-appearance: none;
+}
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+    border: 0;
+    padding: 0;
+}
+
+@media screen and (max-width: 62.5em) {
+    input[type="email"], input[type="text"], input[type="button"], textarea {
+        font-size:85%;
+    }
+}
+@media screen and (max-width: 40em) {
+    input[type="email"], input[type="text"], input[type="button"], textarea {
+        font-size:80%;
+    }
+    input.wpcf7-submit{
+        float:none;
+        width:100%;
+        text-align:center;
+    }
+}

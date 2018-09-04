@@ -1,0 +1,82 @@
+<#include:includes/top.html#>
+	
+	<!-- CONTENT SECTION FEATURE -->
+	
+	<!-- PAGE CONTENT HEADER -->
+	<table width="100%" border="0" cellspacing="0" cellpadding="0">
+	<tr>
+	<td>
+	<h1>{labels.customer.accountHomePageTitle}</h1> <!-- PAGE TITLE -->
+	<h2>{labels.customer.newAccountPageTitle}</h2> <!-- PAGE TITLE -->
+	</td>
+	</tr>
+	</table>
+	<!-- /PAGE CONTENT HEADER -->
+
+		<!-- PAGE CONTENT -->
+
+
+		<table cellpadding="4" cellspacing="1" border="0" width="80%">
+		<#if:customer.error:eq:Y#>
+		<tr>
+			<td colspan="2" align="center"><font class="error-text">{labels.customer.detailsFormError}</font></td>
+		</tr>
+		<#/if#>
+		<form name="{customer.details.form.name}" method="POST" action="{customer.details.form.action}" onSubmit="{customer.details.form.onsubmit}">
+			<tr>
+				<td class="field-backing-title"><font class="normal-field-title">{labels.customer.emailaddress} *</font></td>
+				<td class="field-backing-content">
+					<input type="TEXT" name="{customer.details.form.email}" class="textbox" size="40" maxlength="200" value="{customer.email}">
+					<!-- error checking -->
+					<#if:customer.emailerror:eq:BLANK#>
+						<br><font class="error-text">{labels.customer.errorEmailInvalid}</font>
+					<#/if#>	
+					<#if:customer.emailerror:eq:EXISTS#>
+						<br><font class="error-text">{labels.customer.errorEmailExists}</font>
+					<#/if#>	
+					<#if:customer.emailerror:eq:INVALID#>
+						<br><font class="error-text">{labels.customer.errorEmailInvalid}</font>
+					<#/if#>											
+				</td>
+			</tr>
+			<tr>
+				<td class="field-backing-title"><font class="normal-field-title">{labels.customer.newPassword}</font></td>
+				<td class="field-backing-content">
+					<input type="PASSWORD" name="{customer.details.form.password}" class="textbox" size="20" maxlength="20" value="">
+					<!-- error checking -->
+					<#if:customer.passworderror:eq:NOTMATCHING#>
+						<br><font class="error-text">{labels.customer.errorPasswordNotMatching}</font>
+					<#/if#>	
+					<#if:customer.passworderror:eq:BLANK#>
+						<br><font class="error-text">{labels.customer.errorPasswordBlank}</font>
+					<#/if#>	
+					<#if:customer.passworderror:eq:TOOSHORT#>
+						<br><font class="error-text">{labels.customer.errorPasswordTooShort}</font>
+					<#/if#>											
+				</td>
+			</tr>	
+			<tr>
+				<td class="field-backing-title"><font class="normal-field-title">{labels.customer.repeatPassword}</font></td>
+				<td class="field-backing-content">
+					<input type="PASSWORD" name="{customer.details.form.repeatpassword}" class="textbox" size="20" maxlength="20" value="">			
+				</td>
+			</tr>					
+		</table>
+		<p>
+		<table cellpadding="4" cellspacing="1" border="0" width="80%">
+		<tr>
+			<td colspan="2" class="field-backing-title"><font class="table-title-text">{labels.customer.accountDetailsPageTitle}</font></td>
+		</tr>		
+		<!-- include the template that shows the customer field entry boxes -->		
+		<#include:includes/customer_fields.html#>
+		<tr>
+			<td colspan="2" class="field-backing-content" align="center"><input type="submit" name="submit" value="{labels.customer.createAccountButton}" class="button-search"></td>
+		</tr>
+		</table>
+		</form>
+
+		<!-- /PAGE CONTENT -->
+	<!-- /CONTENT SECTION FEATURE -->
+
+<#include:includes/bottom.html#>
+

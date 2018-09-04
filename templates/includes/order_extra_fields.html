@@ -1,0 +1,52 @@
+		<#loop:ordering.extra.fields#>
+			<#if:ordering.extra.fields.fieldtype:eq:SELECT#>
+			<tr>	
+				<td class="field-backing-title">
+					<font class="normal-field-title">{ordering.extra.fields.titleText} <#if:ordering.extra.fields.validation:neq:0#>*<#/if#></font>
+				</td>
+				<td class="field-backing-content">
+					<font class="normal-field-title">
+					<select name="{ordering.extra.fields.fieldname}" class="selectbox">
+					<#loop:ordering.extra.fields.options#>
+						<option value="{ordering.extra.fields.options.value}" <#if:ordering.extra.fields.selected:eq:ordering.extra.fields.options.value#>SELECTED<#/if#>>{ordering.extra.fields.options.name}</option>
+					<#/loop#>				
+					</select>
+					<Br><#if:ordering.extra.fields.error:eq:Y#><font class="error-text">{ordering.extra.fields.validationmessage}</font><#/if#>
+					</font>
+				</td>
+			<#/if#>
+			<#if:ordering.extra.fields.fieldtype:eq:TEXT#>
+			<tr>	
+				<td class="field-backing-title">
+					<font class="normal-field-title">{ordering.extra.fields.titleText} <#if:ordering.extra.fields.validation:neq:0#>*<#/if#></font>
+				</td>
+				<td class="field-backing-content">
+					<font class="normal-field-title">
+					<input type="TEXT" name="{ordering.extra.fields.fieldname}" class="textbox" size="{ordering.extra.fields.size}" maxlength="{ordering.extra.fields.maxlength}" value="{ordering.extra.fields.content}">
+					<br><#if:ordering.extra.fields.error:eq:Y#><font class="error-text">{ordering.extra.fields.validationmessage}</font><#/if#>
+					</font>
+				</td>
+			<#/if#>
+			<#if:ordering.extra.fields.fieldtype:eq:TEXTAREA#>
+			<tr>	
+				<td class="field-backing-title">
+					<font class="normal-field-title">{ordering.extra.fields.titleText} <#if:ordering.extra.fields.validation:neq:0#>*<#/if#></font>
+				</td>
+				<td class="field-backing-content">
+					<font class="normal-field-title">
+					<textarea name="{ordering.extra.fields.fieldname}" cols="{ordering.extra.fields.cols}" rows="{ordering.extra.fields.rows}" class="textbox">{ordering.extra.fields.content}</textarea>
+					<br><#if:ordering.extra.fields.error:eq:Y#><font class="error-text">{ordering.extra.fields.validationmessage}</font><#/if#>
+					</font>
+				</td>
+			<#/if#>			
+			<#if:ordering.extra.fields.fieldtype:eq:CHECKBOX#>
+			<tr>	
+				<td class="field-backing-title" colspan="2">
+					<font class="normal-field-title">
+					<input type="CHECKBOX" name="{ordering.extra.fields.fieldname}" value="Y" {ordering.extra.fields.checked}> <strong>{ordering.extra.fields.titleText}</strong>
+					<br><#if:ordering.extra.fields.error:eq:Y#><font class="error-text">{ordering.extra.fields.validationmessage}</font><#/if#>
+					</font>
+				</td>
+			<#/if#>
+			</tr>
+		<#/loop#>

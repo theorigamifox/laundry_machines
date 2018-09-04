@@ -1,0 +1,183 @@
+$primaryfont: "Montserrat", Arial, sans-serif;
+$secondaryfont: "Varela Round", Arial,sans-serif;
+body {
+    font-size: 14px;
+    font-family: $secondaryfont;
+    color:$white;
+}
+a {
+    transition:all 0.35s ease-in-out 0s;  
+}
+a:hover {
+    text-decoration: none;
+    color:$orange;
+}
+h1,h2,h3,h4,h5,h6 {
+    font-family: $primaryfont;
+    font-weight:normal;
+    line-height: 1.3;
+    color:$green;
+    margin:0 0 25px;
+}
+h1 {
+    font-size: 24px;
+    line-height:30px;
+    @media #{$medium-down} {
+        font-size:22px;
+        line-height:28px;
+    }
+    @media #{$small-down} {
+        font-size:20px;
+        line-height:26px;
+    }
+}
+h2 {
+    font-size: 22px;
+    line-height:28px;
+    @media #{$medium-down} {
+        font-size:20px;
+        line-height:26px;
+    }
+    @media #{$small-down} {
+        font-size:18px;
+        line-height:24px;
+    }
+}
+h3 {
+    font-size: 20px;
+    line-height:26px;
+    @media #{$medium-down} {
+        font-size:18px;
+        line-height:24px;
+    }
+    @media #{$small-down} {
+
+    }
+}
+h4 {
+    font-size: 18px;
+    margin: 0 0 25px;
+    line-height:24px;
+    @media #{$medium-down} {
+
+    }
+    @media #{$small-down} {
+
+    }
+}
+h5 {
+    font-size: 16px;
+    line-height:22px;
+    @media #{$medium-down} {
+
+    }
+    @media #{$small-down} {
+
+    }
+}
+h6 {
+    font-size: 14px;
+    line-height:20px;
+    @media #{$medium-down} {
+
+    }
+    @media #{$small-down} {
+
+    }
+}
+p {
+    color: $primarycolor;
+    font-family: $primaryfont;
+    font-size: 14px;
+    margin: 0 0 15px;
+    padding: 0;
+    line-height: 20px;
+    text-align:left;
+    word-spacing:1px;
+    @media #{$medium-down} {
+        font-size:14px;
+        line-height:22px;
+    }
+    @media #{$small-down} {
+        font-size:14px;
+        line-height:22px;
+    }
+}
+time, .categories {
+    display:block;
+    color:$primarycolor;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 95%;
+    margin-bottom:5px;
+}
+.categories {
+    margin-bottom:40px;
+}
+a{
+    &:hover {
+        text-decoration:none;
+        strong{
+            font-weight:normal;
+        }
+    }
+}
+.biggertext {
+    font-size:55px;
+    line-height:60px;
+    @media #{$medium-down} {
+        font-size:40px;
+        line-height:46px;
+    }
+    @media #{$small-down} {
+        font-size:30px;
+        line-height:36px;
+    }
+}
+.bigtext {
+    font-size:44px;
+    line-height:50px;
+    @media #{$medium-down} {
+        font-size:34px;
+        line-height:40px;
+    }
+    @media #{$small-down} {
+        font-size:24px;
+        line-height:30px;
+    }
+}
+#tinymce ul,
+#contentPage .content ul,
+#tinymce ol,
+#contentPage .content ol {
+    margin-bottom: 20px;
+}
+#tinymce li, #contentPage .content li {
+    line-height: 1.5em;
+    margin-left: 16px;
+    list-style-type: square;
+    margin-bottom: 10px;
+}
+
+.green {color:$green;}
+.black {color:$black;}
+.white {color:$white;}
+.green .ptitle a, .blue .ptitle a, .coffee .ptitle a, .xmas .ptitle a, .red .ptitle a, .lightblue .ptitle a, .green, .blue, .coffee, .xmas, .red, .lightblue, .green > a, .blue > a, .coffee > a, .xmas > a, .red > a, .lightblue > a, .green .wpdm-download-link, .blue .wpdm-download-link, .coffee .wpdm-download-link, .xmas .wpdm-download-link, .red .wpdm-download-link, .lightblue .wpdm-download-link {
+    color:$green!important;
+}
+.green:hover {
+    background:none;
+}
+#primary{
+    blockquote {
+        font-style: normal;
+        font-size:24px;
+        line-height:30px;
+        border-left:10px solid $white;
+        padding-left:$primary-spacing;
+        margin-left:0;
+        p {
+            font-size:24px;
+            line-height:30px;
+        }
+    }
+}

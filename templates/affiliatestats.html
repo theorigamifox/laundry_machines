@@ -1,0 +1,81 @@
+<#include:includes/top.html#>
+	
+	<!-- CONTENT SECTION FEATURE -->
+	
+	<!-- PAGE CONTENT HEADER -->
+	<table width="100%" border="0" cellspacing="0" cellpadding="0">
+	<tr>
+	<td>
+	<h1>{labels.affiliates.titleAdministration}</h1> <!-- PAGE TITLE -->
+	<h2>{labels.affiliates.titleStatistics}</h2> <!-- PAGE SUB TITLE -->
+	<h4></h4> <!-- PAGE INSTRUCTIONS -->
+	<p>
+				<a href="affiliates.php?xCmd=account">Home</a> | 
+				<a href="{affiliate.logoutlink}">{labels.affiliates.logoutLink}</a> | 
+				<a href="{affiliate.editlink}">{labels.affiliates.editLink}</a> | 
+				<a href="{affiliate.bannerslink}">{labels.affiliates.bannersLink}</a> | 
+				<a href="{affiliate.statslink}">{labels.affiliates.statsLink}</a> | 
+				<a href="{affiliate.saleslink}">{labels.affiliates.salesLink}</a> | 
+				<a href="{affiliate.paymentslink}">{labels.affiliates.paymentsLink}</a>&nbsp;
+	</p> <!-- PAGE INSTRUCTIONS -->
+	</td>
+	</tr>
+	</table>
+	<!-- /PAGE CONTENT HEADER -->
+
+		<!-- PAGE CONTENT -->
+
+		<table cellpadding="2" cellpading="0" border="0">
+		<form name="{affiliate.statsform.name}" action="{affiliate.statsform.action}" method="POST">
+		<tr>
+			<td valign="top" align="center"><font class="normal-field-title">
+				{labels.affiliates.selectMonth} <select name="{affiliate.statsform.month}" class="selectbox">
+				<#loop:affiliate.statsform.monthlist#>
+					<#if:affiliate.statsform.selectedMonth:eq:affiliate.statsform.monthlist#>
+						<option SELECTED>{affiliate.statsform.monthlist}</option>
+					<#else#>
+						<option>{affiliate.statsform.monthlist}</option>
+					<#/if#>
+				<#/loop#>
+				</select></font>
+			</td>
+			<td valign="top" align="center">
+				{labels.affiliates.selectYear} <select name="{affiliate.statsform.year}" class="selectbox">
+				<#loop:affiliate.statsform.yearlist#>
+					<#if:affiliate.statsform.selectedYear:eq:affiliate.statsform.yearlist#>
+						<option SELECTED>{affiliate.statsform.yearlist}</option>
+					<#else#>
+						<option>{affiliate.statsform.yearlist}</option>
+					<#/if#>
+				<#/loop#>
+				</select>
+			</td>
+			<td valign="top" align="center">
+				<input type="submit" name="submit" value="{labels.affiliates.buttonResults}" class="button-search">
+			</td>
+		</tr>
+		</form>
+		</table>
+		<p>
+		<table cellpadding="4" cellspacing="1" border="0">
+		<tr>
+			<td valign="top" class="field-backing-title"><u><strong>{labels.affiliates.statsDate}</strong></u></td>
+			<td valign="top" class="field-backing-title" align="right"><u><strong>{labels.affiliates.statsVisits}</strong></u></td>
+		</tr>
+		<#loop:affiliate.stats.days#>
+		<tr>
+			<td valign="top" class="field-backing-content">{affiliate.stats.days.date}</font></td>
+			<td valign="top" class="field-backing-content" align="right">{affiliate.stats.days.total}</td>
+		</tr>		
+		<#/loop#>
+		<tr>
+			<td valign="top" class="field-backing-title"><strong>{labels.affiliates.statsTotal}</strong></td>
+			<td valign="top" class="field-backing-title" align="right"><strong>{affiliate.stats.total}</strong></td>
+		</tr>
+		</table>
+
+		<!-- /PAGE CONTENT -->
+	<!-- /CONTENT SECTION FEATURE -->
+
+<#include:includes/bottom.html#>
+

@@ -1,0 +1,80 @@
+<#include:includes/top.html#>
+	
+	<!-- CUSTOMER REVIEWS -->
+	<#if:reviews.enabled:eq:Y#>
+		<hr>
+	
+		<table width="100%" border="0" cellspacing="0" cellpadding="5">
+		<tr>
+		<td height="100" align="left" valign="top">
+
+		<table width="100%" border="0" cellspacing="0" cellpadding="0">
+		<tr>
+		<td>
+		<h1>{labels.product.customerReviewsTitle}</h1>
+			<h2>{product.name}</h2>
+		
+		<#if:reviews.total:neq:0#>
+		<h3>{labels.product.customerReviewsAverageRating} {reviews.averagerating}/5</h3>
+		<#/if#>
+		
+		</td>
+		</tr>
+		<tr>
+		<td valign="top">
+		
+		<#if:reviews.total:neq:0#>
+							
+
+
+			<#loop:reviews.content#>
+			<table cellpadding="2" cellspacing="0" border="0" width="100%">
+			<tr>
+				<td class="lightshade-backing">
+					<font class="product-field-title-small">Review By: {reviews.content.name}</font>
+				</td>
+				<td class="lightshade-backing" align="right">
+					<font class="product-field-title-small">{labels.product.customerReviewsRating} {reviews.content.rating}/5</font>
+				</td>
+			</tr>
+
+			<#if:reviews.content.title:neq:blank#>
+			<tr>
+				<td colspan="2">
+					<font class="product-field-title-small">{labels.review.title} {reviews.content.title}</font>
+				</td>
+			</tr>							
+			<#/if#>
+
+			<tr>
+				<td class="review-content-backing" colspan="2">
+					<font class="product-field-content-small">{reviews.content.review}</font>
+				</td>
+			</tr>							
+			</table>
+			<#/loop#>
+
+		<#else#>
+			<!-- THERE ARE NO REVIEWS MESSAGE -->
+			<font class="product-field-title-small">{labels.product.customerReviewsNoReviews}</font>
+
+
+		<#/if#>
+
+		<p><A href="{product.review.link}" class="middle-links">{labels.product.customerReviewsReviewLink}</a></p>
+		
+		</td>
+		</tr>
+		</table>
+		
+		</td>
+		</tr>
+		</table>
+	<#/if#>
+<!-- /CUSTOMER REVIEWS -->
+
+
+<#include:includes/bottom.html#>
+
+
+

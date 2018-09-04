@@ -1,0 +1,17 @@
+<#include:includes/top.html#>
+<div id="mainContainerInner" class="medium-9 columns right">
+    <h1>{labels.otherpages.newsTitle}</h1>
+    <#if:loop.news.total:gt:0#>
+    <#loop:news#>
+    <#if:loop.news.count:mod2:0#>
+    <h3>{news.title}</h3>
+    {news.content}
+    <#else#>
+    <h3>{news.title}</h3>
+    {news.content}
+    <#/if#>
+    <#/loop#>
+    <#/if#>
+</div>
+<#include:includes/sidebar.html#>
+<#include:includes/bottom.html#>

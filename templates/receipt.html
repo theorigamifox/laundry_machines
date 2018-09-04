@@ -1,0 +1,137 @@
+<HTML><HEAD><TITLE>Order Receipt</TITLE>
+</HEAD>
+<BODY>
+
+  <TABLE width=600 border=1 cellPadding=10 cellSpacing=0 bordercolor="#000000">
+    <TBODY>
+      <TR bgcolor="#000000"> 
+        <TD vAlign=top>
+        	<p><font size="3" face="Verdana, Arial, Helvetica, sans-serif" color=FFFFFF><strong>{company.companyName}</strong></font></p>
+        </TD>
+        <TD align=right vAlign=top> 
+          <p><font size="2" face="Verdana, Arial, Helvetica, sans-serif" color=FFFFFF><strong>
+          Order Number: {order.ordernumber}
+          </strong></font></p></TD>
+      </TR>
+      <TR>
+        <TD vAlign=top><font size="2" face="Verdana, Arial, Helvetica, sans-serif"><strong>Customer 
+          Address:</strong> <br>
+          {order.title} {order.forename} {order.surname}<br>
+          {order.address1}<br>
+          {order.address2}<br>
+          {order.town}<br>
+          {order.county}<br>
+          {order.postcode}<br>
+          {order.country}<br>
+          </font></TD>
+        <TD vAlign=top align=right><font size="2" face="Verdana, Arial, Helvetica, sans-serif">
+          {company.companyName}<br>
+          {company.addressLine1}<br>
+          {company.addressLine2}<br>
+          {company.city}<br>
+          {company.county}<br>
+          {company.postcode}<br>
+          {company.country}<br>
+          Telephone: {company.telephone}<br>
+          Web: {company.storeurl}<br>
+          Email: {company.generalemail}
+			</font></TD>
+      </TR>
+      <TR> 
+        <TD colSpan=2><BR> <TABLE cellSpacing=0 cellPadding=2 width="100%" border=0>
+            <TBODY>
+              <TR> 
+                <TD> 
+                    <font size="2" face="Verdana, Arial, Helvetica, sans-serif"><strong>Email:</strong><BR>
+                    {order.email}</font></TD>
+                <TD> 
+                    <font size="2" face="Verdana, Arial, Helvetica, sans-serif"><strong>Order 
+                    Date:</strong><BR>
+                    {order.orderdate}</font></TD>
+                <TD> 
+                    <font size="2" face="Verdana, Arial, Helvetica, sans-serif"><strong>Order 
+                    Number:</strong><BR>
+                    {order.ordernumber}</font></TD>
+              </TR>
+            </TBODY>
+          </TABLE>
+          <BR> <TABLE borderColor=#000000 cellSpacing=0 cellPadding=2 width="100%" 
+      border=1>
+            <TBODY>
+              <TR> 
+                <TD><font size="2" face="Verdana, Arial, Helvetica, sans-serif"><strong>Product 
+                  Code</strong></font></TD>
+                <TD><font size="2" face="Verdana, Arial, Helvetica, sans-serif"><strong>Product 
+                  Name</strong></font></TD>
+                <TD align=right><font size="2" face="Verdana, Arial, Helvetica, sans-serif"><strong>Quantity</strong></font></TD>
+                <TD align=right><font size="2" face="Verdana, Arial, Helvetica, sans-serif"><strong>Price 
+                  Each</strong></font></TD>
+                <TD align=right><font size="2" face="Verdana, Arial, Helvetica, sans-serif"><strong>Total 
+                  Cost</strong></font></TD>
+              </TR>
+				<#loop:order.products#>
+	              <TR> 
+	                <TD vAlign=top><font size="2" face="Verdana, Arial, Helvetica, sans-serif">{order.products.code}</FONT></font></TD>
+	                <TD vAlign=top><font size="2" face="Verdana, Arial, Helvetica, sans-serif">{order.products.name}<BR>
+						<#loop:order.products.extrafields#>
+							<#if:order.products.extrafields.content:neq:blank#>
+								<#if:order.products.extrafields.type:eq:USERINPUT#>
+									<font class="text-productfieldentry">{order.products.extrafields.title}: {order.products.extrafields.content}<br></font>
+								<#/if#>
+								<#if:order.products.extrafields.type:eq:SELECT#>
+									<font class="text-productfieldentry">{order.products.extrafields.title}: {order.products.extrafields.content}<br></font>
+								<#/if#>
+								<#if:order.products.extrafields.type:eq:CHECKBOXES#>
+									<font class="text-productfieldentry">{order.products.extrafields.title}:
+										<#loop:order.products.extrafields.options#>
+											{order.products.extrafields.options.option}, 
+										<#/loop#>
+									<br>
+								<#/if#>
+								<#if:order.products.extrafields.type:eq:RADIOBUTTONS#>
+									<font class="text-productfieldentry">{order.products.extrafields.title}: {order.products.extrafields.content}<br></font>
+								<#/if#>							
+							<#/if#>
+						<#/loop#>	                  
+	                  </font></TD>
+	                <TD vAlign=top align=right><font size="2" face="Verdana, Arial, Helvetica, sans-serif">{order.products.qty}</font></TD>
+	                <TD vAlign=top align=right><font size="2" face="Verdana, Arial, Helvetica, sans-serif">{order.products.price} <#if:order.products.ooPrice1:gt:0#>+({order.products.ooprice})<#/if#></font></TD>
+	                <TD vAlign=top align=right><font size="2" face="Verdana, Arial, Helvetica, sans-serif">{order.products.total}</font></TD>
+	              </TR>
+				<#/loop#>              
+              <TR> 
+                <TD colSpan=4><font size="2" face="Verdana, Arial, Helvetica, sans-serif">Goods 
+                  Total</font></TD>
+                <TD align=right><font size="2" face="Verdana, Arial, Helvetica, sans-serif">{order.totals.goods}</font></TD>
+              </TR>
+              <TR> 
+                <TD colSpan=4><font size="2" face="Verdana, Arial, Helvetica, sans-serif">Shipping 
+                  Total</font></TD>
+                <TD align=right><font size="2" face="Verdana, Arial, Helvetica, sans-serif">{order.totals.shipping}</font></TD>
+              </TR>
+              <TR> 
+                <TD colSpan=4><font size="2" face="Verdana, Arial, Helvetica, sans-serif">Tax 
+                  Total</font></TD>
+                <TD align=right><font size="2" face="Verdana, Arial, Helvetica, sans-serif">{order.totals.tax}</font></TD>
+              </TR>
+			  <TR> 
+                <TD colSpan=4><font size="2" face="Verdana, Arial, Helvetica, sans-serif">Discount Total</font></TD>
+                <TD align=right><font size="2" face="Verdana, Arial, Helvetica, sans-serif">-{order.totals.discount}</font></TD>
+              </TR>
+              <TR> 
+                <TD colSpan=4><font size="2" face="Verdana, Arial, Helvetica, sans-serif">Order 
+                  Total</font></TD>
+                <TD align=right><font size="2" face="Verdana, Arial, Helvetica, sans-serif">{order.totals.order}</font></TD>
+              </TR>
+            </TBODY>
+          </TABLE>
+          <BR> 
+            <font size="2"><BR>
+            <font face="Verdana, Arial, Helvetica, sans-serif">If you have any 
+            questions regarding your order please telephone the number at the 
+            top right of this receipt or email {company.generalemail} </font></font> 
+          </TD>
+      </TR>
+    </TBODY>
+  </TABLE>
+</BODY></HTML>

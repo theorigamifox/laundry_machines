@@ -1,0 +1,163 @@
+<html>
+<head>
+<title>Secure Order Form Using 128 bit SSL</title>
+</head>
+
+<body>
+
+
+<center>
+
+
+<b><font face="verdana,arial" size="3">Secure Order Form</font></b><p>
+
+
+<table border="0" width="520"><tr><td valign="top"> <img src="https://www.securehosting.com/images/128.gif" width="85" height="76" border="0" alt="128 Bit SSL" vspace="0" hspace="8" align="left"> <font face="verdana,arial" size="2">This form uses 128 bit SSL, the strongest commercially available level of encryption. All your private data will be encrypted at all times whilst in transit over the Internet. You should see a solid padlock in your browser status bar which indicates that the encryption is taking place.</font> </td></tr></table><br>
+
+
+<form action="https://www.secure-server-hosting.com/secutran/transactionjs1.php" method="post">
+
+<!-- Client Ref No:- -->
+<input type="hidden" name="shreference" value="$shreference">
+
+
+<!-- Client Check Code: -->
+<input type="hidden" name="checkcode" value="$checkcode">
+
+<input type="hidden" name=callbackurl value="$callbackurl">
+
+<input type="hidden" name=callbackdata value="$callbackdata">
+
+
+<!-- Any Hidden Fields -->
+$hiddenlist
+
+
+
+
+<!-- Products Ordered (if sent through in correct format) for display on page -->
+
+<table BGCOLOR="lightgrey" border=1 width="517" cellpadding="2" cellspacing="1">
+<tr>
+<td BGCOLOR="lightgrey" ><b>Order Total: </b></td><td BGCOLOR="lightgrey" ><b>$transactionamount <input type='hidden' name='transactionamount' value='$transactionamount'></b></td>
+</tr></table>
+
+
+<p>
+
+
+  <table BGCOLOR="darkblue" border="0" width="520" cellpadding="1" cellspacing="1">
+<tr>
+<td width="100%" align="center">
+<font color="#ffffff"><b>Please complete the details below to complete your order</b><br>
+
+  <table BGCOLOR="lightgrey" border="0" width="100%" cellpadding="2" cellspacing="2">
+
+ <TR BGCOLOR="lightgrey">
+      <TD><STRONG>Name</STRONG></TD>
+      <TD colspan='2'> 
+        <input name ='cardholdersname' value='$cardholdersname'
+      style="WIDTH: 100%; HEIGHT: 22px" size=44>
+      </TD>
+    <TR> 
+      <TD><STRONG>Address</STRONG></TD>
+      <TD vAlign=top colSpan=2> 
+        <input name='address' value='$address'
+      style="WIDTH: 358px; HEIGHT: 22px" size=44>
+      </TD>
+    </TR>
+    <TR> 
+      <TD><STRONG>PostCode</STRONG></TD>
+      <TD vAlign=top colSpan=2> 
+        <input name ='postcode' value='$postcode'
+      style="WIDTH: 358px; HEIGHT: 22px" size=44>
+      </TD>
+    </TR>
+<TR> 
+      <TD><STRONG>Tel</STRONG></TD>
+      <TD vAlign=top colSpan=2> 
+        <input name ='telephone' value='$telephone'
+      style="WIDTH: 358px; HEIGHT: 22px" size=44>
+      </TD>
+    </TR>
+    <TR> 
+      <TD><STRONG>Email</STRONG></TD>
+      <TD vAlign=top colSpan=2> 
+        <input name ='cardholdersemail' value='$cardholdersemail'
+      style="WIDTH: 358px; HEIGHT: 22px" size=44>
+      </TD>
+    </TR>
+    <tr> 
+      <TD><b>Card Type</b></TD>
+      <td valign="top" colspan='2'> 
+        <SELECT name="CardType">
+          <OPTION SELECTED>Please select card type 
+          <OPTION>Visa 
+          <OPTION>MasterCard 
+          <OPTION>Amex 
+          <OPTION>Eurocard 
+          <OPTION>JCB 
+          <OPTION>Switch</OPTION>
+        </SELECT>
+      </td>
+    </tr>
+    <TR> 
+      <td><font face="arial,helvetica" size="2"> <b>Card Number:</b></font> </td>
+      <td valign="top"> 
+        <INPUT name="cardnumber" maxlength="44" size="44">
+      </td>
+    </TR>
+    <TR> 
+      <td><font face="arial,helvetica" size="2"> <b>Switch Issue Number:</b></font> </td>
+      <td valign="top"><input type="text" size="2" name="switchnumber">    
+      </td>
+    </TR>
+<tr> 
+      <td valign="top"><font face="arial,helvetica" size="2"><b>Expiry Month</b></font> 
+      </td>
+      <TD vAlign=top> 
+        <SELECT size=1 name=cardexpiremonth>
+          <OPTION
+        selected>01 
+          <OPTION>02 
+          <OPTION>03 
+          <OPTION>04 
+          <OPTION>05 
+          <OPTION>06 
+          <OPTION>07 
+          <OPTION>08 
+          <OPTION>09 
+          <OPTION>10 
+          <OPTION>11 
+          <OPTION>12</OPTION>
+        </SELECT>
+      </TD>
+    </tr>
+    <tr> 
+      <td valign="top"><STRONG><FONT face=Arial size=2>Expiry Year</FONT></STRONG> 
+      </td>
+      <td valign="top" colspan="2"> 
+        <select name="cardexpireyear" size="1">
+          <option selected>00 
+          <option>01 
+          <option>02 
+          <option>03 
+          <option>04 
+          <option>05 
+          <option>06</option>
+        </select>
+      </td>
+    </tr>
+  </table>
+</td>
+</tr></table><br>
+
+  <INPUT type=submit value=Submit>
+</form>
+
+
+</center>
+
+
+</body>
+</html>

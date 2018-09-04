@@ -1,0 +1,78 @@
+<#include:includes/top.html#>
+	
+	<!-- CONTENT SECTION FEATURE -->
+	
+	<!-- PAGE CONTENT HEADER -->
+	<table width="100%" border="0" cellspacing="0" cellpadding="0">
+	<tr>
+	<td>
+	<h1>{labels.customer.accountHomePageTitle}</h1> <!-- PAGE TITLE -->
+	<h2>{labels.customer.wishListPageTitle}</h2> <!-- PAGE SUB TITLE -->
+	<h4></h4> <!-- PAGE INSTRUCTIONS -->
+	<p>
+				<a href="customer.php?xCmd=account">Account Home</a> | 
+				<a href="{customer.logoutlink}">{labels.customer.logoutLink}</a> | 
+				<a href="{customer.accountlink}">{labels.customer.editAccountLink}</a> | 
+				<a href="{customer.addresseslink}">{labels.customer.editAddressesLink}</a> | 
+				<a href="{customer.orderslink}">{labels.customer.orderHistoryLink}</a> | 
+				<a href="{customer.wishlistlink}">{labels.customer.wishListLink}</a>&nbsp;
+	</p> <!-- PAGE INSTRUCTIONS -->
+	</td>
+	</tr>
+	</table>
+	<!-- /PAGE CONTENT HEADER -->
+
+		<!-- PAGE CONTENT -->
+
+		<table cellpadding="4" cellspacing="1" border="0" class="field-backing-content">
+			<tr>
+				<td class="field-backing-title"><strong><u>{labels.customer.wishListColumnThumbnail}</strong></u></td>
+				<td class="field-backing-title"><strong><u>{labels.customer.wishListColumnCode}</strong></u></td>
+				<td class="field-backing-title"><strong><u>{labels.customer.wishListColumnName}</strong></u></td>			
+				<td class="field-backing-title"><strong><u>{labels.customer.wishListColumnQuantity}</strong></u></td>
+				<td class="field-backing-title"><strong><u>{labels.customer.wishListColumnPrice}</strong></u></td>
+				<td class="field-backing-title"><strong><u>{labels.customer.wishListColumnAction}</strong></u></td>
+			</tr>
+			<form name="{wishlist.form.name}" action="{wishlist.form.action}" method="POST">
+			<#loop:wishlist.products#>
+			<tr>
+				<td valign="top"><img src="{wishlist.products.thumbnail}" border="1" width="50" height="39"></td>
+				<td valign="top"><font class="normal-field-content">{wishlist.products.code}</font></td>
+				<td valign="top"><a href="{wishlist.products.link}" class="middle-links">{wishlist.products.name}</a><br><font class="normal-field-content">{labels.customer.wishListComment}</font><Br><input type="text" name="{wishlist.products.commentboxname}" value="{wishlist.products.comment}" size="30" maxlength="250" class="textbox"></td>
+				<td valign="top" align="right"><input type="text" name="{wishlist.products.qtyboxname}" value="{wishlist.products.qty}" class="textbox" size="3"></td>
+				<td valign="top" align="right"><font class="normal-field-content">{wishlist.products.price}</font></td>
+				<td valign="top"><A href="{wishlist.products.deletelink}" class="middle-links">{labels.customer.wishListRemoveItem}</a> - <A href="{wishlist.products.addToBasketLink}" class="middle-links">{labels.cart.addToCartLink}</a></td>
+			</tr>
+			<#/loop#>		
+		</table>
+		<br>
+		<input type="submit" name="update" value="{labels.customer.wishListUpdateLink}" class="button"><p><a href="{wishlist.emptylink}" class="middle-links">{labels.customer.wishListClearLink}</a>
+		</form>
+		<p>
+		<table cellpadding="4" cellspacing="1" border="0" width="300" class="field-backing-content">
+			<form name="{wishlist.send.form.name}" action="{wishlist.send.form.action}" method="POST">
+			<tr>
+				<td class="field-backing-title" colspan="2"><h3>{labels.customer.wishListSendTitle}</h3></td>
+			</tr>
+			<tr>
+				<td colspan="2">
+					<p>{labels.customer.wishListSendMessage}</p>
+				</td>
+			</tr>
+			<tr>
+				<td><font class="normal-field-content"><input type="text" name="{wishlist.send.form.emaillist}" value="" class="textbox" size="50"></td>
+				<td><input type="submit" name="submit" value="{labels.customer.wishListSendButton}" class="button"></td>
+			</tr>
+			</form>
+		</table>
+		</form>
+
+
+
+		<!-- /PAGE CONTENT -->
+	<!-- /CONTENT SECTION FEATURE -->
+
+<#include:includes/bottom.html#>
+
+
+

@@ -1,0 +1,50 @@
+<#include:includes/top.html#>
+	
+	<!-- CONTENT SECTION FEATURE -->
+	<table width="100%" border="0" cellspacing="0" cellpadding="0">
+	<tr>
+	<td>
+	<h1>{labels.search.advancedSearchTitle}</h1>
+	<p>{snippet=AdvancedSearch.content}</p>
+	</td>
+	</tr>
+	</table>
+
+		<!-- advanced search form -->
+		<table cellpadding="2" cellspacing="1" border="0">
+
+		<form name="{search.form.name}" method="GET" action="{search.form.action}" onSubmit="{search.form.onsubmit}">
+		<tr>
+			<td align="right" valign="top">{labels.search.searchForTitle}</td>
+			<td>&nbsp;</td>
+			<td valign="top"><input type="text" name="{search.form.string}" value="{search.query}" size="36"></td>
+		</tr>
+		<tr>
+			<td align="right" valign="top">{labels.search.priceRangeTitle} {cart.currency.pretext}</td>
+			<td>&nbsp;</td>
+			<td valign="top">
+				<input type="text" name="{search.form.pricefrom}" value="0" class="textbox-search" size="10"> - 
+				<input type="text" name="{search.form.priceto}" value="1000" class="textbox-search" size="10">
+			</td>
+		</tr>		
+		<tr>
+			<td align="right" valign="top">{labels.search.sortByTitle}</td>
+			<td>&nbsp;</td>
+			<td valign="top">
+				<input type="radio" name="{search.form.sort}" value="code" CHECKED> {labels.search.sortProductCode}
+				<br><input type="radio" name="{search.form.sort}" value="name"> {labels.search.sortProductName}
+				<br><input type="radio" name="{search.form.sort}" value="pricelh"> {labels.search.sortPriceLowHigh}
+				<br><input type="radio" name="{search.form.sort}" value="pricehl"> {labels.search.sortPriceHighLow}
+			</td>
+		</tr>			
+		<tr>
+			<td valign="top" colspan="3" align="left"><br>
+				<input type="submit" name="submit" value="Submit Search">
+			</td>
+		</tr>
+		</form>
+		</table>	
+		<!-- /advanced search form -->
+	<!-- /CONTENT SECTION FEATURE -->
+
+<#include:includes/bottom.html#>

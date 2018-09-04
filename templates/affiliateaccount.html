@@ -1,0 +1,84 @@
+<#include:includes/top.html#>
+	
+	<!-- CONTENT SECTION FEATURE -->
+	
+	<!-- PAGE CONTENT HEADER -->
+	<table width="100%" border="0" cellspacing="0" cellpadding="0">
+	<tr>
+	<td>
+	<h1>{labels.affiliates.titleAdministration}</h1> <!-- PAGE TITLE -->
+	<h2>{labels.affiliates.accountDetails}</h2> <!-- PAGE SUB TITLE -->
+	<h4></h4> <!-- PAGE INSTRUCTIONS -->
+	<p>
+				<a href="affiliates.php?xCmd=account">Home</a> | 
+				<a href="{affiliate.logoutlink}">{labels.affiliates.logoutLink}</a> | 
+				<a href="{affiliate.editlink}">{labels.affiliates.editLink}</a> | 
+				<a href="{affiliate.bannerslink}">{labels.affiliates.bannersLink}</a> | 
+				<a href="{affiliate.statslink}">{labels.affiliates.statsLink}</a> | 
+				<a href="{affiliate.saleslink}">{labels.affiliates.salesLink}</a> | 
+				<a href="{affiliate.paymentslink}">{labels.affiliates.paymentsLink}</a>&nbsp;
+	</p> <!-- PAGE INSTRUCTIONS -->
+	</td>
+	</tr>
+	</table>
+	<!-- /PAGE CONTENT HEADER -->
+
+		<!-- PAGE CONTENT -->
+
+		<table cellpadding="1" cellpading="0" border="0" class="table-backing-content">
+		<tr>
+			<td valign="top">
+				<u><strong>{labels.affiliates.accountDetails}</strong></u>
+				<br>Affilliate id: {affiliate.username}
+				<br>{affiliate.aff_Company}
+				<br>{affiliate.aff_Contact}
+				<br>{affiliate.aff_Address1}
+				<br>{affiliate.aff_Address2}
+				<br>{affiliate.aff_Town}
+				<br>{affiliate.aff_County}
+				<br>{affiliate.aff_Country}
+				<br>{affiliate.aff_Postcode}
+				<br>{affiliate.aff_Telephone}
+				<br>{affiliate.aff_Email}
+			</td>
+		</tr>
+		</table>	
+
+<p>&nbsp;</p>
+
+		<table cellpadding="0" cellspacing="2" border="0">
+			<tr>
+				<td colspan="2" valign="top" class="field-backing-title"><u><strong>Account Summary</strong></u></td>
+			</tr>
+
+			<tr>
+				<td valign="top" class="field-backing-title">{labels.affiliates.summaryVisitors}</td>
+				<td valign="top" class="field-backing-content" align="right">{affiliate.summary.totalclicks}</td>
+			</tr>
+			<tr>
+				<td valign="top" class="field-backing-title">{labels.affiliates.summarySales}</td>
+				<td valign="top" class="field-backing-content" align="right">{affiliate.summary.totalsales}</td>
+			</tr>
+			<tr>
+				<td valign="top" class="field-backing-title">{labels.affiliates.summaryEarningsTotal}</td>
+				<td valign="top" class="field-backing-content" align="right">{affiliate.summary.earningstotal}</td>
+			</tr>
+			<tr>
+				<td valign="top" class="field-backing-title">{labels.affiliates.summaryOutstandingDirect}</td>
+				<td valign="top" class="field-backing-content" align="right">{affiliate.summary.outstandingdirect}</td>
+			</tr>
+<!-- 	REMOVE WHEN ENABLE 2ND TIER SHOWN
+				<tr>
+				<td valign="top" class="field-backing-title">{labels.affiliates.summaryOutstanding2ndTier}</td>
+				<td valign="top" class="field-backing-content" align="right">{affiliate.summary.outstanding2ndtier}</td>
+			</tr> -->
+			<tr>
+				<td valign="top" class="field-backing-title">{labels.affiliates.summaryOutstandingTotal}</td>
+				<td valign="top" class="field-backing-content" align="right">{affiliate.summary.outstandingtotal}</td>
+			</tr>
+		</table>
+
+		<!-- /PAGE CONTENT -->
+	<!-- /CONTENT SECTION FEATURE -->
+
+<#include:includes/bottom.html#>

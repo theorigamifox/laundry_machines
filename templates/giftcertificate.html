@@ -1,0 +1,144 @@
+<#include:includes/top.html#>
+	
+	<!-- CONTENT SECTION FEATURE -->
+	
+	<!-- PAGE CONTENT HEADER -->
+	<table width="100%" border="0" cellspacing="0" cellpadding="0">
+	<tr>
+	<td>
+	<h1>{labels.giftcerts.giftCertsTitle}</h1> <!-- PAGE TITLE -->
+	<h2>{labels.giftcerts.giftCertsDetailsTitle}</h2>
+	<p>{snippet=GiftCertificates.content}</p> <!-- PAGE SUB TITLE -->
+	</td>
+	</tr>
+	</table>
+	<!-- /PAGE CONTENT HEADER -->
+
+		<!-- PAGE CONTENT -->
+
+		<form name="{giftcertificate.form.name}" action="{giftcertificate.form.action}" method="POST">
+		<table cellpadding="4" cellspacing="1" border="0" width="80%">
+		<tr>	
+			<td colspan="2" class="table-backing-title"><h3>Complete Recipients Details</h3></td>
+		</tr>
+		<#loop:giftcertificate.details.fields#>
+			<#if:giftcertificate.details.fields.fieldtype:eq:SELECT#>
+			<tr>	
+				<td class="field-backing-title">
+					<font class="normal-field-title">{giftcertificate.details.fields.titleText} <#if:giftcertificate.details.fields.validation:neq:0#>*<#/if#></font>
+				</td>
+				<td class="field-backing-content">
+					<font class="text-productfieldtitle">
+					<select name="{giftcertificate.details.fields.fieldname}" class="selectbox">
+					<#loop:giftcertificate.details.fields.options#>
+						<option value="{giftcertificate.details.fields.options.value}" <#if:giftcertificate.details.fields.selected:eq:giftcertificate.details.fields.options.value#>SELECTED<#/if#>>{giftcertificate.details.fields.options.name}</option>
+					<#/loop#>				
+					</select>
+					<Br><#if:giftcertificate.details.fields.error:eq:Y#><font class="error-text">{giftcertificate.details.fields.validationmessage}</font><#/if#>
+					</font>
+				</td>
+			<#/if#>
+			<#if:giftcertificate.details.fields.fieldtype:eq:TEXT#>
+			<tr>	
+				<td class="field-backing-title">
+					<font class="normal-field-title">{giftcertificate.details.fields.titleText} <#if:giftcertificate.details.fields.validation:neq:0#>*<#/if#></font>
+				</td>
+				<td class="field-backing-content">
+					<font class="normal-field-content">
+					<input type="TEXT" name="{giftcertificate.details.fields.fieldname}" class="textbox" size="{giftcertificate.details.fields.size}" maxlength="{giftcertificate.details.fields.maxlength}" value="{giftcertificate.details.fields.content}">
+					<br><#if:giftcertificate.details.fields.error:eq:Y#><font class="error-text">{giftcertificate.details.fields.validationmessage}</font><#/if#>
+					</font>
+				</td>
+			<#/if#>
+			<#if:giftcertificate.details.fields.fieldtype:eq:TEXTAREA#>
+			<tr>	
+				<td class="field-backing-title">
+					<font class="normal-field-title">{giftcertificate.details.fields.titleText} <#if:giftcertificate.details.fields.validation:neq:0#>*<#/if#></font>
+				</td>
+				<td class="field-backing-content">
+					<font class="normal-field-content">
+					<textarea name="{giftcertificate.details.fields.fieldname}" cols="{giftcertificate.details.fields.cols}" rows="{giftcertificate.details.fields.rows}" class="textbox">{giftcertificate.details.fields.content}</textarea>
+					<br><#if:giftcertificate.details.fields.error:eq:Y#><font class="error-text">{giftcertificate.details.fields.validationmessage}</font><#/if#>
+					</font>
+				</td>
+			<#/if#>			
+			<#if:giftcertificate.details.fields.fieldtype:eq:CHECKBOX#>
+			<tr>	
+				<td class="field-backing-title" colspan="2">
+					<font class="normal-field-title">
+					<input type="CHECKBOX" name="{giftcertificate.details.fields.fieldname}" value="Y" {giftcertificate.details.fields.checked}> <strong>{giftcertificate.details.fields.titleText}</strong>
+					<br><#if:giftcertificate.details.fields.error:eq:Y#><font class="error-text">{giftcertificate.details.fields.validationmessage}</font><#/if#>
+					</font>
+				</td>
+			<#/if#>
+			</tr>
+		<#/loop#>
+		<#loop:giftcertificate.address.fields#>
+			<#if:giftcertificate.address.fields.fieldtype:eq:SELECT#>
+			<tr>	
+				<td class="field-backing-title">
+					<font class="normal-field-title">{giftcertificate.address.fields.titleText} <#if:giftcertificate.address.fields.validation:neq:0#>*<#/if#></font>
+				</td>
+				<td class="field-backing-content">
+					<font class="normal-field-content">
+					<select name="{giftcertificate.address.fields.fieldname}" class="selectbox">
+					<#loop:giftcertificate.address.fields.options#>
+						<option value="{giftcertificate.address.fields.options.value}" <#if:giftcertificate.address.fields.selected:eq:giftcertificate.address.fields.options.value#>SELECTED<#/if#>>{giftcertificate.address.fields.options.name}</option>
+					<#/loop#>				
+					</select>
+					<Br><#if:giftcertificate.address.fields.error:eq:Y#><font class="error-text">{giftcertificate.address.fields.validationmessage}</font><#/if#>
+					</font>
+				</td>
+			<#/if#>
+			<#if:giftcertificate.address.fields.fieldtype:eq:TEXT#>
+			<tr>	
+				<td class="field-backing-title">
+					<font class="normal-field-title">{giftcertificate.address.fields.titleText} <#if:giftcertificate.address.fields.validation:neq:0#>*<#/if#></font>
+				</td>
+				<td class="field-backing-content">
+					<font class="normal-field-content">
+					<input type="TEXT" name="{giftcertificate.address.fields.fieldname}" class="textbox" size="{giftcertificate.address.fields.size}" maxlength="{giftcertificate.address.fields.maxlength}" value="{giftcertificate.address.fields.content}">
+					<br><#if:giftcertificate.address.fields.error:eq:Y#><font class="error-text">{giftcertificate.address.fields.validationmessage}</font><#/if#>
+					</font>
+				</td>
+			<#/if#>
+			<#if:giftcertificate.address.fields.fieldtype:eq:TEXTAREA#>
+			<tr>	
+				<td class="field-backing-title">
+					<font class="normal-field-title">{giftcertificate.address.fields.titleText} <#if:giftcertificate.address.fields.validation:neq:0#>*<#/if#></font>
+				</td>
+				<td class="field-backing-content">
+					<font class="normal-field-content">
+					<textarea name="{giftcertificate.address.fields.fieldname}" cols="{giftcertificate.address.fields.cols}" rows="{giftcertificate.address.fields.rows}" class="textbox">{giftcertificate.address.fields.content}</textarea>
+					<br><#if:giftcertificate.address.fields.error:eq:Y#><font class="error-text">{giftcertificate.address.fields.validationmessage}</font><#/if#>
+					</font>
+				</td>
+			<#/if#>			
+			<#if:giftcertificate.address.fields.fieldtype:eq:CHECKBOX#>
+			<tr>	
+				<td class="field-backing-title" colspan="2">
+					<font class="normal-field-title">
+					<input type="CHECKBOX" name="{giftcertificate.address.fields.fieldname}" value="Y" {giftcertificate.address.fields.checked}> <strong>{giftcertificate.address.fields.titleText}</strong>
+					<br><#if:giftcertificate.address.fields.error:eq:Y#><font class="error-text">{giftcertificate.address.fields.validationmessage}</font><#/if#>
+					</font>
+				</td>
+			<#/if#>
+			</tr>
+		<#/loop#>
+		<tr>
+			<td colspan="2" class="field-backing-content"><input type="submit" name="submit" value="{labels.giftcerts.giftCertsPurchaseButton}" class="button"></td>
+		</tr>		
+		</table>
+		</form>
+
+
+		<!-- /PAGE CONTENT -->
+	<!-- /CONTENT SECTION FEATURE -->
+
+<#include:includes/bottom.html#>
+
+
+
+
+
+

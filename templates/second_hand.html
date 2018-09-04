@@ -1,0 +1,52 @@
+<#include:includes/top.html#>
+<div id="mainContainerInner" class="medium-12 columns">
+    <div class="row mrgBtm50">
+        <div class="medium-6 columns">
+            <img src="images/used_equipment.jpg" style="width:100%" alt="We buy and sell second hand commercial laundry equipment">
+        </div>    
+        <div class="medium-6 columns">
+            <h1>We Buy Second Hand Commercial Laundry Equipment</h1>
+            <h2>with a fast collection service call us now or fill in the form below</h2>
+            <p>Please fill in the details of the laundry equipment you are selling.</p>
+        </div>
+    </div>
+    <div class="fullwidth-row">
+        <div class="row">
+            <h3 style="text-align:center;">Contact Us Today for more information on second hand laundry equipment</h3>
+            <form name="SecondHand_Items" action="http://www.laundrymachines.co.uk/formmail/formmail.php" method="POST">
+                <input type=hidden value="page.php?xPage=contactsent.html" name="redirect">
+                <div class="medium-6 columns">
+                    <p>	
+                        <input type="text" name="Name" class="textbox" size="30" maxlength="40" value="" placeholder="Name">
+                    </p>
+                    <p>	
+                        <input type="text" name="Telephone" class="textbox" size="20" maxlength="15" value="" placeholder="Telephone">
+                    </p>
+                    <p>	
+                        <input type="email" name="Email-address" class="textbox" size="40" maxlength="30" value="" placeholder="Email">
+                    </p>
+                </div>
+                <div class="medium-6 columns">
+                    <p>	
+                        <textarea name="Address" cols="40" rows="6" class="textbox" placeholder="Address"></textarea>
+                    </p>	
+                    <p>	
+                        <input type="TEXT" name="Postcode" class="textbox" size="20" maxlength="10" value="" placeholder="Postcode">
+                    </p>
+                </div>
+                <div class="large-12 columns">
+                    <p>	
+                        <textarea name="Equipment_for_sale" cols="40" rows="6" class="textbox" placeholder="Equipment for sale"></textarea>
+                    </p>	
+                    <p>
+                        <input type="hidden" name="enquiry1" value=""><input type=hidden name="required" value="Email-address">
+                        <input type="submit" name="submit" value="Send Details" class="button">
+                    </p>		
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<#include:includes/bottom_sidebar.html#>
+<#include:includes/bottom.html#>
+

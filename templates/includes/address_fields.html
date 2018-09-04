@@ -1,0 +1,52 @@
+		<#loop:customer.addressfields#>
+			<#if:customer.addressfields.fieldtype:eq:SELECT#>
+			<tr>	
+				<td class="field-backing-title">
+					<font class="normal-field-title">{customer.addressfields.titleText} <#if:customer.addressfields.validation:neq:0#>*<#/if#></font>
+				</td>
+				<td class="field-backing-content">
+					<font class="normal-field-title">
+					<select name="{customer.addressfields.fieldname}" class="selectbox">
+					<#loop:customer.addressfields.options#>
+						<option value="{customer.addressfields.options.value}" <#if:customer.addressfields.selected:eq:customer.addressfields.options.value#>SELECTED<#/if#>>{customer.addressfields.options.name}</option>
+					<#/loop#>				
+					</select>
+					<Br><#if:customer.addressfields.error:eq:Y#><font class="error-text">{customer.addressfields.validationmessage}</font><#/if#>
+					</font>
+				</td>
+			<#/if#>
+			<#if:customer.addressfields.fieldtype:eq:TEXT#>
+			<tr>	
+				<td class="field-backing-title">
+					<font class="normal-field-title">{customer.addressfields.titleText} <#if:customer.addressfields.validation:neq:0#>*<#/if#></font>
+				</td>
+				<td class="field-backing-content">
+					<font class="normal-field-title">
+					<input type="TEXT" name="{customer.addressfields.fieldname}" class="textbox" size="{customer.addressfields.size}" maxlength="{customer.addressfields.maxlength}" value="{customer.addressfields.content}">
+					<br><#if:customer.addressfields.error:eq:Y#><font class="error-text">{customer.addressfields.validationmessage}</font><#/if#>
+					</font>
+				</td>
+			<#/if#>
+			<#if:customer.addressfields.fieldtype:eq:TEXTAREA#>
+			<tr>	
+				<td class="field-backing-title">
+					<font class="normal-field-title">{customer.addressfields.titleText} <#if:customer.addressfields.validation:neq:0#>*<#/if#></font>
+				</td>
+				<td class="field-backing-content">
+					<font class="normal-field-title">
+					<textarea name="{customer.addressfields.fieldname}" cols="{customer.addressfields.cols}" rows="{customer.addressfields.rows}" class="textbox">{customer.addressfields.content}</textarea>
+					<br><#if:customer.addressfields.error:eq:Y#><font class="error-text">{customer.addressfields.validationmessage}</font><#/if#>
+					</font>
+				</td>
+			<#/if#>			
+			<#if:customer.addressfields.fieldtype:eq:CHECKBOX#>
+			<tr>	
+				<td class="field-backing-title" colspan="2">
+					<font class="normal-field-title">
+					<input type="CHECKBOX" name="{customer.addressfields.fieldname}" value="Y" {customer.addressfields.checked}> <strong>{customer.addressfields.titleText}</strong>
+					<br><#if:customer.addressfields.error:eq:Y#><font class="error-text">{customer.addressfields.validationmessage}</font><#/if#>
+					</font>
+				</td>
+			<#/if#>
+			</tr>
+		<#/loop#>

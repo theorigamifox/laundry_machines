@@ -1,0 +1,46 @@
+<#include:includes/top.html#>
+	
+	<!-- CONTENT SECTION FEATURE -->
+	
+	<!-- PAGE CONTENT HEADER -->
+	<table width="100%" border="0" cellspacing="0" cellpadding="0">
+	<tr>
+	<td>
+	<h1>{labels.newsletter.errorPageTitle}</h1> <!-- PAGE TITLE -->
+	<h2></h2> <!-- PAGE SUB TITLE -->
+
+	</td>
+	</tr>
+	</table>
+	<!-- /PAGE CONTENT HEADER -->
+
+		<!-- PAGE CONTENT -->
+
+		<table cellpadding="2" cellpading="0" border="0">
+		<tr>
+			<td>
+		<#if:newsletter.error:eq:NOTVALID#>
+			{labels.newsletter.errorNotValid}
+		<#/if#>
+		<#if:newsletter.error:eq:DUPLICATE#>
+			{labels.newsletter.errorDuplicate}
+			<p>{labels.newsletter.removeMessage}
+			<p><a href="{newsletter.remove.link}" class="middle-links">{labels.newsletter.removeLink}</a>
+		<#/if#>
+
+<p><a href="javascript:history.back()">Back</a></p>
+
+			</td>
+		</tr>
+		</table>
+
+
+
+		<!-- /PAGE CONTENT -->
+	<!-- /CONTENT SECTION FEATURE -->
+
+<#include:includes/bottom.html#>
+
+
+
+
