@@ -7,7 +7,7 @@
 
     <#if:product.mainimage:neq:blank#>
     <div class="medium-6 columns">
-        <img src="{product.mainimage}" alt="{product.name}" align="left" border="0" hspace="15" width="175">
+        <img src="{product.mainimage}" alt="{product.name}" style="width:100%;">
     </div>
     <#/if#>
     <div class="medium-6 columns">
@@ -177,7 +177,7 @@
             <p><a href="{product.extrafields.content}" title="Download PDF Brochure" target="_PDFBrochure">Click here to download a PDF brochure</a></p>
             <#else#>
             <p class="extrafield-title-text">{product.extrafields.title}:</p>
-        <img src="{product.extrafields.content}" alt="" width="60" height="60" border="1" align="top"><p>
+        <img src="{product.extrafields.content}" alt=""><p>
             <#/if#>
             <#/if#>
             <!-- output SELECT extra fields -->
@@ -317,7 +317,7 @@
                     }">
                 <a href="{groupedproducts.link}" title="{groupedproducts.name}">
                     <#if:groupedproduct.thumbnail:neq:blank#>
-                    <img src="{groupedproducts.thumbnail}" border="0" alt="{groupedproducts.name}" hspace="5"></a>
+                    <img src="{groupedproducts.thumbnail}" alt="{groupedproducts.name}"></a>
                 <#/if#>
                 <p class="multi_feature_title">{groupedproducts.qty} x {groupedproducts.name} (SKU:{groupedproducts.code})</p>
                 <p class="multi_feature_text">{groupedproducts.shortdescription:150:dots}</p>
@@ -356,7 +356,7 @@
                 <a href="{associated.link}" title="{associated.name}">
 
                     <#if:associated.thumbnail.mainimage:neq:blank#>
-                    <img src="{associated.thumbnail}" border="0" alt="{associated.name}" hspace="5" width="52"></a>
+                    <img src="{associated.thumbnail}" alt="{associated.name}" style="width:52px;"></a>
                 <#/if#>
                 <p class="multi_feature_title">{associated.name}</p>
                 <p class="multi_feature_text">{associated.shortdescription:150:dots}</p>
@@ -396,7 +396,7 @@
                 <a href="{recommended.link}" title="{recommended.name}">
 
                     <#if:recommended.thumbnail:neq:blank#>
-                    <img src="{recommended.thumbnail}" border="0" alt="{recommended.name}" hspace="5" width="75"></a>
+                    <img src="{recommended.thumbnail}" alt="{recommended.name}" style="width:75px;"></a>
                 <#/if#>
                 <p class="multi_feature_title">{recommended.name}</p>
                 <p class="multi_feature_text">{recommended.shortdescription:150:dots}</p>
