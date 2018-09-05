@@ -1,114 +1,116 @@
 <#include:includes/top.html#>
-<h1>{section.title}</h1> <!-- PAGE TITLE -->
+<div id="mainContainerInner" class="medium-12 columns">
+    <h1>{section.title}</h1> <!-- PAGE TITLE -->
 
-<#if:loop.sections.total:neq:0#>
-<p>Click on a logo below to view products in that category</p>
-<#loop:sections#>
-<#if:loop.sections.count:mod2:1#>
-<div class="row">
+    <#if:loop.sections.total:neq:0#>
+    <p>Click on a logo below to view products in that category</p>
+    <#loop:sections#>
+    <div id="category-listing">
+        <#if:loop.sections.count:mod4:1#>
+        <div class="row">
+            <#/if#>
+            <#if:sections.image:neq:blank#>
+            <div class="medium-3 columns">
+                <div class="product-list-wrap">
+                    <div class="product-image" style="background-image:url('{sections.image}');">
+                        <a href="{sections.link}" title="{sections.title}"><span class="vcenter">{sections.title}<i class="fa fa-plus"></i></span></a>
+                    </div>
+                    <p class="product-title"><a href="{sections.link}" class="middle-links">{sections.title}</a></p>
+                </div>
+            </div>
+            <#/if#>
 
-    <#/if#>
-    <#if:sections.image:neq:blank#>
-    <div class="medium-3 columns">
-        <a href="{sections.link}" class="middle-links"></a><a href="{sections.link}" class="middle-links">
-            <img src="{sections.image}" alt="{sections.shortdescription}">
-        </a>
-        <a href="{sections.link}" class="middle-links">{sections.title}</a>
+            <#/loop#>
+        </div>
+        <#/if#>
     </div>
-    <#/if#>
-
-    <#/loop#>
-</div>
-<#/if#>
 
 
 
 
-<#if:section.sectionID:eq:7#>
-<p>All our pre-owned laundry machines are fully inspected and undergo a full six hour load test,
-    overlooked by an experienced engineer.</p>
-<p>Any parts we feel may be suspect are replaced in order to comply with our <span style="color:red"><strong>5 Star Warranty</strong></span>,
-    that all our machines receive. Every pre-owned machine comes complete with full operating instructions and installation manuals.</p>
-<p><img src="images/certificate.png"><span style="color:red">MAG</span> Warranty with every machine.</p>
-<p>We are so confident with our reconditioned machines that we offer extended warranties to all our customers.</p>
-<p>All our service engineers are fully qualified with all the necessary qualifications to work on all 
-    commercial laundry equipment including LPG gas in-house and on-site.</p>
+    <#if:section.sectionID:eq:7#>
+    <p>All our pre-owned laundry machines are fully inspected and undergo a full six hour load test,
+        overlooked by an experienced engineer.</p>
+    <p>Any parts we feel may be suspect are replaced in order to comply with our <span style="color:red"><strong>5 Star Warranty</strong></span>,
+        that all our machines receive. Every pre-owned machine comes complete with full operating instructions and installation manuals.</p>
+    <p><img src="images/certificate.png"><span style="color:red">MAG</span> Warranty with every machine.</p>
+    <p>We are so confident with our reconditioned machines that we offer extended warranties to all our customers.</p>
+    <p>All our service engineers are fully qualified with all the necessary qualifications to work on all 
+        commercial laundry equipment including LPG gas in-house and on-site.</p>
 
-<#/if#>		
-<!-- check if there are any products in this section -->
-<#if:loop.products.total:neq:0#>
+    <#/if#>		
+    <!-- check if there are any products in this section -->
+    <#if:loop.products.total:neq:0#>
 
-<p class="table-title-text">{labels.section.productsTitle} {section.title} ({labels.section.productsTotal} {sectionpages.totalproducts}, {labels.section.productsShowing} {sectionpages.from} -&gt; {sectionpages.to})</p>
-<#loop:products#>
-<#if:loop.products.count:mod4:1#>
-<div class="clear"></div>
-<#/if#>
-<!-- output product with individual add to basket form -->
-<div class="medium-3 columns">
-    <div class="product-list-wrap">
-        <form name="{products.form.name}" action="{products.form.action}" method="POST" onSubmit="{
-                    products.form.onsubmit
-                }">
-            <a href="{products.link}" class="middle-links">{products.name}</a>
-            <a href="{products.link}">
-                <#if:products.extra_OutOfStock.content:neq:blank#>
-                <?php
-                $filename = {*products.thumbnail};
-                $filenametemp = substr("$filename", 0, -4);
-                $newfilename = str_replace($filename, ".jpg", "-oos.jpg");
-                $newfilename2 = $filenametemp.$newfilename;
-                $this->theVariables["new"]["filename"] = $newfilename2;
-                ?>
-                <img src="{new.filename}" alt="{products.name}">
-                <#else#>
-                <img src="{products.thumbnail}" alt="{products.name}">
-                <#/if#>
-            </a>
-            <#if:products.price1:eq:0#>
-            <p>Call Us Now For Full Details</p>
-            <#else#>
-            <p>{labels.product.productPrice} {products.price} (ex VAT)</p>
+    <p class="table-title-text">{labels.section.productsTitle} {section.title} ({labels.section.productsTotal} {sectionpages.totalproducts}, {labels.section.productsShowing} {sectionpages.from} -&gt; {sectionpages.to})</p>
+    <div id="product-listing">
+        <#loop:products#>
+        <#if:loop.products.count:mod4:1#>
+        <div class="row">
             <#/if#>
+            <div class="medium-3 columns">
+                <div class="product-list-wrap">
+                    <form name="{products.form.name}" action="{products.form.action}" method="POST" onSubmit="{
+                                products.form.onsubmit
+                            }">
+                        <?php
+                        $filename = {*products.thumbnail};
+                        $filenametemp = substr("$filename", 0, -4);
+                        $newfilename = str_replace($filename, ".jpg", "-oos.jpg");
+                        $newfilename2 = $filenametemp.$newfilename;
+                        $this->theVariables["new"]["filename"] = $newfilename2;
+                        ?> <#if:products.extra_OutOfStock.content:neq:blank#>
+                        <div class="product-image" style="background-image:url('{new.filename}');">
+                            <#else#>
+                            <div class="product-image" style="background-image:url('{products.mainimage}');">
+                                <#/if#>
+                                <a href="{products.link}" title="{products.name}"><span class="vcenter">{products.name}<i class="fa fa-plus"></i></span></a>
+
+                            </div>
+                            <p class="product-title"><a href="{products.link}" title="{products.name}">{products.name}</a></p>
+                            <#if:products.price1:eq:0#>
+                            <#else#>
+                            <p>{labels.product.productPrice} {products.price} (ex VAT)</p>
+                            <#/if#>
 
 
-            {products.shortdescription:100:dots}
+                            <p>{products.shortdescription:100:dots}</p>
 
-            <a href="{products.link}" class="middle-links">{labels.product.moreInfoLink}</a>
-            <a href="{products.wishlist.link}" class="middle-links">{labels.customer.addToWishListLink}</a>
-            <#if:products.scNoBuy:eq:N#>
-            <#if:products.price1:neq:0#>
-            <p class="specialoffer-text">Please call 01422 314820</p>
-            <!--<a href="{products.add.link}" class="middle-links">{labels.cart.addToCartLink}</a>-->
-            <#/if#>
-            <#/if#>
+                            <p><a href="{products.link}" class="button">{labels.product.moreInfoLink}</a></p>
+                            <#if:products.scNoBuy:eq:N#>
+                            <#if:products.price1:neq:0#>
+                            <#/if#>
+                            <#/if#>
 
-        </form>
+                    </form>
+                </div>
+            </div>
+
+            <#if:loop.products.count:mod4:0#>
+        </div>
+        <#/if#>
+        <#/loop#>
     </div>
+    <#if:loop.sectionpages.pages.total:gt:1#>
+
+    <p class="middle-normal-text">
+        <#if:sectionpages.previouslink:neq:blank#>
+        [<a href="{sectionpages.previouslink}" class="middle-links">{labels.section.previousLink}</a>]
+        <#/if#>
+        <#loop:sectionpages.pages#>
+        <#if:sectionpages.page:eq:search.pages.page#>
+        {sectionpages.pages.page}
+        <#else#>
+        <a href="{sectionpages.pages.link}" class="middle-links">{sectionpages.pages.page}</a> 
+        <#/if#>
+        <#/loop#>
+        <#if:sectionpages.nextlink:neq:blank#>
+        [<a href="{sectionpages.nextlink}" class="middle-links">{labels.section.nextLink}</a>]
+        <#/if#>
+    </p>
+    <#/if#>
+    <!-- /output page navigation if there is more than one page in this section -->
+    <#/if#>
+    <#include:includes/bottom_sidebar.html#>
 </div>
-<!-- /output product with individual add to basket form -->
-
-<#/loop#>
-
-<!-- output page navigation if there is more than one page in this section -->
-<#if:loop.sectionpages.pages.total:gt:1#>
-
-<p class="middle-normal-text">
-    <#if:sectionpages.previouslink:neq:blank#>
-    [<a href="{sectionpages.previouslink}" class="middle-links">{labels.section.previousLink}</a>]
-    <#/if#>
-    <#loop:sectionpages.pages#>
-    <#if:sectionpages.page:eq:search.pages.page#>
-    {sectionpages.pages.page}
-    <#else#>
-    <a href="{sectionpages.pages.link}" class="middle-links">{sectionpages.pages.page}</a> 
-    <#/if#>
-    <#/loop#>
-    <#if:sectionpages.nextlink:neq:blank#>
-    [<a href="{sectionpages.nextlink}" class="middle-links">{labels.section.nextLink}</a>]
-    <#/if#>
-</p>
-<#/if#>
-<!-- /output page navigation if there is more than one page in this section -->
-<#/if#>
-<#include:includes/bottom_sidebar.html#>
 <#include:includes/bottom.html#>
